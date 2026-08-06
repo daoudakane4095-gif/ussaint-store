@@ -1,1075 +1,1245 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>USSAINT — Official Store</title>
-
-    <meta
-        name="description"
-        content="USSAINT — Collection streetwear en édition limitée."
-    >
-
-    <style>
-        /* =====================================================
-           RESET
-        ===================================================== */
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #050505;
-            color: #fff;
-            overflow-x: hidden;
-        }
-
-        button,
-        input,
-        select {
-            font-family: inherit;
-        }
-
-        button {
-            cursor: pointer;
-        }
-
-        /* =====================================================
-           NAVBAR
-        ===================================================== */
-
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 74px;
-            z-index: 1000;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            padding: 0 6%;
-
-            background: rgba(5, 5, 5, 0.82);
-            backdrop-filter: blur(18px);
-
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .logo {
-            color: #fff;
-            text-decoration: none;
-            font-size: 22px;
-            font-weight: 900;
-            letter-spacing: 6px;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 35px;
-        }
-
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 10px;
-            letter-spacing: 2px;
-            transition: 0.3s;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>USSAINT — Premium Streetwear</title>
+
+<meta name="description" content="USSAINT — Premium Streetwear. Collection limitée.">
+
+<style>
+:root{
+    --blue:#0757d9;
+    --blue-dark:#043b96;
+    --blue-light:#eaf2ff;
+    --white:#ffffff;
+    --black:#07111f;
+    --gray:#667085;
+    --line:#dce6f5;
+    --soft:#f6f9ff;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--white);
+    color:var(--black);
+    overflow-x:hidden;
+}
+
+button,
+input,
+select{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:76px;
+    z-index:1000;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 6%;
 
-        .nav-links a:hover {
-            opacity: 0.5;
-        }
+    background:rgba(255,255,255,.88);
+    backdrop-filter:blur(18px);
 
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+    border-bottom:1px solid rgba(7,87,217,.12);
+}
+
+.logo{
+    text-decoration:none;
+    color:var(--blue);
+
+    font-size:24px;
+    font-weight:1000;
+    letter-spacing:7px;
+}
+
+.nav-links{
+    display:flex;
+    gap:36px;
+}
+
+.nav-links a{
+    color:var(--black);
+    text-decoration:none;
+
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:2px;
+    text-transform:uppercase;
 
-        .cart-button {
-            position: relative;
+    transition:.25s;
+}
 
-            border: 1px solid #fff;
-            background: #fff;
-            color: #000;
+.nav-links a:hover{
+    color:var(--blue);
+}
 
-            padding: 11px 16px;
+.nav-actions{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
 
-            font-size: 10px;
-            font-weight: 900;
-            letter-spacing: 1px;
+.cart-button{
+    position:relative;
 
-            transition: 0.3s;
-        }
+    border:none;
+    background:var(--blue);
+    color:white;
 
-        .cart-button:hover {
-            background: transparent;
-            color: #fff;
-        }
+    padding:12px 18px;
 
-        .cart-count {
-            position: absolute;
-            top: -8px;
-            right: -8px;
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:1px;
 
-            width: 20px;
-            height: 20px;
+    border-radius:30px;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+    box-shadow:0 8px 25px rgba(7,87,217,.22);
 
-            background: #000;
-            color: #fff;
+    transition:.25s;
+}
 
-            border: 1px solid #fff;
-            border-radius: 50%;
+.cart-button:hover{
+    background:var(--blue-dark);
+    transform:translateY(-2px);
+}
 
-            font-size: 9px;
-        }
+.cart-count{
+    position:absolute;
 
-        .hamburger {
-            display: none;
+    top:-7px;
+    right:-5px;
 
-            width: 43px;
-            height: 43px;
+    width:20px;
+    height:20px;
 
-            background: transparent;
-            border: 1px solid #333;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-            padding: 9px;
-        }
+    background:#fff;
+    color:var(--blue);
 
-        .hamburger span {
-            display: block;
-            width: 100%;
-            height: 2px;
+    border:2px solid var(--blue);
+    border-radius:50%;
 
-            background: #fff;
+    font-size:9px;
+}
 
-            margin: 5px 0;
-        }
+.hamburger{
+    display:none;
 
-        /* =====================================================
-           MOBILE MENU
-        ===================================================== */
+    width:44px;
+    height:44px;
 
-        .mobile-menu {
-            position: fixed;
-            top: 74px;
-            left: 0;
+    background:white;
+    border:1px solid var(--line);
+    border-radius:50%;
 
-            width: 100%;
+    padding:10px;
+}
 
-            background: #080808;
+.hamburger span{
+    display:block;
+    width:100%;
+    height:2px;
+    margin:5px 0;
+    background:var(--blue);
+}
 
-            border-bottom: 1px solid #222;
+/* =========================
+   MOBILE MENU
+========================= */
 
-            display: none;
-            flex-direction: column;
+.mobile-menu{
+    position:fixed;
+    top:76px;
+    left:0;
+    width:100%;
+    z-index:999;
 
-            z-index: 999;
-        }
+    display:none;
+    flex-direction:column;
 
-        .mobile-menu.active {
-            display: flex;
-        }
+    background:white;
 
-        .mobile-menu a {
-            color: #fff;
-            text-decoration: none;
+    border-bottom:1px solid var(--line);
 
-            padding: 20px;
+    box-shadow:0 15px 40px rgba(0,0,0,.08);
+}
 
-            text-align: center;
+.mobile-menu.active{
+    display:flex;
+}
 
-            border-bottom: 1px solid #181818;
+.mobile-menu a{
+    padding:20px;
 
-            font-size: 11px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-        }
+    text-align:center;
 
-        /* =====================================================
-           HERO
-        ===================================================== */
+    text-decoration:none;
+    color:var(--black);
 
-        .hero {
-            min-height: 100vh;
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:3px;
+    text-transform:uppercase;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+    border-bottom:1px solid var(--line);
+}
 
-            text-align: center;
+/* =========================
+   HERO
+========================= */
 
-            padding: 110px 20px 70px;
+.hero{
+    min-height:100vh;
 
-            position: relative;
+    position:relative;
 
-            background:
-                radial-gradient(
-                    circle at center,
-                    #1d1d1d 0%,
-                    #080808 42%,
-                    #000 100%
-                );
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-            overflow: hidden;
-        }
+    text-align:center;
 
-        .hero::before {
-            content: "";
+    padding:130px 20px 80px;
 
-            position: absolute;
+    overflow:hidden;
 
-            width: 500px;
-            height: 500px;
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            #e9f2ff 0%,
+            #ffffff 48%,
+            #f4f8ff 100%
+        );
+}
 
-            border: 1px solid rgba(255, 255, 255, 0.05);
+.hero::before{
+    content:"";
 
-            border-radius: 50%;
+    position:absolute;
 
-            animation: rotateCircle 18s linear infinite;
-        }
+    width:600px;
+    height:600px;
 
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
+    border-radius:50%;
 
-        .hero-label {
-            color: #777;
+    border:1px solid rgba(7,87,217,.10);
+}
 
-            font-size: 10px;
-            letter-spacing: 7px;
-            text-transform: uppercase;
+.hero::after{
+    content:"";
 
-            margin-bottom: 25px;
-        }
+    position:absolute;
 
-        .hero h1 {
-            font-size: clamp(58px, 15vw, 145px);
+    width:850px;
+    height:850px;
 
-            font-weight: 900;
+    border-radius:50%;
 
-            letter-spacing: 14px;
+    border:1px solid rgba(7,87,217,.05);
+}
 
-            line-height: 0.9;
-        }
+.hero-content{
+    position:relative;
+    z-index:2;
+}
 
-        .hero h1 span {
-            display: block;
+.hero-tag{
+    display:inline-block;
 
-            color: transparent;
+    padding:9px 16px;
 
-            -webkit-text-stroke: 1px #fff;
-        }
+    border:1px solid rgba(7,87,217,.18);
 
-        .hero-subtitle {
-            margin-top: 30px;
+    border-radius:30px;
 
-            color: #999;
+    color:var(--blue);
 
-            font-size: 12px;
+    background:rgba(255,255,255,.7);
 
-            letter-spacing: 5px;
+    font-size:9px;
+    font-weight:900;
+    letter-spacing:3px;
+}
 
-            text-transform: uppercase;
-        }
+.hero h1{
+    margin-top:28px;
 
-        .hero-button {
-            display: inline-block;
+    font-size:clamp(60px,15vw,155px);
 
-            margin-top: 45px;
+    line-height:.82;
 
-            padding: 17px 34px;
+    font-weight:1000;
 
-            background: #fff;
-            color: #000;
+    letter-spacing:10px;
 
-            text-decoration: none;
+    color:var(--blue);
+}
 
-            font-size: 10px;
-            font-weight: 900;
+.hero h1 span{
+    display:block;
 
-            letter-spacing: 3px;
+    color:transparent;
 
-            transition: 0.3s;
-        }
+    -webkit-text-stroke:2px var(--blue);
+}
 
-        .hero-button:hover {
-            background: transparent;
-            color: #fff;
+.hero p{
+    margin:35px auto 0;
 
-            outline: 1px solid #fff;
-        }
+    max-width:600px;
 
-        @keyframes rotateCircle {
-            from {
-                transform: rotate(0deg);
-            }
+    color:var(--gray);
 
-            to {
-                transform: rotate(360deg);
-            }
-        }
+    font-size:12px;
+    line-height:1.8;
+    letter-spacing:2px;
+}
 
-        /* =====================================================
-           COLLECTION
-        ===================================================== */
+.hero-buttons{
+    display:flex;
+    justify-content:center;
+    gap:12px;
 
-        .collection {
-            max-width: 1450px;
+    margin-top:40px;
+}
 
-            margin: auto;
+.primary-btn,
+.secondary-btn{
+    padding:17px 28px;
 
-            padding: 120px 6%;
-        }
+    border-radius:30px;
 
-        .section-heading {
-            text-align: center;
+    font-size:9px;
+    font-weight:900;
+    letter-spacing:2px;
 
-            margin-bottom: 65px;
-        }
+    text-decoration:none;
 
-        .section-label {
-            color: #777;
+    transition:.3s;
+}
 
-            font-size: 10px;
+.primary-btn{
+    background:var(--blue);
+    color:white;
 
-            letter-spacing: 5px;
+    box-shadow:0 12px 30px rgba(7,87,217,.25);
+}
 
-            text-transform: uppercase;
+.primary-btn:hover{
+    background:var(--blue-dark);
+    transform:translateY(-3px);
+}
 
-            margin-bottom: 17px;
-        }
+.secondary-btn{
+    background:white;
+    color:var(--blue);
 
-        .section-heading h2 {
-            font-size: clamp(38px, 7vw, 72px);
+    border:1px solid #c9d9f2;
+}
 
-            letter-spacing: 5px;
+.secondary-btn:hover{
+    border-color:var(--blue);
+    transform:translateY(-3px);
+}
 
-            text-transform: uppercase;
-        }
+/* =========================
+   SECTIONS
+========================= */
 
-        .section-heading p {
-            max-width: 580px;
+.section{
+    max-width:1450px;
+    margin:auto;
+    padding:110px 6%;
+}
 
-            margin: 20px auto 0;
+.heading{
+    text-align:center;
+    margin-bottom:60px;
+}
 
-            color: #777;
+.heading-label{
+    color:var(--blue);
 
-            line-height: 1.8;
+    font-size:9px;
+    font-weight:900;
+    letter-spacing:4px;
 
-            font-size: 13px;
-        }
+    margin-bottom:14px;
+}
 
-        /* =====================================================
-           PRODUCTS
-        ===================================================== */
+.heading h2{
+    font-size:clamp(38px,7vw,72px);
+    letter-spacing:2px;
+}
 
-        .products {
-            display: grid;
+.heading p{
+    max-width:600px;
+    margin:18px auto 0;
 
-            grid-template-columns: repeat(2, 1fr);
+    color:var(--gray);
 
-            gap: 30px;
-        }
+    font-size:13px;
+    line-height:1.8;
+}
 
-        .product {
-            background: #0c0c0c;
+/* =========================
+   PRODUCTS
+========================= */
 
-            border: 1px solid #1f1f1f;
+.products{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:28px;
+}
 
-            overflow: hidden;
+.product{
+    overflow:hidden;
 
-            transition: 0.45s;
-        }
+    background:white;
 
-        .product:hover {
-            transform: translateY(-8px);
+    border:1px solid var(--line);
 
-            border-color: #555;
-        }
+    border-radius:24px;
 
-        .product-image {
-            position: relative;
+    box-shadow:0 15px 50px rgba(25,65,120,.07);
 
-            background: #111;
+    transition:.4s;
+}
 
-            overflow: hidden;
-        }
+.product:hover{
+    transform:translateY(-7px);
 
-        .product-image img {
-            display: block;
+    box-shadow:0 25px 70px rgba(7,87,217,.13);
+}
 
-            width: 100%;
+.product-image{
+    position:relative;
 
-            aspect-ratio: 1 / 1;
+    height:570px;
 
-            object-fit: contain;
+    background:
+        linear-gradient(
+            135deg,
+            #f5f9ff,
+            #e9f2ff
+        );
 
-            transition: transform 0.7s ease;
-        }
+    overflow:hidden;
+}
 
-        .product:hover .product-image img {
-            transform: scale(1.04);
-        }
+.product-image img{
+    width:100%;
+    height:100%;
 
-        .limited-badge {
-            position: absolute;
+    display:block;
 
-            top: 18px;
-            left: 18px;
+    object-fit:contain;
 
-            z-index: 2;
+    transition:.6s;
+}
 
-            background: #fff;
-            color: #000;
+.product:hover .product-image img{
+    transform:scale(1.04);
+}
 
-            padding: 9px 12px;
+.badge{
+    position:absolute;
 
-            font-size: 9px;
+    top:18px;
+    left:18px;
+    z-index:5;
 
-            font-weight: 900;
+    padding:10px 14px;
 
-            letter-spacing: 2px;
-        }
+    color:white;
+    background:var(--blue);
 
-        .product-info {
-            padding: 28px;
-        }
+    border-radius:30px;
 
-        .product-number {
-            color: #555;
+    font-size:8px;
+    font-weight:900;
+    letter-spacing:2px;
 
-            font-size: 9px;
+    box-shadow:0 8px 20px rgba(7,87,217,.25);
+}
 
-            letter-spacing: 3px;
-        }
+.product-info{
+    padding:28px;
+}
 
-        .product-title {
-            margin-top: 10px;
+.product-number{
+    color:var(--blue);
 
-            font-size: 25px;
+    font-size:9px;
+    font-weight:900;
+    letter-spacing:3px;
+}
 
-            letter-spacing: 1px;
-        }
+.product-title{
+    margin-top:9px;
 
-        .product-description {
-            color: #777;
+    font-size:27px;
+    letter-spacing:1px;
+}
 
-            font-size: 12px;
+.product-description{
+    margin-top:10px;
 
-            line-height: 1.6;
+    color:var(--gray);
 
-            margin-top: 9px;
-        }
+    font-size:12px;
+    line-height:1.7;
+}
 
-        .product-price {
-            margin-top: 18px;
+.price{
+    margin-top:18px;
 
-            font-size: 23px;
+    color:var(--blue);
 
-            font-weight: 900;
-        }
+    font-size:27px;
+    font-weight:1000;
+}
 
-        .currency {
-            color: #777;
+.price span{
+    color:var(--gray);
 
-            font-size: 11px;
+    font-size:10px;
 
-            margin-left: 4px;
-        }
+    margin-left:4px;
+}
 
-        /* =====================================================
-           SIZES
-        ===================================================== */
+.size-label{
+    margin-top:25px;
 
-        .size-label {
-            margin-top: 25px;
+    color:#8794a8;
 
-            color: #777;
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
 
-            font-size: 9px;
+.sizes{
+    display:flex;
+    gap:7px;
 
-            letter-spacing: 2px;
+    margin-top:10px;
+}
 
-            text-transform: uppercase;
-        }
+.size{
+    width:45px;
+    height:39px;
 
-        .sizes {
-            display: flex;
+    background:white;
 
-            gap: 7px;
+    color:var(--black);
 
-            margin-top: 10px;
-        }
+    border:1px solid var(--line);
 
-        .size {
-            width: 44px;
-            height: 38px;
+    border-radius:10px;
 
-            background: #080808;
+    font-size:10px;
+    font-weight:800;
 
-            color: #fff;
+    transition:.25s;
+}
 
-            border: 1px solid #333;
+.size:hover,
+.size.selected{
+    background:var(--blue);
+    color:white;
+    border-color:var(--blue);
 
-            font-size: 10px;
+    box-shadow:0 7px 15px rgba(7,87,217,.18);
+}
 
-            transition: 0.25s;
-        }
+.product-buttons{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
 
-        .size:hover,
-        .size.selected {
-            background: #fff;
+    margin-top:25px;
+}
 
-            color: #000;
+.buy-button,
+.add-button{
+    padding:16px 10px;
 
-            border-color: #fff;
-        }
+    border-radius:12px;
 
-        /* =====================================================
-           PRODUCT BUTTONS
-        ===================================================== */
+    font-size:9px;
+    font-weight:900;
+    letter-spacing:1.3px;
 
-        .product-buttons {
-            display: grid;
+    transition:.3s;
+}
 
-            grid-template-columns: 1fr 1fr;
+.buy-button{
+    background:var(--blue);
+    color:white;
+    border:1px solid var(--blue);
 
-            gap: 10px;
+    box-shadow:0 9px 22px rgba(7,87,217,.18);
+}
 
-            margin-top: 25px;
-        }
+.buy-button:hover{
+    background:var(--blue-dark);
+    transform:translateY(-2px);
+}
 
-        .buy-button,
-        .add-button {
-            padding: 16px 10px;
+.add-button{
+    background:white;
+    color:var(--blue);
+    border:1px solid #c9d9f2;
+}
 
-            font-size: 9px;
+.add-button:hover{
+    background:var(--blue-light);
+    border-color:var(--blue);
+}
 
-            font-weight: 900;
+/* =========================
+   BRAND
+========================= */
 
-            letter-spacing: 1.5px;
+.brand{
+    padding:120px 20px;
 
-            transition: 0.3s;
-        }
+    text-align:center;
 
-        .buy-button {
-            background: #fff;
+    background:
+        linear-gradient(
+            135deg,
+            var(--blue-dark),
+            var(--blue)
+        );
 
-            color: #000;
+    color:white;
+}
 
-            border: 1px solid #fff;
-        }
+.brand .heading-label{
+    color:#cfe0ff;
+}
 
-        .buy-button:hover {
-            background: transparent;
+.brand h2{
+    font-size:clamp(38px,7vw,80px);
+    letter-spacing:3px;
+}
 
-            color: #fff;
-        }
+.brand h2 span{
+    color:#bcd5ff;
+}
 
-        .add-button {
-            background: transparent;
+.brand p{
+    max-width:650px;
 
-            color: #fff;
+    margin:25px auto 0;
 
-            border: 1px solid #444;
-        }
+    color:#e1ebff;
 
-        .add-button:hover {
-            background: #fff;
+    font-size:13px;
+    line-height:1.9;
+}
 
-            color: #000;
+/* =========================
+   LOOKBOOK
+========================= */
 
-            border-color: #fff;
-        }
+.lookbook{
+    background:var(--soft);
+}
 
-        /* =====================================================
-           BRAND SECTION
-        ===================================================== */
+.lookbook-grid{
+    display:grid;
 
-        .brand-section {
-            padding: 130px 20px;
+    grid-template-columns:repeat(4,1fr);
 
-            text-align: center;
+    gap:12px;
+}
 
-            background: #080808;
+.lookbook-item{
+    position:relative;
 
-            border-top: 1px solid #171717;
+    overflow:hidden;
 
-            border-bottom: 1px solid #171717;
-        }
+    aspect-ratio:1/1;
 
-        .brand-section h2 {
-            font-size: clamp(34px, 7vw, 80px);
+    background:#eaf2ff;
 
-            letter-spacing: 4px;
+    border-radius:14px;
 
-            text-transform: uppercase;
-        }
+    cursor:pointer;
+}
 
-        .brand-section h2 span {
-            color: #666;
-        }
+.lookbook-item.large{
+    grid-column:span 2;
+    grid-row:span 2;
+}
 
-        .brand-section p {
-            max-width: 620px;
+.lookbook-item img{
+    width:100%;
+    height:100%;
 
-            margin: 30px auto 0;
+    object-fit:cover;
 
-            color: #777;
+    display:block;
 
-            font-size: 13px;
+    transition:.6s;
+}
 
-            line-height: 1.9;
-        }
+.lookbook-item:hover img{
+    transform:scale(1.07);
+}
 
-        /* =====================================================
-           SOCIAL
-        ===================================================== */
+.lookbook-overlay{
+    position:absolute;
+    inset:0;
 
-        .social {
-            padding: 100px 20px;
+    display:flex;
+    align-items:flex-end;
 
-            text-align: center;
-        }
+    padding:18px;
 
-        .social h2 {
-            font-size: 35px;
+    opacity:0;
 
-            letter-spacing: 3px;
-        }
+    background:linear-gradient(
+        transparent,
+        rgba(0,40,110,.75)
+    );
 
-        .social p {
-            color: #777;
+    transition:.3s;
+}
 
-            margin-top: 12px;
+.lookbook-item:hover .lookbook-overlay{
+    opacity:1;
+}
 
-            font-size: 13px;
-        }
+.lookbook-overlay span{
+    color:white;
 
-        .social-buttons {
-            display: flex;
+    font-size:9px;
+    font-weight:900;
+    letter-spacing:3px;
+}
 
-            justify-content: center;
+/* =========================
+   LIGHTBOX
+========================= */
 
-            gap: 12px;
+.lightbox{
+    position:fixed;
+    inset:0;
 
-            margin-top: 30px;
-        }
+    z-index:2500;
 
-        .social-buttons a {
-            color: #fff;
+    display:none;
+    align-items:center;
+    justify-content:center;
 
-            text-decoration: none;
+    padding:25px;
 
-            border: 1px solid #333;
+    background:rgba(2,20,50,.94);
+}
 
-            padding: 15px 25px;
+.lightbox.active{
+    display:flex;
+}
 
-            font-size: 10px;
+.lightbox img{
+    max-width:92vw;
+    max-height:88vh;
 
-            letter-spacing: 2px;
+    object-fit:contain;
 
-            transition: 0.3s;
-        }
+    border-radius:12px;
+}
 
-        .social-buttons a:hover {
-            background: #fff;
+.lightbox-close{
+    position:absolute;
 
-            color: #000;
+    top:20px;
+    right:25px;
 
-            border-color: #fff;
-        }
+    width:45px;
+    height:45px;
 
-        /* =====================================================
-           FOOTER
-        ===================================================== */
+    border:1px solid rgba(255,255,255,.3);
 
-        footer {
-            background: #000;
+    border-radius:50%;
 
-            text-align: center;
+    background:rgba(255,255,255,.1);
 
-            padding: 65px 20px 30px;
+    color:white;
 
-            border-top: 1px solid #151515;
-        }
+    font-size:28px;
+}
 
-        .footer-logo {
-            font-size: 30px;
+.lightbox-number{
+    position:absolute;
 
-            font-weight: 900;
+    bottom:22px;
+    left:50%;
 
-            letter-spacing: 8px;
-        }
+    transform:translateX(-50%);
 
-        footer p {
-            color: #555;
+    color:#d5e3ff;
 
-            margin-top: 15px;
+    font-size:10px;
+    letter-spacing:3px;
+}
 
-            font-size: 10px;
+/* =========================
+   SOCIAL
+========================= */
 
-            letter-spacing: 3px;
-        }
+.social{
+    text-align:center;
 
-        .copyright {
-            color: #333;
+    padding:110px 20px;
+}
 
-            margin-top: 40px;
+.social h2{
+    color:var(--blue);
 
-            font-size: 9px;
-        }
+    font-size:45px;
+    letter-spacing:5px;
+}
 
-        /* =====================================================
-           CART
-        ===================================================== */
+.social p{
+    margin-top:12px;
 
-        .cart-overlay {
-            position: fixed;
+    color:var(--gray);
 
-            inset: 0;
+    font-size:13px;
+}
 
-            z-index: 2000;
+.social-buttons{
+    display:flex;
+    justify-content:center;
+    gap:12px;
 
-            background: rgba(0, 0, 0, 0.75);
+    margin-top:30px;
+}
 
-            display: none;
-        }
+.social-buttons a{
+    padding:15px 28px;
 
-        .cart-overlay.active {
-            display: block;
-        }
+    color:var(--blue);
+    background:white;
 
-        .cart {
-            position: absolute;
+    border:1px solid #c9d9f2;
 
-            top: 0;
-            right: 0;
+    border-radius:30px;
 
-            width: min(450px, 100%);
+    text-decoration:none;
 
-            height: 100%;
+    font-size:9px;
+    font-weight:900;
+    letter-spacing:2px;
 
-            background: #0b0b0b;
+    transition:.3s;
+}
 
-            border-left: 1px solid #333;
+.social-buttons a:hover{
+    background:var(--blue);
+    color:white;
+    border-color:var(--blue);
+}
 
-            padding: 30px;
+/* =========================
+   FOOTER
+========================= */
 
-            overflow-y: auto;
-        }
+footer{
+    padding:60px 20px 28px;
 
-        .cart-header {
-            display: flex;
+    background:#061a3c;
 
-            justify-content: space-between;
+    text-align:center;
 
-            align-items: center;
+    color:white;
+}
 
-            padding-bottom: 20px;
+.footer-logo{
+    font-size:30px;
+    font-weight:1000;
+    letter-spacing:8px;
+}
 
-            border-bottom: 1px solid #222;
-        }
+footer p{
+    margin-top:13px;
 
-        .cart-header h2 {
-            font-size: 20px;
+    color:#9bb9ed;
 
-            letter-spacing: 3px;
-        }
+    font-size:9px;
+    letter-spacing:3px;
+}
 
-        .close-cart {
-            background: none;
+.copyright{
+    margin-top:35px;
 
-            color: #fff;
+    color:#6e8fc6;
 
-            border: none;
+    font-size:9px;
+}
 
-            font-size: 28px;
-        }
+/* =========================
+   CART
+========================= */
 
-        .empty-cart {
-            text-align: center;
+.cart-overlay{
+    position:fixed;
+    inset:0;
 
-            color: #666;
+    z-index:3000;
 
-            padding: 60px 0;
+    display:none;
 
-            font-size: 13px;
-        }
+    background:rgba(1,17,45,.55);
+}
 
-        .cart-item {
-            display: flex;
+.cart-overlay.active{
+    display:block;
+}
 
-            gap: 15px;
+.cart{
+    position:absolute;
 
-            padding: 18px 0;
+    top:0;
+    right:0;
 
-            border-bottom: 1px solid #222;
-        }
+    width:min(450px,100%);
+    height:100%;
 
-        .cart-item img {
-            width: 80px;
-            height: 90px;
+    overflow-y:auto;
 
-            object-fit: contain;
+    padding:28px;
 
-            background: #111;
-        }
+    background:white;
 
-        .cart-item-info {
-            flex: 1;
-        }
+    border-left:1px solid var(--line);
 
-        .cart-item-info h4 {
-            font-size: 14px;
-        }
+    box-shadow:-20px 0 60px rgba(0,30,80,.15);
+}
 
-        .cart-item-info p {
-            color: #777;
+.cart-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 
-            margin-top: 7px;
+    padding-bottom:20px;
 
-            font-size: 11px;
-        }
+    border-bottom:1px solid var(--line);
+}
 
-        .remove-item {
-            margin-top: 10px;
+.cart-header h2{
+    color:var(--blue);
 
-            background: none;
+    font-size:19px;
+    letter-spacing:3px;
+}
 
-            color: #777;
+.close-cart{
+    width:40px;
+    height:40px;
 
-            border: none;
+    border:1px solid var(--line);
 
-            font-size: 9px;
+    border-radius:50%;
 
-            letter-spacing: 1px;
-        }
+    background:white;
 
-        .remove-item:hover {
-            color: #fff;
-        }
+    color:var(--blue);
 
-        .cart-total {
-            display: flex;
+    font-size:25px;
+}
 
-            justify-content: space-between;
+.empty-cart{
+    padding:60px 0;
 
-            padding: 22px 0;
+    text-align:center;
 
-            margin-top: 10px;
+    color:var(--gray);
 
-            border-top: 1px solid #333;
+    font-size:13px;
+}
 
-            font-size: 17px;
+.cart-item{
+    display:flex;
+    gap:14px;
 
-            font-weight: 900;
-        }
+    padding:18px 0;
 
-        .checkout {
-            width: 100%;
+    border-bottom:1px solid var(--line);
+}
 
-            padding: 18px;
+.cart-item img{
+    width:80px;
+    height:90px;
 
-            background: #fff;
+    object-fit:contain;
 
-            color: #000;
+    background:var(--blue-light);
 
-            border: 1px solid #fff;
+    border-radius:10px;
+}
 
-            font-size: 10px;
+.cart-item-info{
+    flex:1;
+}
 
-            font-weight: 900;
+.cart-item-info h4{
+    font-size:13px;
+}
 
-            letter-spacing: 2px;
+.cart-item-info p{
+    margin-top:7px;
 
-            transition: 0.3s;
-        }
+    color:var(--gray);
 
-        .checkout:hover {
-            background: transparent;
+    font-size:10px;
+}
 
-            color: #fff;
-        }
+.remove{
+    margin-top:10px;
 
-        /* =====================================================
-           TOAST
-        ===================================================== */
+    background:none;
+    border:none;
 
-        .toast {
-            position: fixed;
+    color:#d33;
 
-            bottom: 25px;
-            left: 50%;
+    font-size:9px;
+    font-weight:800;
+}
 
-            transform: translate(-50%, 100px);
+.cart-total{
+    display:flex;
+    justify-content:space-between;
 
-            z-index: 3000;
+    padding:22px 0;
 
-            background: #fff;
+    color:var(--blue);
 
-            color: #000;
+    font-size:17px;
+    font-weight:1000;
+}
 
-            padding: 14px 22px;
+.checkout{
+    width:100%;
 
-            font-size: 10px;
+    padding:18px;
 
-            font-weight: 900;
+    background:#25d366;
 
-            letter-spacing: 1px;
+    color:white;
 
-            opacity: 0;
+    border:none;
 
-            transition: 0.35s;
-        }
+    border-radius:12px;
 
-        .toast.show {
-            transform: translate(-50%, 0);
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:2px;
 
-            opacity: 1;
-        }
+    transition:.3s;
+}
 
-        /* =====================================================
-           RESPONSIVE
-        ===================================================== */
+.checkout:hover{
+    transform:translateY(-2px);
+}
 
-        @media (max-width: 750px) {
+/* =========================
+   TOAST
+========================= */
 
-            .navbar {
-                padding: 0 18px;
-            }
+.toast{
+    position:fixed;
 
-            .nav-links {
-                display: none;
-            }
+    left:50%;
+    bottom:25px;
 
-            .hamburger {
-                display: block;
-            }
+    z-index:4000;
 
-            .hero h1 {
-                letter-spacing: 8px;
-            }
+    transform:translate(-50%,100px);
 
-            .hero::before {
-                width: 300px;
-                height: 300px;
-            }
+    padding:14px 22px;
 
-            .collection {
-                padding: 85px 18px;
-            }
+    background:var(--blue);
 
-            .products {
-                grid-template-columns: 1fr;
-            }
+    color:white;
 
-            .product-buttons {
-                grid-template-columns: 1fr;
-            }
+    border-radius:30px;
 
-            .social-buttons {
-                flex-direction: column;
+    font-size:9px;
+    font-weight:900;
+    letter-spacing:1px;
 
-                max-width: 260px;
+    opacity:0;
 
-                margin-left: auto;
-                margin-right: auto;
-            }
+    transition:.35s;
 
-            .cart {
-                padding: 25px 20px;
-            }
-        }
+    box-shadow:0 10px 30px rgba(7,87,217,.3);
+}
 
-        @media (max-width: 420px) {
+.toast.show{
+    transform:translate(-50%,0);
+    opacity:1;
+}
 
-            .logo {
-                font-size: 18px;
+/* =========================
+   MOBILE
+========================= */
 
-                letter-spacing: 4px;
-            }
+@media(max-width:800px){
 
-            .cart-button {
-                padding: 10px 12px;
-            }
+    .navbar{
+        padding:0 17px;
+    }
 
-            .hero {
-                min-height: 90vh;
-            }
-        }
-    </style>
+    .nav-links{
+        display:none;
+    }
+
+    .hamburger{
+        display:block;
+    }
+
+    .logo{
+        font-size:19px;
+        letter-spacing:5px;
+    }
+
+    .hero h1{
+        font-size:62px;
+        letter-spacing:6px;
+    }
+
+    .hero::before{
+        width:300px;
+        height:300px;
+    }
+
+    .hero-buttons{
+        flex-direction:column;
+
+        max-width:280px;
+
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .section{
+        padding:85px 17px;
+    }
+
+    .products{
+        grid-template-columns:1fr;
+    }
+
+    .product-image{
+        height:470px;
+    }
+
+    .product-buttons{
+        grid-template-columns:1fr;
+    }
+
+    .lookbook-grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:8px;
+    }
+
+    .lookbook-item.large{
+        grid-column:span 2;
+        grid-row:span 2;
+    }
+
+    .social-buttons{
+        flex-direction:column;
+
+        max-width:280px;
+
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .cart{
+        padding:25px 20px;
+    }
+}
+
+@media(max-width:430px){
+
+    .hero{
+        min-height:90vh;
+    }
+
+    .hero h1{
+        font-size:56px;
+    }
+
+    .product-image{
+        height:430px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-<!-- =====================================================
-     NAVIGATION
-===================================================== -->
+<!-- NAVBAR -->
 
 <nav class="navbar">
 
-    <a href="#" class="logo">
-        USSAINT
-    </a>
+    <a href="#" class="logo">USSAINT</a>
 
     <div class="nav-links">
-
-        <a href="#collection">
-            Collection
-        </a>
-
-        <a href="#about">
-            L'identité
-        </a>
-
-        <a href="#social">
-            Instagram
-        </a>
-
+        <a href="#collection">Collection</a>
+        <a href="#lookbook">Lookbook</a>
+        <a href="#about">L'identité</a>
+        <a href="#social">Contact</a>
     </div>
 
-    <div class="nav-right">
+    <div class="nav-actions">
 
-        <button
-            class="cart-button"
-            onclick="openCart()"
-        >
+        <button class="cart-button" onclick="openCart()">
             PANIER
-
-            <span
-                class="cart-count"
-                id="cartCount"
-            >
-                0
-            </span>
-
+            <span class="cart-count" id="cartCount">0</span>
         </button>
 
-        <button
-            class="hamburger"
-            onclick="toggleMobileMenu()"
-        >
+        <button class="hamburger" onclick="toggleMenu()">
             <span></span>
             <span></span>
             <span></span>
@@ -1079,124 +1249,91 @@
 
 </nav>
 
+<!-- MOBILE MENU -->
 
-<!-- =====================================================
-     MOBILE MENU
-===================================================== -->
+<div class="mobile-menu" id="mobileMenu">
 
-<div
-    class="mobile-menu"
-    id="mobileMenu"
->
+    <a href="#collection" onclick="closeMenu()">Collection</a>
+    <a href="#lookbook" onclick="closeMenu()">Lookbook</a>
+    <a href="#about" onclick="closeMenu()">L'identité</a>
+    <a href="#social" onclick="closeMenu()">Contact</a>
 
-    <a
-        href="#collection"
-        onclick="closeMobileMenu()"
-    >
-        Collection
-    </a>
-
-    <a
-        href="#about"
-        onclick="closeMobileMenu()"
-    >
-        L'identité
-    </a>
-
-    <a
-        href="#social"
-        onclick="closeMobileMenu()"
-    >
-        Instagram
-    </a>
-
-    <a
-        href="javascript:void(0)"
-        onclick="openCart();closeMobileMenu()"
-    >
+    <a href="javascript:void(0)" onclick="openCart();closeMenu()">
         Panier
     </a>
 
 </div>
 
-
-<!-- =====================================================
-     HERO
-===================================================== -->
+<!-- HERO -->
 
 <header class="hero">
 
     <div class="hero-content">
 
-        <div class="hero-label">
-            Collection 2026
+        <div class="hero-tag">
+            USSAINT • COLLECTION 2026
         </div>
 
         <h1>
             USS<span>AINT</span>
         </h1>
 
-        <p class="hero-subtitle">
-            Streetwear • Édition Limitée
+        <p>
+            STREETWEAR PREMIUM · IDENTITÉ · ÉDITION LIMITÉE
         </p>
 
-        <a
-            href="#collection"
-            class="hero-button"
-        >
-            DÉCOUVRIR LA COLLECTION
-        </a>
+        <div class="hero-buttons">
+
+            <a href="#collection" class="primary-btn">
+                ACHETER MAINTENANT
+            </a>
+
+            <a href="#lookbook" class="secondary-btn">
+                VOIR LE LOOKBOOK
+            </a>
+
+        </div>
 
     </div>
 
 </header>
 
+<!-- COLLECTION -->
 
-<!-- =====================================================
-     COLLECTION
-===================================================== -->
+<section id="collection" class="section">
 
-<section
-    id="collection"
-    class="collection"
->
+    <div class="heading">
 
-    <div class="section-heading">
-
-        <div class="section-label">
+        <div class="heading-label">
             USSAINT ORIGINALS
         </div>
 
         <h2>
-            LA COLLECTION
+            COLLECTION
         </h2>
 
         <p>
-            Deux pièces. Une identité.
-            Découvrez les premiers modèles USSAINT,
-            disponibles en quantité limitée.
+            Nos deux premiers modèles USSAINT.
+            Une esthétique simple, moderne et reconnaissable.
         </p>
 
     </div>
 
-
     <div class="products">
 
-        <!-- =================================================
-             T-SHIRT NOIR & ROSE
-        ================================================== -->
+        <!-- PRODUIT 1 -->
 
         <article class="product">
 
             <div class="product-image">
 
-                <span class="limited-badge">
-                    LIMITED EDITION
-                </span>
+                <div class="badge">
+                    ÉDITION LIMITÉE
+                </div>
 
                 <img
-                    src="tshirt-noir-rose.png"
-                    alt="USSAINT T-shirt Noir et Rose"
+                    src="C19C25C7-52E3-44FB-9F87-0F19C6E7A766.png"
+                    alt="USSAINT Noir Rose"
                 >
 
             </div>
@@ -1208,19 +1345,16 @@
                 </div>
 
                 <h3 class="product-title">
-                    Black / Pink
+                    BLACK / PINK
                 </h3>
 
                 <p class="product-description">
-                    T-shirt noir avec identité USSAINT
-                    rose. Design streetwear exclusif.
+                    T-shirt noir USSAINT avec détails roses.
+                    Une pièce forte pour un style streetwear moderne.
                 </p>
 
-                <div class="product-price">
-                    25 000
-                    <span class="currency">
-                        MRU
-                    </span>
+                <div class="price">
+                    500 <span>MRU</span>
                 </div>
 
                 <div class="size-label">
@@ -1229,33 +1363,17 @@
 
                 <div class="sizes">
 
-                    <button
-                        class="size"
-                        onclick="selectSize(this, 'S')"
-                    >
-                        S
-                    </button>
+                    <button class="size"
+                        onclick="selectSize(this,'S')">S</button>
 
-                    <button
-                        class="size selected"
-                        onclick="selectSize(this, 'M')"
-                    >
-                        M
-                    </button>
+                    <button class="size selected"
+                        onclick="selectSize(this,'M')">M</button>
 
-                    <button
-                        class="size"
-                        onclick="selectSize(this, 'L')"
-                    >
-                        L
-                    </button>
+                    <button class="size"
+                        onclick="selectSize(this,'L')">L</button>
 
-                    <button
-                        class="size"
-                        onclick="selectSize(this, 'XL')"
-                    >
-                        XL
-                    </button>
+                    <button class="size"
+                        onclick="selectSize(this,'XL')">XL</button>
 
                 </div>
 
@@ -1263,28 +1381,24 @@
 
                     <button
                         class="buy-button"
-                        onclick="
-                            buyNow(
-                                'USSAINT Black / Pink',
-                                25000,
-                                'tshirt-noir-rose.png'
-                            )
-                        "
+                        onclick="buyNow(
+                            'USSAINT Black / Pink',
+                            500,
+                            'C19C25C7-52E3-44FB-9F87-0F19C6E7A766.png'
+                        )"
                     >
                         ACHETER MAINTENANT
                     </button>
 
                     <button
                         class="add-button"
-                        onclick="
-                            addToCart(
-                                'USSAINT Black / Pink',
-                                25000,
-                                'tshirt-noir-rose.png'
-                            )
-                        "
+                        onclick="addToCart(
+                            'USSAINT Black / Pink',
+                            500,
+                            'C19C25C7-52E3-44FB-9F87-0F19C6E7A766.png'
+                        )"
                     >
-                        + AJOUTER AU PANIER
+                        + PANIER
                     </button>
 
                 </div>
@@ -1293,22 +1407,19 @@
 
         </article>
 
-
-        <!-- =================================================
-             T-SHIRT BLANC & BLEU
-        ================================================== -->
+        <!-- PRODUIT 2 -->
 
         <article class="product">
 
             <div class="product-image">
 
-                <span class="limited-badge">
-                    LIMITED EDITION
-                </span>
+                <div class="badge">
+                    ÉDITION LIMITÉE
+                </div>
 
                 <img
-                    src="tshirt-blanc-bleu.png"
-                    alt="USSAINT T-shirt Blanc et Bleu"
+                    src="IMG_3205.png"
+                    alt="USSAINT Blanc Bleu"
                 >
 
             </div>
@@ -1320,19 +1431,16 @@
                 </div>
 
                 <h3 class="product-title">
-                    White / Blue
+                    WHITE / BLUE
                 </h3>
 
                 <p class="product-description">
-                    T-shirt blanc avec identité USSAINT
-                    bleue. Design streetwear exclusif.
+                    T-shirt blanc USSAINT avec détails bleus.
+                    Minimaliste, propre et facile à porter.
                 </p>
 
-                <div class="product-price">
-                    25 000
-                    <span class="currency">
-                        MRU
-                    </span>
+                <div class="price">
+                    500 <span>MRU</span>
                 </div>
 
                 <div class="size-label">
@@ -1341,33 +1449,17 @@
 
                 <div class="sizes">
 
-                    <button
-                        class="size"
-                        onclick="selectSize(this, 'S')"
-                    >
-                        S
-                    </button>
+                    <button class="size"
+                        onclick="selectSize(this,'S')">S</button>
 
-                    <button
-                        class="size selected"
-                        onclick="selectSize(this, 'M')"
-                    >
-                        M
-                    </button>
+                    <button class="size selected"
+                        onclick="selectSize(this,'M')">M</button>
 
-                    <button
-                        class="size"
-                        onclick="selectSize(this, 'L')"
-                    >
-                        L
-                    </button>
+                    <button class="size"
+                        onclick="selectSize(this,'L')">L</button>
 
-                    <button
-                        class="size"
-                        onclick="selectSize(this, 'XL')"
-                    >
-                        XL
-                    </button>
+                    <button class="size"
+                        onclick="selectSize(this,'XL')">XL</button>
 
                 </div>
 
@@ -1375,28 +1467,24 @@
 
                     <button
                         class="buy-button"
-                        onclick="
-                            buyNow(
-                                'USSAINT White / Blue',
-                                25000,
-                                'tshirt-blanc-bleu.png'
-                            )
-                        "
+                        onclick="buyNow(
+                            'USSAINT White / Blue',
+                            500,
+                            'IMG_3205.png'
+                        )"
                     >
                         ACHETER MAINTENANT
                     </button>
 
                     <button
                         class="add-button"
-                        onclick="
-                            addToCart(
-                                'USSAINT White / Blue',
-                                25000,
-                                'tshirt-blanc-bleu.png'
-                            )
-                        "
+                        onclick="addToCart(
+                            'USSAINT White / Blue',
+                            500,
+                            'IMG_3205.png'
+                        )"
                     >
-                        + AJOUTER AU PANIER
+                        + PANIER
                     </button>
 
                 </div>
@@ -1409,17 +1497,11 @@
 
 </section>
 
+<!-- BRAND -->
 
-<!-- =====================================================
-     BRAND STORY
-===================================================== -->
+<section id="about" class="brand">
 
-<section
-    id="about"
-    class="brand-section"
->
-
-    <div class="section-label">
+    <div class="heading-label">
         L'IDENTITÉ USSAINT
     </div>
 
@@ -1431,24 +1513,140 @@
 
     <p>
         USSAINT représente une vision moderne du streetwear.
-        Des pièces fortes, une esthétique reconnaissable
-        et une collection volontairement limitée.
+        Des pièces simples, une identité forte et une collection
+        pensée pour ceux qui veulent se démarquer.
     </p>
 
 </section>
 
+<!-- LOOKBOOK -->
 
-<!-- =====================================================
-     SOCIAL
-===================================================== -->
+<section id="lookbook" class="section lookbook">
 
-<section
-    id="social"
-    class="social"
->
+    <div class="heading">
 
-    <div class="section-label">
-        REJOINS LA COMMUNAUTÉ
+        <div class="heading-label">
+            USSAINT VISUALS
+        </div>
+
+        <h2>
+            LOOKBOOK
+        </h2>
+
+        <p>
+            Découvre l'univers visuel USSAINT.
+            Appuie sur une image pour l'afficher en grand.
+        </p>
+
+    </div>
+
+    <div class="lookbook-grid">
+
+        <div class="lookbook-item large" onclick="openLightbox(0)">
+            <img src="2F193BED-2AD4-44D3-801C-C7F97DD0B029.jpeg" alt="USSAINT 01" loading="lazy">
+            <div class="lookbook-overlay"><span>USSAINT 01</span></div>
+        </div>
+
+        <div class="lookbook-item" onclick="openLightbox(1)">
+            <img src="67004B9C-5990-488E-92D0-2749F608B9D7.jpeg" alt="USSAINT 02" loading="lazy">
+            <div class="lookbook-overlay"><span>USSAINT 02</span></div>
+        </div>
+
+        <div class="lookbook-item" onclick="openLightbox(2)">
+            <img src="67004B9C-5990-488E-92D0-2749F608B9D7.png" alt="USSAINT 03" loading="lazy">
+            <div class="lookbook-overlay"><span>USSAINT 03</span></div>
+        </div>
+
+        <div class="lookbook-item" onclick="openLightbox(3)">
+            <img src="8B72B39B-9B99-411F-A2E4-C8341C113152.jpeg" alt="USSAINT 04" loading="lazy">
+            <div class="lookbook-overlay"><span>USSAINT 04</span></div>
+        </div>
+
+        <div class="lookbook-item" onclick="openLightbox(4)">
+            <img src="C19C25C7-52E3-44FB-9F87-0F19C6E7A766.png" alt="USSAINT 05" loading="lazy">
+            <div class="lookbook-overlay"><span>USSAINT 05</span></div>
+        </div>
+
+        <div class="lookbook-item large" onclick="openLightbox(5)">
+            <img src="IMG_1566.jpeg" alt="USSAINT 06" loading="lazy">
+            <div class="lookbook-overlay"><span>USSAINT 06</span></div>
+        </div>
+
+        <div class="lookbook-item" onclick="openLightbox(6)">
+            <img src="IMG_1575.png" alt="USSAINT 07" loading="lazy">
+            <div class="lookbook-overlay"><span>USSAINT 07</span></div>
+        </div>
+
+        <div class="lookbook-item" onclick="openLightbox(7)">
+            <img src="IMG_1592.png" alt="USSAINT 08" loading="lazy">
+            <div class="lookbook-overlay"><span>USSAINT 08</span></div>
+        </div>
+
+        <div class="lookbook-item" onclick="openLightbox(8)">
+            <img src="IMG_1593.png" alt="USSAINT 09" loading="lazy">
+            <div class="lookbook-overlay"><span>USSAINT 09</span></div>
+        </div>
+
+        <div class="lookbook-item" onclick="openLightbox(9)">
+            <img src="IMG_1628.jpeg" alt="USSAINT 10" loading="lazy">
+            <div class="lookbook-overlay"><span>USSAINT 10</span></div>
+        </div>
+
+        <div class="lookbook-item" onclick="openLightbox(10)">
+            <img src="IMG_2192.jpeg" alt="USSAINT 11" loading="lazy">
+            <div class="lookbook-overlay"><span>USSAINT 11</span></div>
+        </div>
+
+        <div class="lookbook-item" onclick="openLightbox(11)">
+            <img src="IMG_2192.png" alt="USSAINT 12" loading="lazy">
+            <div class="lookbook-overlay"><span>USSAINT 12</span></div>
+        </div>
+
+        <div class="lookbook-item" onclick="openLightbox(12)">
+            <img src="IMG_2265.jpeg" alt="USSAINT 13" loading="lazy">
+            <div class="lookbook-overlay"><span>USSAINT 13</span></div>
+        </div>
+
+        <div class="lookbook-item" onclick="openLightbox(13)">
+            <img src="IMG_2267.jpeg" alt="USSAINT 14" loading="lazy">
+            <div class="lookbook-overlay"><span>USSAINT 14</span></div>
+        </div>
+
+        <div class="lookbook-item" onclick="openLightbox(14)">
+            <img src="IMG_2274.jpeg" alt="USSAINT 15" loading="lazy">
+            <div class="lookbook-overlay"><span>USSAINT 15</span></div>
+        </div>
+
+        <div class="lookbook-item" onclick="openLightbox(15)">
+            <img src="IMG_2275.png" alt="USSAINT 16" loading="lazy">
+            <div class="lookbook-overlay"><span>USSAINT 16</span></div>
+        </div>
+
+        <div class="lookbook-item" onclick="openLightbox(16)">
+            <img src="IMG_2277.png" alt="USSAINT 17" loading="lazy">
+            <div class="lookbook-overlay"><span>USSAINT 17</span></div>
+        </div>
+
+        <div class="lookbook-item" onclick="openLightbox(17)">
+            <img src="IMG_2304.jpeg" alt="USSAINT 18" loading="lazy">
+            <div class="lookbook-overlay"><span>USSAINT 18</span></div>
+        </div>
+
+        <div class="lookbook-item large" onclick="openLightbox(18)">
+            <img src="IMG_3205.png" alt="USSAINT 19" loading="lazy">
+            <div class="lookbook-overlay"><span>USSAINT 19</span></div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- SOCIAL -->
+
+<section id="social" class="social">
+
+    <div class="heading-label">
+        CONNECT WITH US
     </div>
 
     <h2>
@@ -1456,26 +1654,16 @@
     </h2>
 
     <p>
-        Suis-nous pour découvrir les prochaines sorties.
+        Découvre les prochaines sorties et nouveautés.
     </p>
 
     <div class="social-buttons">
 
-        <!-- REMPLACE CE LIEN PAR TON INSTAGRAM -->
-
-        <a
-            href="https://instagram.com/"
-            target="_blank"
-        >
+        <a href="https://instagram.com/" target="_blank">
             INSTAGRAM
         </a>
 
-        <!-- WHATSAPP +222 48 52 94 07 -->
-
-        <a
-            href="https://wa.me/22248529407"
-            target="_blank"
-        >
+        <a href="https://wa.me/22248529407" target="_blank">
             WHATSAPP
         </a>
 
@@ -1483,10 +1671,7 @@
 
 </section>
 
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
+<!-- FOOTER -->
 
 <footer>
 
@@ -1495,7 +1680,7 @@
     </div>
 
     <p>
-        STREETWEAR • ÉDITION LIMITÉE
+        PREMIUM STREETWEAR • LIMITED EDITION
     </p>
 
     <div class="copyright">
@@ -1504,16 +1689,25 @@
 
 </footer>
 
+<!-- LIGHTBOX -->
 
-<!-- =====================================================
-     CART
-===================================================== -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
 
-<div
-    class="cart-overlay"
-    id="cartOverlay"
-    onclick="closeCartOutside(event)"
->
+    <button class="lightbox-close" onclick="closeLightboxButton()">
+        ×
+    </button>
+
+    <img id="lightboxImage" src="" alt="USSAINT">
+
+    <div class="lightbox-number" id="lightboxNumber">
+        01 / 19
+    </div>
+
+</div>
+
+<!-- CART -->
+
+<div class="cart-overlay" id="cartOverlay" onclick="closeCartOutside(event)">
 
     <div class="cart">
 
@@ -1523,26 +1717,19 @@
                 MON PANIER
             </h2>
 
-            <button
-                class="close-cart"
-                onclick="closeCart()"
-            >
+            <button class="close-cart" onclick="closeCart()">
                 ×
             </button>
 
         </div>
 
-
-        <div
-            id="cartItems"
-        >
+        <div id="cartItems">
 
             <div class="empty-cart">
                 Ton panier est vide.
             </div>
 
         </div>
-
 
         <div class="cart-total">
 
@@ -1551,19 +1738,13 @@
             </span>
 
             <span>
-                <span id="cartTotal">
-                    0
-                </span>
+                <span id="cartTotal">0</span>
                 MRU
             </span>
 
         </div>
 
-
-        <button
-            class="checkout"
-            onclick="checkoutWhatsApp()"
-        >
+        <button class="checkout" onclick="checkoutWhatsApp()">
             COMMANDER SUR WHATSAPP
         </button>
 
@@ -1571,261 +1752,228 @@
 
 </div>
 
-
-<!-- =====================================================
-     TOAST
-===================================================== -->
-
-<div
-    class="toast"
-    id="toast"
->
+<div class="toast" id="toast">
     AJOUTÉ AU PANIER
 </div>
 
-
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
-
 <script>
 
-    /* =====================================================
-       CONFIGURATION
-    ===================================================== */
+/* =========================
+   CONFIGURATION
+========================= */
 
-    const WHATSAPP_NUMBER = "22248529407";
+const WHATSAPP_NUMBER = "22248529407";
 
-    let cart = [];
+let cart = [];
 
-    let selectedSize = "M";
+let selectedSize = "M";
 
+/* =========================
+   19 PHOTOS
+========================= */
 
-    /* =====================================================
-       MOBILE MENU
-    ===================================================== */
+const galleryImages = [
 
-    function toggleMobileMenu() {
+    "2F193BED-2AD4-44D3-801C-C7F97DD0B029.jpeg",
+    "67004B9C-5990-488E-92D0-2749F608B9D7.jpeg",
+    "67004B9C-5990-488E-92D0-2749F608B9D7.png",
+    "8B72B39B-9B99-411F-A2E4-C8341C113152.jpeg",
+    "C19C25C7-52E3-44FB-9F87-0F19C6E7A766.png",
+    "IMG_1566.jpeg",
+    "IMG_1575.png",
+    "IMG_1592.png",
+    "IMG_1593.png",
+    "IMG_1628.jpeg",
+    "IMG_2192.jpeg",
+    "IMG_2192.png",
+    "IMG_2265.jpeg",
+    "IMG_2267.jpeg",
+    "IMG_2274.jpeg",
+    "IMG_2275.png",
+    "IMG_2277.png",
+    "IMG_2304.jpeg",
+    "IMG_3205.png"
 
-        const menu =
-            document.getElementById("mobileMenu");
+];
 
-        menu.classList.toggle("active");
+/* =========================
+   MENU
+========================= */
 
-    }
+function toggleMenu(){
 
+    document
+        .getElementById("mobileMenu")
+        .classList.toggle("active");
 
-    function closeMobileMenu() {
+}
 
-        const menu =
-            document.getElementById("mobileMenu");
+function closeMenu(){
 
-        menu.classList.remove("active");
+    document
+        .getElementById("mobileMenu")
+        .classList.remove("active");
 
-    }
+}
 
+/* =========================
+   SIZE
+========================= */
 
-    /* =====================================================
-       SIZE
-    ===================================================== */
+function selectSize(button,size){
 
-    function selectSize(button, size) {
+    const parent = button.parentElement;
 
-        const parent =
-            button.parentElement;
-
-        parent
-            .querySelectorAll(".size")
-            .forEach(function(btn) {
-
-                btn.classList.remove("selected");
-
-            });
-
-        button.classList.add("selected");
-
-        selectedSize = size;
-
-    }
-
-
-    /* =====================================================
-       ADD TO CART
-    ===================================================== */
-
-    function addToCart(name, price, image) {
-
-        cart.push({
-
-            name: name,
-
-            price: price,
-
-            image: image,
-
-            size: selectedSize
-
+    parent
+        .querySelectorAll(".size")
+        .forEach(btn => {
+            btn.classList.remove("selected");
         });
 
-        updateCart();
+    button.classList.add("selected");
 
-        showToast("AJOUTÉ AU PANIER");
+    selectedSize = size;
+
+}
+
+/* =========================
+   PANIER
+========================= */
+
+function addToCart(name,price,image){
+
+    cart.push({
+
+        name:name,
+        price:price,
+        image:image,
+        size:selectedSize
+
+    });
+
+    updateCart();
+
+    showToast("AJOUTÉ AU PANIER");
+
+}
+
+function removeFromCart(index){
+
+    cart.splice(index,1);
+
+    updateCart();
+
+}
+
+function updateCart(){
+
+    const items =
+        document.getElementById("cartItems");
+
+    const count =
+        document.getElementById("cartCount");
+
+    const totalElement =
+        document.getElementById("cartTotal");
+
+    count.textContent = cart.length;
+
+    if(cart.length === 0){
+
+        items.innerHTML = `
+            <div class="empty-cart">
+                Ton panier est vide.
+            </div>
+        `;
+
+        totalElement.textContent = "0";
+
+        return;
 
     }
 
+    let total = 0;
 
-    /* =====================================================
-       REMOVE ITEM
-    ===================================================== */
+    items.innerHTML = "";
 
-    function removeFromCart(index) {
+    cart.forEach((item,index) => {
 
-        cart.splice(index, 1);
+        total += item.price;
 
-        updateCart();
+        items.innerHTML += `
 
-    }
+            <div class="cart-item">
 
+                <img
+                    src="${item.image}"
+                    alt="${item.name}"
+                >
 
-    /* =====================================================
-       UPDATE CART
-    ===================================================== */
+                <div class="cart-item-info">
 
-    function updateCart() {
+                    <h4>
+                        ${item.name}
+                    </h4>
 
-        const cartItems =
-            document.getElementById("cartItems");
+                    <p>
+                        Taille : ${item.size}
+                    </p>
 
-        const cartCount =
-            document.getElementById("cartCount");
+                    <p>
+                        ${item.price.toLocaleString("fr-FR")} MRU
+                    </p>
 
-        const cartTotal =
-            document.getElementById("cartTotal");
-
-
-        cartCount.textContent =
-            cart.length;
-
-
-        if (cart.length === 0) {
-
-            cartItems.innerHTML = `
-
-                <div class="empty-cart">
-                    Ton panier est vide.
-                </div>
-
-            `;
-
-            cartTotal.textContent = "0";
-
-            return;
-
-        }
-
-
-        let total = 0;
-
-        cartItems.innerHTML = "";
-
-
-        cart.forEach(function(item, index) {
-
-            total += item.price;
-
-
-            cartItems.innerHTML += `
-
-                <div class="cart-item">
-
-                    <img
-                        src="${item.image}"
-                        alt="${item.name}"
+                    <button
+                        class="remove"
+                        onclick="removeFromCart(${index})"
                     >
-
-                    <div class="cart-item-info">
-
-                        <h4>
-                            ${item.name}
-                        </h4>
-
-                        <p>
-                            Taille : ${item.size}
-                        </p>
-
-                        <p>
-                            ${item.price.toLocaleString("fr-FR")}
-                            MRU
-                        </p>
-
-                        <button
-                            class="remove-item"
-                            onclick="removeFromCart(${index})"
-                        >
-                            SUPPRIMER
-                        </button>
-
-                    </div>
+                        SUPPRIMER
+                    </button>
 
                 </div>
 
-            `;
+            </div>
 
-        });
+        `;
 
+    });
 
-        cartTotal.textContent =
-            total.toLocaleString("fr-FR");
+    totalElement.textContent =
+        total.toLocaleString("fr-FR");
 
+}
+
+function openCart(){
+
+    document
+        .getElementById("cartOverlay")
+        .classList.add("active");
+
+}
+
+function closeCart(){
+
+    document
+        .getElementById("cartOverlay")
+        .classList.remove("active");
+
+}
+
+function closeCartOutside(event){
+
+    if(event.target.id === "cartOverlay"){
+        closeCart();
     }
 
+}
 
-    /* =====================================================
-       OPEN CART
-    ===================================================== */
+/* =========================
+   ACHETER MAINTENANT
+========================= */
 
-    function openCart() {
+function buyNow(name,price,image){
 
-        document
-            .getElementById("cartOverlay")
-            .classList.add("active");
-
-    }
-
-
-    /* =====================================================
-       CLOSE CART
-    ===================================================== */
-
-    function closeCart() {
-
-        document
-            .getElementById("cartOverlay")
-            .classList.remove("active");
-
-    }
-
-
-    function closeCartOutside(event) {
-
-        if (
-            event.target.id === "cartOverlay"
-        ) {
-
-            closeCart();
-
-        }
-
-    }
-
-
-    /* =====================================================
-       BUY NOW
-    ===================================================== */
-
-    function buyNow(name, price, image) {
-
-        const message =
+    const message =
 
 `Bonjour USSAINT 👋
 
@@ -1833,113 +1981,158 @@ Je souhaite commander :
 
 Produit : ${name}
 Taille : ${selectedSize}
-Prix : ${price.toLocaleString("fr-FR")} MRU
+Prix : ${price} MRU
 
 Merci.`;
 
+    const url =
+        "https://wa.me/" +
+        WHATSAPP_NUMBER +
+        "?text=" +
+        encodeURIComponent(message);
 
-        const whatsappURL =
+    window.open(url,"_blank");
 
-            "https://wa.me/" +
-            WHATSAPP_NUMBER +
-            "?text=" +
-            encodeURIComponent(message);
+}
 
+/* =========================
+   WHATSAPP PANIER
+========================= */
 
-        window.open(
-            whatsappURL,
-            "_blank"
-        );
+function checkoutWhatsApp(){
+
+    if(cart.length === 0){
+
+        alert("Ton panier est vide.");
+
+        return;
 
     }
 
-
-    /* =====================================================
-       CHECKOUT CART
-    ===================================================== */
-
-    function checkoutWhatsApp() {
-
-        if (cart.length === 0) {
-
-            alert("Ton panier est vide.");
-
-            return;
-
-        }
-
-
-        let message =
-
+    let message =
 `Bonjour USSAINT 👋
 
-Je souhaite passer cette commande :
+Je souhaite commander :
 
 `;
 
+    let total = 0;
 
-        let total = 0;
-
-
-        cart.forEach(function(item, index) {
-
-            message +=
-
-`${index + 1}. ${item.name}
-Taille : ${item.size}
-Prix : ${item.price.toLocaleString("fr-FR")} MRU
-
-`;
-
-            total += item.price;
-
-        });
-
+    cart.forEach((item,index) => {
 
         message +=
 
-`TOTAL : ${total.toLocaleString("fr-FR")} MRU
+`${index + 1}. ${item.name}
+Taille : ${item.size}
+Prix : ${item.price} MRU
+
+`;
+
+        total += item.price;
+
+    });
+
+    message +=
+`TOTAL : ${total} MRU
 
 Merci.`;
 
+    const url =
+        "https://wa.me/" +
+        WHATSAPP_NUMBER +
+        "?text=" +
+        encodeURIComponent(message);
 
-        const whatsappURL =
+    window.open(url,"_blank");
 
-            "https://wa.me/" +
-            WHATSAPP_NUMBER +
-            "?text=" +
-            encodeURIComponent(message);
+}
 
+/* =========================
+   LIGHTBOX
+========================= */
 
-        window.open(
-            whatsappURL,
-            "_blank"
-        );
+function openLightbox(index){
+
+    const lightbox =
+        document.getElementById("lightbox");
+
+    const image =
+        document.getElementById("lightboxImage");
+
+    const number =
+        document.getElementById("lightboxNumber");
+
+    image.src = galleryImages[index];
+
+    number.textContent =
+        String(index + 1).padStart(2,"0") +
+        " / " +
+        String(galleryImages.length).padStart(2,"0");
+
+    lightbox.classList.add("active");
+
+}
+
+function closeLightbox(event){
+
+    if(event.target.id === "lightbox"){
+
+        document
+            .getElementById("lightbox")
+            .classList.remove("active");
 
     }
 
+}
 
-    /* =====================================================
-       TOAST
-    ===================================================== */
+function closeLightboxButton(){
 
-    function showToast(text) {
+    document
+        .getElementById("lightbox")
+        .classList.remove("active");
 
-        const toast =
-            document.getElementById("toast");
+}
 
-        toast.textContent = text;
+/* =========================
+   TOAST
+========================= */
 
-        toast.classList.add("show");
+function showToast(text){
 
+    const toast =
+        document.getElementById("toast");
 
-        setTimeout(function() {
+    toast.textContent = text;
 
-            toast.classList.remove("show");
+    toast.classList.add("show");
 
-        }, 2000);
+    setTimeout(() => {
+
+        toast.classList.remove("show");
+
+    },2000);
+
+}
+
+/* =========================
+   ESC
+========================= */
+
+document.addEventListener("keydown",function(event){
+
+    if(event.key === "Escape"){
+
+        document
+            .getElementById("lightbox")
+            .classList.remove("active");
+
+        document
+            .getElementById("cartOverlay")
+            .classList.remove("active");
 
     }
+
+});
 
 </script>
 
