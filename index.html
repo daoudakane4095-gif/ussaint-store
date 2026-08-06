@@ -4,20 +4,28 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>USSAINT — Premium Streetwear</title>
+<title>USSAINT — Maison Streetwear</title>
 
-<meta name="description" content="USSAINT — Premium Streetwear. Collection limitée.">
+<meta name="description" content="USSAINT — Maison de streetwear premium. Collection limitée.">
 
 <style>
+
+/* =========================================================
+   USSAINT — ULTRA LUXURY
+========================================================= */
+
 :root{
-    --blue:#0757d9;
-    --blue-dark:#043b96;
-    --blue-light:#eaf2ff;
+    --night:#020817;
+    --night2:#06142c;
+    --blue:#0a63ff;
+    --blue2:#174ea6;
+    --ice:#eef5ff;
     --white:#ffffff;
-    --black:#07111f;
-    --gray:#667085;
-    --line:#dce6f5;
-    --soft:#f6f9ff;
+    --silver:#b8c5d9;
+    --muted:#8290a7;
+    --line:rgba(255,255,255,.10);
+    --darkline:rgba(5,25,60,.10);
+    --shadow:0 30px 100px rgba(0,20,60,.20);
 }
 
 *{
@@ -31,112 +39,241 @@ html{
 }
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:var(--white);
-    color:var(--black);
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background:#fff;
+    color:var(--night);
+
     overflow-x:hidden;
 }
 
 button,
 input,
 select{
-    font-family:inherit;
+    font:inherit;
 }
 
 button{
     cursor:pointer;
 }
 
-/* =========================
+a{
+    color:inherit;
+}
+
+/* =========================================================
+   LOADER
+========================================================= */
+
+.loader{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:var(--night);
+
+    transition:
+        opacity .8s ease,
+        visibility .8s ease;
+}
+
+.loader.hide{
+    opacity:0;
+    visibility:hidden;
+}
+
+.loader-inner{
+    text-align:center;
+}
+
+.loader-logo{
+    color:#fff;
+
+    font-size:30px;
+    font-weight:1000;
+
+    letter-spacing:12px;
+
+    animation:pulseLogo 1.5s infinite alternate;
+}
+
+.loader-line{
+    width:130px;
+    height:1px;
+
+    margin:22px auto;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        #fff,
+        transparent
+    );
+
+    animation:loaderLine 1.5s infinite;
+}
+
+.loader-small{
+    color:#7185a7;
+
+    font-size:8px;
+    letter-spacing:4px;
+}
+
+@keyframes pulseLogo{
+    from{opacity:.45;}
+    to{opacity:1;}
+}
+
+@keyframes loaderLine{
+    0%{transform:scaleX(.2);}
+    100%{transform:scaleX(1);}
+}
+
+/* =========================================================
    NAVBAR
-========================= */
+========================================================= */
 
 .navbar{
     position:fixed;
+
     top:0;
     left:0;
+
     width:100%;
-    height:76px;
-    z-index:1000;
+    height:82px;
+
+    z-index:5000;
 
     display:flex;
     align-items:center;
     justify-content:space-between;
 
-    padding:0 6%;
+    padding:0 5%;
 
-    background:rgba(255,255,255,.88);
-    backdrop-filter:blur(18px);
+    color:white;
 
-    border-bottom:1px solid rgba(7,87,217,.12);
+    background:rgba(2,8,23,.55);
+
+    backdrop-filter:blur(22px);
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+    transition:.35s;
+}
+
+.navbar.scrolled{
+    background:rgba(2,8,23,.94);
+    height:72px;
 }
 
 .logo{
     text-decoration:none;
-    color:var(--blue);
 
-    font-size:24px;
+    font-size:22px;
     font-weight:1000;
-    letter-spacing:7px;
+
+    letter-spacing:8px;
+}
+
+.logo span{
+    color:#70a8ff;
 }
 
 .nav-links{
     display:flex;
-    gap:36px;
+    align-items:center;
+    gap:35px;
 }
 
 .nav-links a{
-    color:var(--black);
+    position:relative;
+
+    color:#dce7f8;
+
     text-decoration:none;
 
-    font-size:10px;
-    font-weight:700;
-    letter-spacing:2px;
+    font-size:9px;
+    font-weight:800;
+
+    letter-spacing:2.5px;
+
     text-transform:uppercase;
 
-    transition:.25s;
+    transition:.3s;
+}
+
+.nav-links a::after{
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    bottom:-8px;
+
+    width:0;
+    height:1px;
+
+    background:#fff;
+
+    transition:.3s;
 }
 
 .nav-links a:hover{
-    color:var(--blue);
+    color:#fff;
 }
 
-.nav-actions{
+.nav-links a:hover::after{
+    width:100%;
+}
+
+.nav-right{
     display:flex;
     align-items:center;
-    gap:10px;
+    gap:12px;
 }
 
 .cart-button{
     position:relative;
 
-    border:none;
-    background:var(--blue);
-    color:white;
+    border:1px solid rgba(255,255,255,.18);
 
-    padding:12px 18px;
+    background:rgba(255,255,255,.07);
 
-    font-size:10px;
-    font-weight:900;
-    letter-spacing:1px;
+    color:#fff;
+
+    padding:12px 17px;
 
     border-radius:30px;
 
-    box-shadow:0 8px 25px rgba(7,87,217,.22);
+    font-size:8px;
+    font-weight:900;
 
-    transition:.25s;
+    letter-spacing:2px;
+
+    transition:.3s;
 }
 
 .cart-button:hover{
-    background:var(--blue-dark);
-    transform:translateY(-2px);
+    background:#fff;
+    color:var(--night);
 }
 
 .cart-count{
     position:absolute;
 
     top:-7px;
-    right:-5px;
+    right:-6px;
 
     width:20px;
     height:20px;
@@ -145,23 +282,27 @@ button{
     align-items:center;
     justify-content:center;
 
-    background:#fff;
-    color:var(--blue);
-
-    border:2px solid var(--blue);
     border-radius:50%;
 
+    background:var(--blue);
+
+    color:#fff;
+
     font-size:9px;
+
+    border:2px solid var(--night);
 }
 
 .hamburger{
     display:none;
 
-    width:44px;
-    height:44px;
+    width:43px;
+    height:43px;
 
-    background:white;
-    border:1px solid var(--line);
+    border:1px solid rgba(255,255,255,.2);
+
+    background:rgba(255,255,255,.06);
+
     border-radius:50%;
 
     padding:10px;
@@ -169,31 +310,36 @@ button{
 
 .hamburger span{
     display:block;
-    width:100%;
-    height:2px;
+
+    height:1px;
+
     margin:5px 0;
-    background:var(--blue);
+
+    background:#fff;
 }
 
-/* =========================
+/* =========================================================
    MOBILE MENU
-========================= */
+========================================================= */
 
 .mobile-menu{
     position:fixed;
-    top:76px;
+
+    top:82px;
     left:0;
+
     width:100%;
-    z-index:999;
+
+    z-index:4900;
 
     display:none;
     flex-direction:column;
 
-    background:white;
+    background:rgba(2,8,23,.98);
 
-    border-bottom:1px solid var(--line);
+    backdrop-filter:blur(25px);
 
-    box-shadow:0 15px 40px rgba(0,0,0,.08);
+    border-bottom:1px solid rgba(255,255,255,.1);
 }
 
 .mobile-menu.active{
@@ -201,29 +347,30 @@ button{
 }
 
 .mobile-menu a{
-    padding:20px;
+    padding:21px;
 
     text-align:center;
 
+    color:#fff;
+
     text-decoration:none;
-    color:var(--black);
 
-    font-size:10px;
+    font-size:9px;
     font-weight:800;
-    letter-spacing:3px;
-    text-transform:uppercase;
 
-    border-bottom:1px solid var(--line);
+    letter-spacing:3px;
+
+    border-bottom:1px solid rgba(255,255,255,.07);
 }
 
-/* =========================
+/* =========================================================
    HERO
-========================= */
+========================================================= */
 
 .hero{
-    min-height:100vh;
-
     position:relative;
+
+    min-height:100svh;
 
     display:flex;
     align-items:center;
@@ -231,16 +378,16 @@ button{
 
     text-align:center;
 
-    padding:130px 20px 80px;
-
     overflow:hidden;
+
+    color:white;
 
     background:
         radial-gradient(
-            circle at 50% 35%,
-            #e9f2ff 0%,
-            #ffffff 48%,
-            #f4f8ff 100%
+            circle at 50% 45%,
+            #123d83 0%,
+            #061735 30%,
+            #020817 70%
         );
 }
 
@@ -249,12 +396,17 @@ button{
 
     position:absolute;
 
-    width:600px;
-    height:600px;
+    width:700px;
+    height:700px;
 
     border-radius:50%;
 
-    border:1px solid rgba(7,87,217,.10);
+    border:1px solid rgba(255,255,255,.06);
+
+    box-shadow:
+        0 0 100px rgba(10,99,255,.15);
+
+    animation:orbit 18s linear infinite;
 }
 
 .hero::after{
@@ -262,515 +414,1092 @@ button{
 
     position:absolute;
 
-    width:850px;
-    height:850px;
+    width:100%;
+    height:100%;
 
-    border-radius:50%;
+    background:
+        linear-gradient(
+            120deg,
+            transparent 25%,
+            rgba(255,255,255,.035),
+            transparent 55%
+        );
 
-    border:1px solid rgba(7,87,217,.05);
+    animation:shine 8s infinite;
+}
+
+@keyframes orbit{
+    from{transform:rotate(0deg);}
+    to{transform:rotate(360deg);}
+}
+
+@keyframes shine{
+    0%,100%{transform:translateX(-30%);}
+    50%{transform:translateX(30%);}
+}
+
+.hero-grid{
+    position:absolute;
+    inset:0;
+
+    opacity:.16;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.08) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.08) 1px,
+            transparent 1px
+        );
+
+    background-size:80px 80px;
+
+    mask-image:linear-gradient(
+        to bottom,
+        black,
+        transparent
+    );
 }
 
 .hero-content{
     position:relative;
-    z-index:2;
+
+    z-index:5;
+
+    padding:120px 20px 80px;
 }
 
-.hero-tag{
-    display:inline-block;
+.hero-kicker{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
 
-    padding:9px 16px;
+    color:#aac8ff;
 
-    border:1px solid rgba(7,87,217,.18);
-
-    border-radius:30px;
-
-    color:var(--blue);
-
-    background:rgba(255,255,255,.7);
-
-    font-size:9px;
+    font-size:8px;
     font-weight:900;
-    letter-spacing:3px;
+
+    letter-spacing:4px;
 }
 
-.hero h1{
-    margin-top:28px;
+.hero-kicker::before,
+.hero-kicker::after{
+    content:"";
 
-    font-size:clamp(60px,15vw,155px);
+    width:35px;
+    height:1px;
 
-    line-height:.82;
+    background:#4e86dc;
+}
+
+.hero-title{
+    margin-top:30px;
+
+    font-size:
+        clamp(
+            65px,
+            16vw,
+            190px
+        );
+
+    line-height:.75;
+
+    font-weight:1000;
+
+    letter-spacing:
+        clamp(
+            5px,
+            1.5vw,
+            16px
+        );
+}
+
+.hero-title span{
+    display:block;
+
+    color:transparent;
+
+    -webkit-text-stroke:
+        clamp(1px, .18vw, 3px)
+        rgba(255,255,255,.85);
+}
+
+.hero-subtitle{
+    max-width:570px;
+
+    margin:38px auto 0;
+
+    color:#a9b9d2;
+
+    font-size:11px;
+
+    line-height:2;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+}
+
+.hero-actions{
+    display:flex;
+    justify-content:center;
+
+    gap:12px;
+
+    margin-top:42px;
+}
+
+.luxury-btn{
+    position:relative;
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    min-width:180px;
+
+    padding:17px 25px;
+
+    border-radius:0;
+
+    text-decoration:none;
+
+    font-size:8px;
+    font-weight:900;
+
+    letter-spacing:2.5px;
+
+    overflow:hidden;
+
+    transition:.35s;
+}
+
+.luxury-btn.primary{
+    color:#fff;
+
+    background:var(--blue);
+
+    box-shadow:
+        0 15px 50px
+        rgba(10,99,255,.25);
+}
+
+.luxury-btn.primary:hover{
+    background:#3180ff;
+
+    transform:translateY(-3px);
+}
+
+.luxury-btn.outline{
+    color:#fff;
+
+    border:1px solid rgba(255,255,255,.25);
+
+    background:rgba(255,255,255,.04);
+}
+
+.luxury-btn.outline:hover{
+    background:#fff;
+    color:var(--night);
+}
+
+.hero-bottom{
+    position:absolute;
+
+    bottom:28px;
+    left:5%;
+    right:5%;
+
+    z-index:5;
+
+    display:flex;
+    justify-content:space-between;
+
+    color:#62799f;
+
+    font-size:7px;
+
+    font-weight:800;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+}
+
+.scroll{
+    position:absolute;
+
+    left:50%;
+    bottom:25px;
+
+    transform:translateX(-50%);
+
+    color:#91a7c7;
+
+    font-size:7px;
+
+    letter-spacing:4px;
+
+    writing-mode:vertical-rl;
+}
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.intro{
+    position:relative;
+
+    padding:130px 7%;
+
+    text-align:center;
+
+    background:#fff;
+
+    overflow:hidden;
+}
+
+.intro::before{
+    content:"USSAINT";
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:
+        translate(-50%,-50%)
+        rotate(-8deg);
+
+    color:#f2f6fc;
+
+    font-size:18vw;
 
     font-weight:1000;
 
     letter-spacing:10px;
 
+    white-space:nowrap;
+
+    z-index:0;
+}
+
+.intro-content{
+    position:relative;
+    z-index:1;
+}
+
+.eyebrow{
     color:var(--blue);
-}
 
-.hero h1 span{
-    display:block;
+    font-size:8px;
 
-    color:transparent;
-
-    -webkit-text-stroke:2px var(--blue);
-}
-
-.hero p{
-    margin:35px auto 0;
-
-    max-width:600px;
-
-    color:var(--gray);
-
-    font-size:12px;
-    line-height:1.8;
-    letter-spacing:2px;
-}
-
-.hero-buttons{
-    display:flex;
-    justify-content:center;
-    gap:12px;
-
-    margin-top:40px;
-}
-
-.primary-btn,
-.secondary-btn{
-    padding:17px 28px;
-
-    border-radius:30px;
-
-    font-size:9px;
     font-weight:900;
-    letter-spacing:2px;
 
-    text-decoration:none;
-
-    transition:.3s;
-}
-
-.primary-btn{
-    background:var(--blue);
-    color:white;
-
-    box-shadow:0 12px 30px rgba(7,87,217,.25);
-}
-
-.primary-btn:hover{
-    background:var(--blue-dark);
-    transform:translateY(-3px);
-}
-
-.secondary-btn{
-    background:white;
-    color:var(--blue);
-
-    border:1px solid #c9d9f2;
-}
-
-.secondary-btn:hover{
-    border-color:var(--blue);
-    transform:translateY(-3px);
-}
-
-/* =========================
-   SECTIONS
-========================= */
-
-.section{
-    max-width:1450px;
-    margin:auto;
-    padding:110px 6%;
-}
-
-.heading{
-    text-align:center;
-    margin-bottom:60px;
-}
-
-.heading-label{
-    color:var(--blue);
-
-    font-size:9px;
-    font-weight:900;
     letter-spacing:4px;
-
-    margin-bottom:14px;
 }
 
-.heading h2{
-    font-size:clamp(38px,7vw,72px);
-    letter-spacing:2px;
+.intro h2{
+    max-width:850px;
+
+    margin:24px auto 0;
+
+    font-size:
+        clamp(
+            35px,
+            6vw,
+            76px
+        );
+
+    line-height:1.02;
+
+    letter-spacing:-2px;
 }
 
-.heading p{
+.intro h2 span{
+    color:var(--blue);
+}
+
+.intro p{
     max-width:600px;
-    margin:18px auto 0;
 
-    color:var(--gray);
+    margin:25px auto 0;
+
+    color:#69778d;
 
     font-size:13px;
-    line-height:1.8;
+
+    line-height:2;
 }
 
-/* =========================
+/* =========================================================
+   COLLECTION HEADER
+========================================================= */
+
+.collection{
+    background:#f5f8fd;
+
+    padding:125px 5%;
+}
+
+.section-head{
+    max-width:1450px;
+
+    margin:0 auto 60px;
+
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+
+    gap:30px;
+}
+
+.section-kicker{
+    color:var(--blue);
+
+    font-size:8px;
+    font-weight:900;
+
+    letter-spacing:4px;
+}
+
+.section-head h2{
+    margin-top:14px;
+
+    font-size:
+        clamp(
+            40px,
+            6vw,
+            76px
+        );
+
+    line-height:.9;
+
+    letter-spacing:-3px;
+}
+
+.section-head-right{
+    max-width:370px;
+
+    color:#718097;
+
+    font-size:11px;
+
+    line-height:1.9;
+
+    text-align:right;
+}
+
+/* =========================================================
    PRODUCTS
-========================= */
+========================================================= */
 
 .products{
+    max-width:1450px;
+
+    margin:auto;
+
     display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:28px;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:24px;
 }
 
 .product{
+    position:relative;
+
+    background:#fff;
+
+    border:1px solid #e1e8f2;
+
     overflow:hidden;
 
-    background:white;
+    box-shadow:
+        0 20px 80px
+        rgba(7,32,75,.06);
 
-    border:1px solid var(--line);
-
-    border-radius:24px;
-
-    box-shadow:0 15px 50px rgba(25,65,120,.07);
-
-    transition:.4s;
+    transition:
+        transform .5s,
+        box-shadow .5s;
 }
 
 .product:hover{
-    transform:translateY(-7px);
+    transform:translateY(-8px);
 
-    box-shadow:0 25px 70px rgba(7,87,217,.13);
+    box-shadow:
+        0 35px 100px
+        rgba(7,32,75,.12);
 }
 
-.product-image{
+.product-visual{
     position:relative;
 
-    height:570px;
+    height:620px;
+
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #fff 0%,
+            #edf4ff 100%
+        );
+}
+
+.product-visual::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    pointer-events:none;
 
     background:
         linear-gradient(
             135deg,
-            #f5f9ff,
-            #e9f2ff
+            transparent 30%,
+            rgba(255,255,255,.7),
+            transparent 65%
         );
 
-    overflow:hidden;
+    transform:translateX(-100%);
+
+    transition:.8s;
 }
 
-.product-image img{
+.product:hover .product-visual::after{
+    transform:translateX(100%);
+}
+
+.product-visual img{
     width:100%;
     height:100%;
 
-    display:block;
-
     object-fit:contain;
 
-    transition:.6s;
+    display:block;
+
+    transition:
+        transform .8s cubic-bezier(.2,.8,.2,1);
 }
 
-.product:hover .product-image img{
-    transform:scale(1.04);
+.product:hover .product-visual img{
+    transform:scale(1.045);
 }
 
-.badge{
+.edition{
     position:absolute;
 
-    top:18px;
-    left:18px;
-    z-index:5;
+    top:22px;
+    left:22px;
 
-    padding:10px 14px;
+    z-index:3;
 
-    color:white;
-    background:var(--blue);
+    padding:9px 13px;
 
-    border-radius:30px;
+    color:#fff;
 
-    font-size:8px;
+    background:var(--night);
+
+    font-size:7px;
     font-weight:900;
+
     letter-spacing:2px;
-
-    box-shadow:0 8px 20px rgba(7,87,217,.25);
 }
 
-.product-info{
-    padding:28px;
-}
+.product-code{
+    position:absolute;
 
-.product-number{
-    color:var(--blue);
+    top:23px;
+    right:23px;
 
-    font-size:9px;
+    z-index:3;
+
+    color:#7e8da4;
+
+    font-size:7px;
+
     font-weight:900;
-    letter-spacing:3px;
+
+    letter-spacing:2px;
 }
 
-.product-title{
-    margin-top:9px;
-
-    font-size:27px;
-    letter-spacing:1px;
+.product-details{
+    padding:32px;
 }
 
-.product-description{
-    margin-top:10px;
+.product-meta{
+    display:flex;
 
-    color:var(--gray);
-
-    font-size:12px;
-    line-height:1.7;
+    align-items:center;
+    justify-content:space-between;
 }
 
-.price{
-    margin-top:18px;
+.product-name{
+    font-size:28px;
 
+    font-weight:900;
+
+    letter-spacing:-1px;
+}
+
+.product-price{
     color:var(--blue);
 
-    font-size:27px;
+    font-size:20px;
+
     font-weight:1000;
 }
 
-.price span{
-    color:var(--gray);
+.product-price small{
+    font-size:8px;
 
-    font-size:10px;
+    color:#8490a3;
 
-    margin-left:4px;
+    margin-left:3px;
 }
 
-.size-label{
-    margin-top:25px;
+.product-desc{
+    max-width:500px;
 
-    color:#8794a8;
+    margin-top:12px;
 
-    font-size:9px;
-    font-weight:800;
-    letter-spacing:2px;
+    color:#718097;
+
+    font-size:11px;
+
+    line-height:1.8;
+}
+
+.product-rule{
+    height:1px;
+
+    margin:24px 0;
+
+    background:#e4eaf2;
+}
+
+.size-title{
+    color:#8290a7;
+
+    font-size:7px;
+
+    font-weight:900;
+
+    letter-spacing:3px;
+
     text-transform:uppercase;
 }
 
 .sizes{
     display:flex;
+
     gap:7px;
 
-    margin-top:10px;
+    margin-top:11px;
 }
 
 .size{
-    width:45px;
+    width:43px;
     height:39px;
 
-    background:white;
+    border:1px solid #d9e2ee;
 
-    color:var(--black);
+    background:#fff;
 
-    border:1px solid var(--line);
+    color:#26344a;
 
-    border-radius:10px;
+    font-size:9px;
 
-    font-size:10px;
-    font-weight:800;
+    font-weight:900;
 
     transition:.25s;
 }
 
 .size:hover,
 .size.selected{
-    background:var(--blue);
-    color:white;
-    border-color:var(--blue);
+    background:var(--night);
 
-    box-shadow:0 7px 15px rgba(7,87,217,.18);
+    color:#fff;
+
+    border-color:var(--night);
 }
 
-.product-buttons{
+.product-actions{
     display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
+
+    grid-template-columns:1.4fr 1fr;
+
+    gap:8px;
 
     margin-top:25px;
 }
 
-.buy-button,
-.add-button{
-    padding:16px 10px;
+.buy{
+    padding:17px 12px;
 
-    border-radius:12px;
+    border:1px solid var(--blue);
 
-    font-size:9px;
+    background:var(--blue);
+
+    color:#fff;
+
+    font-size:8px;
+
     font-weight:900;
-    letter-spacing:1.3px;
+
+    letter-spacing:1.7px;
 
     transition:.3s;
 }
 
-.buy-button{
-    background:var(--blue);
-    color:white;
-    border:1px solid var(--blue);
+.buy:hover{
+    background:#004ed9;
 
-    box-shadow:0 9px 22px rgba(7,87,217,.18);
-}
-
-.buy-button:hover{
-    background:var(--blue-dark);
     transform:translateY(-2px);
 }
 
-.add-button{
-    background:white;
-    color:var(--blue);
-    border:1px solid #c9d9f2;
+.add{
+    padding:17px 12px;
+
+    border:1px solid #ccd7e6;
+
+    background:#fff;
+
+    color:var(--night);
+
+    font-size:8px;
+
+    font-weight:900;
+
+    letter-spacing:1.5px;
+
+    transition:.3s;
 }
 
-.add-button:hover{
-    background:var(--blue-light);
-    border-color:var(--blue);
+.add:hover{
+    background:#f0f5fc;
+
+    border-color:#aabbd3;
 }
 
-/* =========================
-   BRAND
-========================= */
+/* =========================================================
+   MANIFESTO
+========================================================= */
 
-.brand{
-    padding:120px 20px;
+.manifesto{
+    min-height:620px;
+
+    position:relative;
+
+    display:flex;
+    align-items:center;
+
+    justify-content:center;
 
     text-align:center;
 
+    color:#fff;
+
     background:
-        linear-gradient(
-            135deg,
-            var(--blue-dark),
-            var(--blue)
+        radial-gradient(
+            circle at 50% 40%,
+            #12458e,
+            #061735 50%,
+            #020817 100%
         );
 
-    color:white;
+    overflow:hidden;
 }
 
-.brand .heading-label{
-    color:#cfe0ff;
+.manifesto::before{
+    content:"";
+
+    position:absolute;
+
+    width:800px;
+    height:800px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:50%;
 }
 
-.brand h2{
-    font-size:clamp(38px,7vw,80px);
-    letter-spacing:3px;
+.manifesto-content{
+    position:relative;
+
+    z-index:2;
+
+    padding:80px 20px;
 }
 
-.brand h2 span{
-    color:#bcd5ff;
+.manifesto h2{
+    margin-top:22px;
+
+    max-width:950px;
+
+    font-size:
+        clamp(
+            45px,
+            8vw,
+            100px
+        );
+
+    line-height:.9;
+
+    letter-spacing:-4px;
 }
 
-.brand p{
-    max-width:650px;
-
-    margin:25px auto 0;
-
-    color:#e1ebff;
-
-    font-size:13px;
-    line-height:1.9;
+.manifesto h2 span{
+    color:#6fa7ff;
 }
 
-/* =========================
+.manifesto p{
+    max-width:620px;
+
+    margin:30px auto 0;
+
+    color:#a9b9d2;
+
+    font-size:12px;
+
+    line-height:2;
+}
+
+/* =========================================================
    LOOKBOOK
-========================= */
+========================================================= */
 
 .lookbook{
-    background:var(--soft);
+    padding:125px 5%;
+
+    background:#fff;
 }
 
 .lookbook-grid{
+    max-width:1450px;
+
+    margin:auto;
+
     display:grid;
 
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns:
+        repeat(4,1fr);
 
-    gap:12px;
+    gap:8px;
 }
 
-.lookbook-item{
+.look{
     position:relative;
-
-    overflow:hidden;
 
     aspect-ratio:1/1;
 
-    background:#eaf2ff;
+    overflow:hidden;
 
-    border-radius:14px;
+    background:#e9f0f9;
 
     cursor:pointer;
 }
 
-.lookbook-item.large{
+.look.big{
     grid-column:span 2;
     grid-row:span 2;
 }
 
-.lookbook-item img{
+.look img{
     width:100%;
     height:100%;
 
-    object-fit:cover;
-
     display:block;
 
-    transition:.6s;
+    object-fit:cover;
+
+    transition:
+        transform .8s
+        cubic-bezier(.2,.8,.2,1);
 }
 
-.lookbook-item:hover img{
-    transform:scale(1.07);
+.look:hover img{
+    transform:scale(1.08);
 }
 
-.lookbook-overlay{
+.look::after{
+    content:"";
+
     position:absolute;
     inset:0;
 
-    display:flex;
-    align-items:flex-end;
-
-    padding:18px;
+    background:
+        linear-gradient(
+            to top,
+            rgba(2,15,40,.7),
+            transparent 55%
+        );
 
     opacity:0;
 
-    background:linear-gradient(
-        transparent,
-        rgba(0,40,110,.75)
-    );
+    transition:.4s;
+}
+
+.look:hover::after{
+    opacity:1;
+}
+
+.look-label{
+    position:absolute;
+
+    left:20px;
+    bottom:18px;
+
+    z-index:3;
+
+    color:#fff;
+
+    font-size:7px;
+
+    font-weight:900;
+
+    letter-spacing:3px;
+
+    opacity:0;
+
+    transform:translateY(8px);
+
+    transition:.4s;
+}
+
+.look:hover .look-label{
+    opacity:1;
+
+    transform:translateY(0);
+}
+
+/* =========================================================
+   NUMBERS
+========================================================= */
+
+.numbers{
+    padding:100px 5%;
+
+    background:#f5f8fd;
+}
+
+.number-grid{
+    max-width:1200px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:1px;
+
+    background:#dce5f1;
+}
+
+.number{
+    padding:60px 25px;
+
+    text-align:center;
+
+    background:#f5f8fd;
+}
+
+.number strong{
+    display:block;
+
+    color:var(--blue);
+
+    font-size:50px;
+
+    font-weight:1000;
+}
+
+.number span{
+    display:block;
+
+    margin-top:8px;
+
+    color:#718097;
+
+    font-size:8px;
+
+    font-weight:900;
+
+    letter-spacing:3px;
+}
+
+/* =========================================================
+   SOCIAL
+========================================================= */
+
+.social{
+    padding:125px 20px;
+
+    text-align:center;
+
+    background:#fff;
+}
+
+.social h2{
+    margin-top:20px;
+
+    font-size:
+        clamp(
+            45px,
+            8vw,
+            95px
+        );
+
+    letter-spacing:-4px;
+}
+
+.social p{
+    max-width:500px;
+
+    margin:20px auto 0;
+
+    color:#718097;
+
+    font-size:12px;
+
+    line-height:1.9;
+}
+
+.social-buttons{
+    display:flex;
+
+    justify-content:center;
+
+    gap:10px;
+
+    margin-top:35px;
+}
+
+.social-btn{
+    min-width:160px;
+
+    padding:16px 22px;
+
+    border:1px solid #d3ddea;
+
+    color:var(--night);
+
+    text-decoration:none;
+
+    font-size:8px;
+
+    font-weight:900;
+
+    letter-spacing:2px;
 
     transition:.3s;
 }
 
-.lookbook-item:hover .lookbook-overlay{
-    opacity:1;
+.social-btn:hover{
+    color:#fff;
+
+    background:var(--night);
+
+    border-color:var(--night);
 }
 
-.lookbook-overlay span{
-    color:white;
+/* =========================================================
+   FOOTER
+========================================================= */
 
-    font-size:9px;
-    font-weight:900;
-    letter-spacing:3px;
+footer{
+    padding:75px 20px 30px;
+
+    color:#fff;
+
+    text-align:center;
+
+    background:#020817;
 }
 
-/* =========================
+.footer-logo{
+    font-size:30px;
+
+    font-weight:1000;
+
+    letter-spacing:10px;
+}
+
+.footer-tag{
+    margin-top:13px;
+
+    color:#7185a7;
+
+    font-size:7px;
+
+    letter-spacing:4px;
+}
+
+.footer-links{
+    display:flex;
+
+    justify-content:center;
+
+    gap:25px;
+
+    margin-top:30px;
+}
+
+.footer-links a{
+    color:#9eafc8;
+
+    text-decoration:none;
+
+    font-size:7px;
+
+    font-weight:800;
+
+    letter-spacing:2px;
+}
+
+.footer-copy{
+    margin-top:55px;
+
+    padding-top:25px;
+
+    border-top:1px solid rgba(255,255,255,.07);
+
+    color:#526783;
+
+    font-size:7px;
+
+    letter-spacing:2px;
+}
+
+/* =========================================================
    LIGHTBOX
-========================= */
+========================================================= */
 
 .lightbox{
     position:fixed;
+
     inset:0;
 
-    z-index:2500;
+    z-index:8000;
 
     display:none;
+
     align-items:center;
     justify-content:center;
 
     padding:25px;
 
-    background:rgba(2,20,50,.94);
+    background:rgba(0,7,20,.96);
+
+    backdrop-filter:blur(20px);
 }
 
 .lightbox.active{
@@ -779,155 +1508,68 @@ button{
 
 .lightbox img{
     max-width:92vw;
+
     max-height:88vh;
 
     object-fit:contain;
 
-    border-radius:12px;
+    box-shadow:
+        0 30px 100px
+        rgba(0,0,0,.5);
 }
 
 .lightbox-close{
     position:absolute;
 
-    top:20px;
+    top:22px;
     right:25px;
 
     width:45px;
     height:45px;
 
-    border:1px solid rgba(255,255,255,.3);
+    border:1px solid rgba(255,255,255,.2);
 
     border-radius:50%;
 
-    background:rgba(255,255,255,.1);
+    background:rgba(255,255,255,.06);
 
-    color:white;
+    color:#fff;
 
-    font-size:28px;
+    font-size:25px;
 }
 
 .lightbox-number{
     position:absolute;
 
-    bottom:22px;
+    bottom:25px;
+
     left:50%;
 
     transform:translateX(-50%);
 
-    color:#d5e3ff;
+    color:#8296b7;
 
-    font-size:10px;
-    letter-spacing:3px;
+    font-size:8px;
+
+    letter-spacing:4px;
 }
 
-/* =========================
-   SOCIAL
-========================= */
-
-.social{
-    text-align:center;
-
-    padding:110px 20px;
-}
-
-.social h2{
-    color:var(--blue);
-
-    font-size:45px;
-    letter-spacing:5px;
-}
-
-.social p{
-    margin-top:12px;
-
-    color:var(--gray);
-
-    font-size:13px;
-}
-
-.social-buttons{
-    display:flex;
-    justify-content:center;
-    gap:12px;
-
-    margin-top:30px;
-}
-
-.social-buttons a{
-    padding:15px 28px;
-
-    color:var(--blue);
-    background:white;
-
-    border:1px solid #c9d9f2;
-
-    border-radius:30px;
-
-    text-decoration:none;
-
-    font-size:9px;
-    font-weight:900;
-    letter-spacing:2px;
-
-    transition:.3s;
-}
-
-.social-buttons a:hover{
-    background:var(--blue);
-    color:white;
-    border-color:var(--blue);
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-footer{
-    padding:60px 20px 28px;
-
-    background:#061a3c;
-
-    text-align:center;
-
-    color:white;
-}
-
-.footer-logo{
-    font-size:30px;
-    font-weight:1000;
-    letter-spacing:8px;
-}
-
-footer p{
-    margin-top:13px;
-
-    color:#9bb9ed;
-
-    font-size:9px;
-    letter-spacing:3px;
-}
-
-.copyright{
-    margin-top:35px;
-
-    color:#6e8fc6;
-
-    font-size:9px;
-}
-
-/* =========================
+/* =========================================================
    CART
-========================= */
+========================================================= */
 
 .cart-overlay{
     position:fixed;
+
     inset:0;
 
-    z-index:3000;
+    z-index:7000;
 
     display:none;
 
-    background:rgba(1,17,45,.55);
+    background:rgba(0,10,30,.65);
+
+    backdrop-filter:blur(5px);
 }
 
 .cart-overlay.active{
@@ -940,34 +1582,38 @@ footer p{
     top:0;
     right:0;
 
-    width:min(450px,100%);
+    width:min(470px,100%);
+
     height:100%;
 
     overflow-y:auto;
 
-    padding:28px;
+    padding:30px;
 
-    background:white;
+    background:#fff;
 
-    border-left:1px solid var(--line);
-
-    box-shadow:-20px 0 60px rgba(0,30,80,.15);
+    box-shadow:
+        -30px 0 100px
+        rgba(0,0,0,.2);
 }
 
 .cart-header{
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
 
-    padding-bottom:20px;
+    padding-bottom:22px;
 
-    border-bottom:1px solid var(--line);
+    border-bottom:1px solid #dfe7f2;
 }
 
 .cart-header h2{
-    color:var(--blue);
+    color:var(--night);
 
-    font-size:19px;
+    font-size:15px;
+
     letter-spacing:3px;
 }
 
@@ -975,84 +1621,90 @@ footer p{
     width:40px;
     height:40px;
 
-    border:1px solid var(--line);
+    border:1px solid #d8e1ec;
 
     border-radius:50%;
 
-    background:white;
+    background:#fff;
 
-    color:var(--blue);
+    color:var(--night);
 
-    font-size:25px;
+    font-size:24px;
 }
 
-.empty-cart{
-    padding:60px 0;
+.empty{
+    padding:70px 0;
+
+    color:#8290a7;
 
     text-align:center;
 
-    color:var(--gray);
-
-    font-size:13px;
+    font-size:11px;
 }
 
 .cart-item{
     display:flex;
-    gap:14px;
+
+    gap:15px;
 
     padding:18px 0;
 
-    border-bottom:1px solid var(--line);
+    border-bottom:1px solid #e6ebf2;
 }
 
 .cart-item img{
-    width:80px;
-    height:90px;
+    width:85px;
+    height:95px;
 
     object-fit:contain;
 
-    background:var(--blue-light);
-
-    border-radius:10px;
+    background:#edf4ff;
 }
 
-.cart-item-info{
+.cart-info{
     flex:1;
 }
 
-.cart-item-info h4{
-    font-size:13px;
+.cart-info h4{
+    font-size:12px;
 }
 
-.cart-item-info p{
+.cart-info p{
     margin-top:7px;
 
-    color:var(--gray);
+    color:#718097;
 
-    font-size:10px;
+    font-size:9px;
 }
 
 .remove{
     margin-top:10px;
 
+    border:0;
+
     background:none;
-    border:none;
 
-    color:#d33;
+    color:#d53b4d;
 
-    font-size:9px;
-    font-weight:800;
+    font-size:7px;
+
+    font-weight:900;
+
+    letter-spacing:1px;
 }
 
 .cart-total{
     display:flex;
+
+    align-items:center;
     justify-content:space-between;
 
-    padding:22px 0;
+    padding:25px 0;
 
-    color:var(--blue);
+    color:var(--night);
 
-    font-size:17px;
+    font-size:15px;
+
     font-weight:1000;
 }
 
@@ -1061,71 +1713,101 @@ footer p{
 
     padding:18px;
 
+    border:0;
+
     background:#25d366;
 
-    color:white;
+    color:#fff;
 
-    border:none;
+    font-size:8px;
 
-    border-radius:12px;
-
-    font-size:10px;
     font-weight:900;
+
     letter-spacing:2px;
 
     transition:.3s;
 }
 
 .checkout:hover{
+    background:#18b956;
+
     transform:translateY(-2px);
 }
 
-/* =========================
+/* =========================================================
    TOAST
-========================= */
+========================================================= */
 
 .toast{
     position:fixed;
 
+    z-index:10000;
+
     left:50%;
     bottom:25px;
 
-    z-index:4000;
-
-    transform:translate(-50%,100px);
+    transform:
+        translate(-50%,120px);
 
     padding:14px 22px;
 
-    background:var(--blue);
+    color:#fff;
 
-    color:white;
+    background:var(--night);
 
-    border-radius:30px;
+    border:1px solid rgba(255,255,255,.1);
 
-    font-size:9px;
+    font-size:8px;
+
     font-weight:900;
-    letter-spacing:1px;
+
+    letter-spacing:2px;
 
     opacity:0;
 
     transition:.35s;
-
-    box-shadow:0 10px 30px rgba(7,87,217,.3);
 }
 
 .toast.show{
     transform:translate(-50%,0);
+
     opacity:1;
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* =========================================================
+   REVEAL
+========================================================= */
 
-@media(max-width:800px){
+.reveal{
+    opacity:0;
+
+    transform:translateY(35px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+.reveal.visible{
+    opacity:1;
+
+    transform:translateY(0);
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:850px){
 
     .navbar{
-        padding:0 17px;
+        height:72px;
+
+        padding:0 18px;
+    }
+
+    .navbar.scrolled{
+        height:68px;
     }
 
     .nav-links{
@@ -1136,22 +1818,33 @@ footer p{
         display:block;
     }
 
-    .logo{
-        font-size:19px;
-        letter-spacing:5px;
+    .mobile-menu{
+        top:72px;
     }
 
-    .hero h1{
-        font-size:62px;
+    .logo{
+        font-size:18px;
+
         letter-spacing:6px;
     }
 
-    .hero::before{
-        width:300px;
-        height:300px;
+    .hero-content{
+        padding-top:120px;
     }
 
-    .hero-buttons{
+    .hero-title{
+        font-size:65px;
+    }
+
+    .hero-bottom{
+        display:none;
+    }
+
+    .scroll{
+        display:none;
+    }
+
+    .hero-actions{
         flex-direction:column;
 
         max-width:280px;
@@ -1160,30 +1853,56 @@ footer p{
         margin-right:auto;
     }
 
-    .section{
-        padding:85px 17px;
+    .luxury-btn{
+        width:100%;
+    }
+
+    .section-head{
+        display:block;
+
+        margin-bottom:40px;
+    }
+
+    .section-head-right{
+        margin-top:20px;
+
+        text-align:left;
     }
 
     .products{
         grid-template-columns:1fr;
     }
 
-    .product-image{
-        height:470px;
+    .product-visual{
+        height:500px;
     }
 
-    .product-buttons{
+    .product-details{
+        padding:25px 20px;
+    }
+
+    .product-actions{
         grid-template-columns:1fr;
     }
 
     .lookbook-grid{
         grid-template-columns:repeat(2,1fr);
-        gap:8px;
+
+        gap:5px;
     }
 
-    .lookbook-item.large{
+    .look.big{
         grid-column:span 2;
+
         grid-row:span 2;
+    }
+
+    .number-grid{
+        grid-template-columns:1fr;
+    }
+
+    .number{
+        padding:45px 20px;
     }
 
     .social-buttons{
@@ -1195,194 +1914,360 @@ footer p{
         margin-right:auto;
     }
 
-    .cart{
-        padding:25px 20px;
-    }
 }
 
-@media(max-width:430px){
+@media(max-width:450px){
 
-    .hero{
-        min-height:90vh;
+    .hero-title{
+        font-size:54px;
+
+        letter-spacing:5px;
     }
 
-    .hero h1{
-        font-size:56px;
+    .hero-subtitle{
+        font-size:8px;
+
+        letter-spacing:2px;
     }
 
-    .product-image{
+    .intro,
+    .collection,
+    .lookbook{
+        padding-left:16px;
+        padding-right:16px;
+    }
+
+    .product-visual{
         height:430px;
     }
+
+    .product-meta{
+        display:block;
+    }
+
+    .product-price{
+        margin-top:12px;
+    }
+
+    .lookbook-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .cart{
+        padding:25px 18px;
+    }
+
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
+<!-- =====================================================
+     LOADER
+===================================================== -->
 
-<nav class="navbar">
+<div class="loader" id="loader">
 
-    <a href="#" class="logo">USSAINT</a>
+    <div class="loader-inner">
 
-    <div class="nav-links">
-        <a href="#collection">Collection</a>
-        <a href="#lookbook">Lookbook</a>
-        <a href="#about">L'identité</a>
-        <a href="#social">Contact</a>
+        <div class="loader-logo">
+            USSAINT
+        </div>
+
+        <div class="loader-line"></div>
+
+        <div class="loader-small">
+            MAISON STREETWEAR
+        </div>
+
     </div>
 
-    <div class="nav-actions">
+</div>
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar" id="navbar">
+
+    <a href="#" class="logo">
+        USS<span>A</span>INT
+    </a>
+
+    <div class="nav-links">
+
+        <a href="#collection">
+            Collection
+        </a>
+
+        <a href="#lookbook">
+            Lookbook
+        </a>
+
+        <a href="#manifesto">
+            Maison
+        </a>
+
+        <a href="#social">
+            Contact
+        </a>
+
+    </div>
+
+    <div class="nav-right">
 
         <button class="cart-button" onclick="openCart()">
+
             PANIER
-            <span class="cart-count" id="cartCount">0</span>
+
+            <span class="cart-count" id="cartCount">
+                0
+            </span>
+
         </button>
 
         <button class="hamburger" onclick="toggleMenu()">
+
             <span></span>
             <span></span>
             <span></span>
+
         </button>
 
     </div>
 
 </nav>
 
-<!-- MOBILE MENU -->
+<!-- =====================================================
+     MOBILE MENU
+===================================================== -->
 
 <div class="mobile-menu" id="mobileMenu">
 
-    <a href="#collection" onclick="closeMenu()">Collection</a>
-    <a href="#lookbook" onclick="closeMenu()">Lookbook</a>
-    <a href="#about" onclick="closeMenu()">L'identité</a>
-    <a href="#social" onclick="closeMenu()">Contact</a>
+    <a href="#collection" onclick="closeMenu()">
+        COLLECTION
+    </a>
+
+    <a href="#lookbook" onclick="closeMenu()">
+        LOOKBOOK
+    </a>
+
+    <a href="#manifesto" onclick="closeMenu()">
+        LA MAISON
+    </a>
+
+    <a href="#social" onclick="closeMenu()">
+        CONTACT
+    </a>
 
     <a href="javascript:void(0)" onclick="openCart();closeMenu()">
-        Panier
+        MON PANIER
     </a>
 
 </div>
 
-<!-- HERO -->
+<!-- =====================================================
+     HERO
+===================================================== -->
 
 <header class="hero">
 
+    <div class="hero-grid"></div>
+
     <div class="hero-content">
 
-        <div class="hero-tag">
-            USSAINT • COLLECTION 2026
+        <div class="hero-kicker">
+            NEW ERA • 2026
         </div>
 
-        <h1>
-            USS<span>AINT</span>
+        <h1 class="hero-title">
+            USSAINT
+            <span>USSAINT</span>
         </h1>
 
-        <p>
-            STREETWEAR PREMIUM · IDENTITÉ · ÉDITION LIMITÉE
+        <p class="hero-subtitle">
+            Une identité. Une attitude.
+            Une collection pensée pour ceux qui
+            n'ont pas besoin de suivre les tendances.
         </p>
 
-        <div class="hero-buttons">
+        <div class="hero-actions">
 
-            <a href="#collection" class="primary-btn">
-                ACHETER MAINTENANT
+            <a
+                href="#collection"
+                class="luxury-btn primary"
+            >
+                DÉCOUVRIR LA COLLECTION
             </a>
 
-            <a href="#lookbook" class="secondary-btn">
-                VOIR LE LOOKBOOK
+            <a
+                href="#lookbook"
+                class="luxury-btn outline"
+            >
+                EXPLORER LE LOOKBOOK
             </a>
 
         </div>
 
     </div>
 
+    <div class="hero-bottom">
+
+        <span>
+            USSAINT ORIGINALS
+        </span>
+
+        <span>
+            LIMITED EDITION
+        </span>
+
+    </div>
+
+    <div class="scroll">
+        SCROLL
+    </div>
+
 </header>
 
-<!-- COLLECTION -->
+<!-- =====================================================
+     INTRO
+===================================================== -->
 
-<section id="collection" class="section">
+<section class="intro reveal">
 
-    <div class="heading">
+    <div class="intro-content">
 
-        <div class="heading-label">
-            USSAINT ORIGINALS
+        <div class="eyebrow">
+            L'IDENTITÉ
         </div>
 
         <h2>
-            COLLECTION
+            Pas seulement un vêtement.
+            <span>Une signature.</span>
         </h2>
 
         <p>
-            Nos deux premiers modèles USSAINT.
-            Une esthétique simple, moderne et reconnaissable.
+            USSAINT construit une esthétique reconnaissable :
+            des silhouettes simples, des détails précis et
+            une énergie streetwear contemporaine.
         </p>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     COLLECTION
+===================================================== -->
+
+<section id="collection" class="collection">
+
+    <div class="section-head reveal">
+
+        <div>
+
+            <div class="section-kicker">
+                USSAINT ORIGINALS / 2026
+            </div>
+
+            <h2>
+                LA COLLECTION
+            </h2>
+
+        </div>
+
+        <div class="section-head-right">
+
+            Deux pièces.
+            Une identité commune.
+            Chaque T-shirt est proposé à
+            <strong>500 MRU</strong>.
+
+        </div>
 
     </div>
 
     <div class="products">
 
-        <!-- PRODUIT 1 -->
+        <!-- PRODUCT 001 -->
 
-        <article class="product">
+        <article class="product reveal">
 
-            <div class="product-image">
+            <div class="product-visual">
 
-                <div class="badge">
-                    ÉDITION LIMITÉE
+                <div class="edition">
+                    LIMITED EDITION
+                </div>
+
+                <div class="product-code">
+                    001 / 002
                 </div>
 
                 <img
                     src="C19C25C7-52E3-44FB-9F87-0F19C6E7A766.png"
-                    alt="USSAINT Noir Rose"
+                    alt="USSAINT Black Pink"
                 >
 
             </div>
 
-            <div class="product-info">
+            <div class="product-details">
 
-                <div class="product-number">
-                    USSAINT / 001
+                <div class="product-meta">
+
+                    <h3 class="product-name">
+                        BLACK / PINK
+                    </h3>
+
+                    <div class="product-price">
+                        500 <small>MRU</small>
+                    </div>
+
                 </div>
 
-                <h3 class="product-title">
-                    BLACK / PINK
-                </h3>
-
-                <p class="product-description">
-                    T-shirt noir USSAINT avec détails roses.
-                    Une pièce forte pour un style streetwear moderne.
+                <p class="product-desc">
+                    Une pièce noire au caractère affirmé,
+                    rehaussée par les détails roses de
+                    l'identité USSAINT.
                 </p>
 
-                <div class="price">
-                    500 <span>MRU</span>
-                </div>
+                <div class="product-rule"></div>
 
-                <div class="size-label">
-                    Choisir une taille
+                <div class="size-title">
+                    Sélectionner la taille
                 </div>
 
                 <div class="sizes">
 
                     <button class="size"
-                        onclick="selectSize(this,'S')">S</button>
+                        onclick="selectSize(this,'S')">
+                        S
+                    </button>
 
                     <button class="size selected"
-                        onclick="selectSize(this,'M')">M</button>
+                        onclick="selectSize(this,'M')">
+                        M
+                    </button>
 
                     <button class="size"
-                        onclick="selectSize(this,'L')">L</button>
+                        onclick="selectSize(this,'L')">
+                        L
+                    </button>
 
                     <button class="size"
-                        onclick="selectSize(this,'XL')">XL</button>
+                        onclick="selectSize(this,'XL')">
+                        XL
+                    </button>
 
                 </div>
 
-                <div class="product-buttons">
+                <div class="product-actions">
 
                     <button
-                        class="buy-button"
+                        class="buy"
                         onclick="buyNow(
-                            'USSAINT Black / Pink',
+                            'USSAINT BLACK / PINK',
                             500,
                             'C19C25C7-52E3-44FB-9F87-0F19C6E7A766.png'
                         )"
@@ -1391,14 +2276,14 @@ footer p{
                     </button>
 
                     <button
-                        class="add-button"
+                        class="add"
                         onclick="addToCart(
-                            'USSAINT Black / Pink',
+                            'USSAINT BLACK / PINK',
                             500,
                             'C19C25C7-52E3-44FB-9F87-0F19C6E7A766.png'
                         )"
                     >
-                        + PANIER
+                        + AJOUTER AU PANIER
                     </button>
 
                 </div>
@@ -1407,68 +2292,83 @@ footer p{
 
         </article>
 
-        <!-- PRODUIT 2 -->
+        <!-- PRODUCT 002 -->
 
-        <article class="product">
+        <article class="product reveal">
 
-            <div class="product-image">
+            <div class="product-visual">
 
-                <div class="badge">
-                    ÉDITION LIMITÉE
+                <div class="edition">
+                    LIMITED EDITION
+                </div>
+
+                <div class="product-code">
+                    002 / 002
                 </div>
 
                 <img
                     src="IMG_3205.png"
-                    alt="USSAINT Blanc Bleu"
+                    alt="USSAINT White Blue"
                 >
 
             </div>
 
-            <div class="product-info">
+            <div class="product-details">
 
-                <div class="product-number">
-                    USSAINT / 002
+                <div class="product-meta">
+
+                    <h3 class="product-name">
+                        WHITE / BLUE
+                    </h3>
+
+                    <div class="product-price">
+                        500 <small>MRU</small>
+                    </div>
+
                 </div>
 
-                <h3 class="product-title">
-                    WHITE / BLUE
-                </h3>
-
-                <p class="product-description">
-                    T-shirt blanc USSAINT avec détails bleus.
-                    Minimaliste, propre et facile à porter.
+                <p class="product-desc">
+                    Une base blanche minimaliste associée
+                    à des détails bleus pour une silhouette
+                    propre et contemporaine.
                 </p>
 
-                <div class="price">
-                    500 <span>MRU</span>
-                </div>
+                <div class="product-rule"></div>
 
-                <div class="size-label">
-                    Choisir une taille
+                <div class="size-title">
+                    Sélectionner la taille
                 </div>
 
                 <div class="sizes">
 
                     <button class="size"
-                        onclick="selectSize(this,'S')">S</button>
+                        onclick="selectSize(this,'S')">
+                        S
+                    </button>
 
                     <button class="size selected"
-                        onclick="selectSize(this,'M')">M</button>
+                        onclick="selectSize(this,'M')">
+                        M
+                    </button>
 
                     <button class="size"
-                        onclick="selectSize(this,'L')">L</button>
+                        onclick="selectSize(this,'L')">
+                        L
+                    </button>
 
                     <button class="size"
-                        onclick="selectSize(this,'XL')">XL</button>
+                        onclick="selectSize(this,'XL')">
+                        XL
+                    </button>
 
                 </div>
 
-                <div class="product-buttons">
+                <div class="product-actions">
 
                     <button
-                        class="buy-button"
+                        class="buy"
                         onclick="buyNow(
-                            'USSAINT White / Blue',
+                            'USSAINT WHITE / BLUE',
                             500,
                             'IMG_3205.png'
                         )"
@@ -1477,14 +2377,14 @@ footer p{
                     </button>
 
                     <button
-                        class="add-button"
+                        class="add"
                         onclick="addToCart(
-                            'USSAINT White / Blue',
+                            'USSAINT WHITE / BLUE',
                             500,
                             'IMG_3205.png'
                         )"
                     >
-                        + PANIER
+                        + AJOUTER AU PANIER
                     </button>
 
                 </div>
@@ -1497,173 +2397,223 @@ footer p{
 
 </section>
 
-<!-- BRAND -->
+<!-- =====================================================
+     MANIFESTO
+===================================================== -->
 
-<section id="about" class="brand">
+<section class="manifesto" id="manifesto">
 
-    <div class="heading-label">
-        L'IDENTITÉ USSAINT
-    </div>
+    <div class="manifesto-content reveal">
 
-    <h2>
-        SIMPLE.
-        <span>RARE.</span>
-        USSAINT.
-    </h2>
-
-    <p>
-        USSAINT représente une vision moderne du streetwear.
-        Des pièces simples, une identité forte et une collection
-        pensée pour ceux qui veulent se démarquer.
-    </p>
-
-</section>
-
-<!-- LOOKBOOK -->
-
-<section id="lookbook" class="section lookbook">
-
-    <div class="heading">
-
-        <div class="heading-label">
-            USSAINT VISUALS
+        <div class="eyebrow" style="color:#78aaff;">
+            THE USSAINT MANIFESTO
         </div>
 
         <h2>
-            LOOKBOOK
+            WEAR YOUR
+            <span>IDENTITY.</span>
         </h2>
 
         <p>
-            Découvre l'univers visuel USSAINT.
-            Appuie sur une image pour l'afficher en grand.
+            USSAINT est né autour d'une idée simple :
+            créer des vêtements qui parlent avant même
+            que tu prononces un mot.
         </p>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     LOOKBOOK
+===================================================== -->
+
+<section id="lookbook" class="lookbook">
+
+    <div class="section-head reveal">
+
+        <div>
+
+            <div class="section-kicker">
+                VISUAL ARCHIVE
+            </div>
+
+            <h2>
+                LOOKBOOK
+            </h2>
+
+        </div>
+
+        <div class="section-head-right">
+            19 images. Une seule identité.
+            Appuie sur une image pour l'ouvrir
+            en plein écran.
+        </div>
 
     </div>
 
     <div class="lookbook-grid">
 
-        <div class="lookbook-item large" onclick="openLightbox(0)">
+        <div class="look big" onclick="openLightbox(0)">
             <img src="2F193BED-2AD4-44D3-801C-C7F97DD0B029.jpeg" alt="USSAINT 01" loading="lazy">
-            <div class="lookbook-overlay"><span>USSAINT 01</span></div>
+            <div class="look-label">USSAINT / 01</div>
         </div>
 
-        <div class="lookbook-item" onclick="openLightbox(1)">
+        <div class="look" onclick="openLightbox(1)">
             <img src="67004B9C-5990-488E-92D0-2749F608B9D7.jpeg" alt="USSAINT 02" loading="lazy">
-            <div class="lookbook-overlay"><span>USSAINT 02</span></div>
+            <div class="look-label">USSAINT / 02</div>
         </div>
 
-        <div class="lookbook-item" onclick="openLightbox(2)">
+        <div class="look" onclick="openLightbox(2)">
             <img src="67004B9C-5990-488E-92D0-2749F608B9D7.png" alt="USSAINT 03" loading="lazy">
-            <div class="lookbook-overlay"><span>USSAINT 03</span></div>
+            <div class="look-label">USSAINT / 03</div>
         </div>
 
-        <div class="lookbook-item" onclick="openLightbox(3)">
+        <div class="look" onclick="openLightbox(3)">
             <img src="8B72B39B-9B99-411F-A2E4-C8341C113152.jpeg" alt="USSAINT 04" loading="lazy">
-            <div class="lookbook-overlay"><span>USSAINT 04</span></div>
+            <div class="look-label">USSAINT / 04</div>
         </div>
 
-        <div class="lookbook-item" onclick="openLightbox(4)">
+        <div class="look" onclick="openLightbox(4)">
             <img src="C19C25C7-52E3-44FB-9F87-0F19C6E7A766.png" alt="USSAINT 05" loading="lazy">
-            <div class="lookbook-overlay"><span>USSAINT 05</span></div>
+            <div class="look-label">USSAINT / 05</div>
         </div>
 
-        <div class="lookbook-item large" onclick="openLightbox(5)">
+        <div class="look big" onclick="openLightbox(5)">
             <img src="IMG_1566.jpeg" alt="USSAINT 06" loading="lazy">
-            <div class="lookbook-overlay"><span>USSAINT 06</span></div>
+            <div class="look-label">USSAINT / 06</div>
         </div>
 
-        <div class="lookbook-item" onclick="openLightbox(6)">
+        <div class="look" onclick="openLightbox(6)">
             <img src="IMG_1575.png" alt="USSAINT 07" loading="lazy">
-            <div class="lookbook-overlay"><span>USSAINT 07</span></div>
+            <div class="look-label">USSAINT / 07</div>
         </div>
 
-        <div class="lookbook-item" onclick="openLightbox(7)">
+        <div class="look" onclick="openLightbox(7)">
             <img src="IMG_1592.png" alt="USSAINT 08" loading="lazy">
-            <div class="lookbook-overlay"><span>USSAINT 08</span></div>
+            <div class="look-label">USSAINT / 08</div>
         </div>
 
-        <div class="lookbook-item" onclick="openLightbox(8)">
+        <div class="look" onclick="openLightbox(8)">
             <img src="IMG_1593.png" alt="USSAINT 09" loading="lazy">
-            <div class="lookbook-overlay"><span>USSAINT 09</span></div>
+            <div class="look-label">USSAINT / 09</div>
         </div>
 
-        <div class="lookbook-item" onclick="openLightbox(9)">
+        <div class="look" onclick="openLightbox(9)">
             <img src="IMG_1628.jpeg" alt="USSAINT 10" loading="lazy">
-            <div class="lookbook-overlay"><span>USSAINT 10</span></div>
+            <div class="look-label">USSAINT / 10</div>
         </div>
 
-        <div class="lookbook-item" onclick="openLightbox(10)">
+        <div class="look" onclick="openLightbox(10)">
             <img src="IMG_2192.jpeg" alt="USSAINT 11" loading="lazy">
-            <div class="lookbook-overlay"><span>USSAINT 11</span></div>
+            <div class="look-label">USSAINT / 11</div>
         </div>
 
-        <div class="lookbook-item" onclick="openLightbox(11)">
+        <div class="look" onclick="openLightbox(11)">
             <img src="IMG_2192.png" alt="USSAINT 12" loading="lazy">
-            <div class="lookbook-overlay"><span>USSAINT 12</span></div>
+            <div class="look-label">USSAINT / 12</div>
         </div>
 
-        <div class="lookbook-item" onclick="openLightbox(12)">
+        <div class="look" onclick="openLightbox(12)">
             <img src="IMG_2265.jpeg" alt="USSAINT 13" loading="lazy">
-            <div class="lookbook-overlay"><span>USSAINT 13</span></div>
+            <div class="look-label">USSAINT / 13</div>
         </div>
 
-        <div class="lookbook-item" onclick="openLightbox(13)">
+        <div class="look" onclick="openLightbox(13)">
             <img src="IMG_2267.jpeg" alt="USSAINT 14" loading="lazy">
-            <div class="lookbook-overlay"><span>USSAINT 14</span></div>
+            <div class="look-label">USSAINT / 14</div>
         </div>
 
-        <div class="lookbook-item" onclick="openLightbox(14)">
+        <div class="look" onclick="openLightbox(14)">
             <img src="IMG_2274.jpeg" alt="USSAINT 15" loading="lazy">
-            <div class="lookbook-overlay"><span>USSAINT 15</span></div>
+            <div class="look-label">USSAINT / 15</div>
         </div>
 
-        <div class="lookbook-item" onclick="openLightbox(15)">
+        <div class="look" onclick="openLightbox(15)">
             <img src="IMG_2275.png" alt="USSAINT 16" loading="lazy">
-            <div class="lookbook-overlay"><span>USSAINT 16</span></div>
+            <div class="look-label">USSAINT / 16</div>
         </div>
 
-        <div class="lookbook-item" onclick="openLightbox(16)">
+        <div class="look" onclick="openLightbox(16)">
             <img src="IMG_2277.png" alt="USSAINT 17" loading="lazy">
-            <div class="lookbook-overlay"><span>USSAINT 17</span></div>
+            <div class="look-label">USSAINT / 17</div>
         </div>
 
-        <div class="lookbook-item" onclick="openLightbox(17)">
+        <div class="look" onclick="openLightbox(17)">
             <img src="IMG_2304.jpeg" alt="USSAINT 18" loading="lazy">
-            <div class="lookbook-overlay"><span>USSAINT 18</span></div>
+            <div class="look-label">USSAINT / 18</div>
         </div>
 
-        <div class="lookbook-item large" onclick="openLightbox(18)">
+        <div class="look big" onclick="openLightbox(18)">
             <img src="IMG_3205.png" alt="USSAINT 19" loading="lazy">
-            <div class="lookbook-overlay"><span>USSAINT 19</span></div>
+            <div class="look-label">USSAINT / 19</div>
         </div>
 
     </div>
 
 </section>
 
-<!-- SOCIAL -->
+<!-- =====================================================
+     NUMBERS
+===================================================== -->
 
-<section id="social" class="social">
+<section class="numbers">
 
-    <div class="heading-label">
-        CONNECT WITH US
+    <div class="number-grid">
+
+        <div class="number reveal">
+            <strong>02</strong>
+            <span>PIÈCES DISPONIBLES</span>
+        </div>
+
+        <div class="number reveal">
+            <strong>500</strong>
+            <span>MRU / T-SHIRT</span>
+        </div>
+
+        <div class="number reveal">
+            <strong>19</strong>
+            <span>VISUELS USSAINT</span>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     SOCIAL
+===================================================== -->
+
+<section class="social" id="social">
+
+    <div class="eyebrow">
+        JOIN THE MOVEMENT
     </div>
 
     <h2>
-        USSAINT
+        USSAINT.
     </h2>
 
     <p>
-        Découvre les prochaines sorties et nouveautés.
+        Suis l'évolution de la marque et découvre
+        les prochaines sorties.
     </p>
 
     <div class="social-buttons">
 
-        <a href="https://instagram.com/" target="_blank">
+        <a
+            class="social-btn"
+            href="https://instagram.com/"
+            target="_blank"
+        >
             INSTAGRAM
         </a>
 
-        <a href="https://wa.me/22248529407" target="_blank">
+        <a
+            class="social-btn"
+            href="https://wa.me/22248529407"
+            target="_blank"
+        >
             WHATSAPP
         </a>
 
@@ -1671,7 +2621,9 @@ footer p{
 
 </section>
 
-<!-- FOOTER -->
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer>
 
@@ -1679,37 +2631,75 @@ footer p{
         USSAINT
     </div>
 
-    <p>
-        PREMIUM STREETWEAR • LIMITED EDITION
-    </p>
+    <div class="footer-tag">
+        MAISON STREETWEAR • LIMITED EDITION
+    </div>
 
-    <div class="copyright">
-        © 2026 USSAINT — Tous droits réservés.
+    <div class="footer-links">
+
+        <a href="#collection">
+            COLLECTION
+        </a>
+
+        <a href="#lookbook">
+            LOOKBOOK
+        </a>
+
+        <a href="#social">
+            CONTACT
+        </a>
+
+    </div>
+
+    <div class="footer-copy">
+        © 2026 USSAINT — TOUS DROITS RÉSERVÉS.
     </div>
 
 </footer>
 
-<!-- LIGHTBOX -->
+<!-- =====================================================
+     LIGHTBOX
+===================================================== -->
 
-<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+<div
+    class="lightbox"
+    id="lightbox"
+    onclick="lightboxBackground(event)"
+>
 
-    <button class="lightbox-close" onclick="closeLightboxButton()">
+    <button
+        class="lightbox-close"
+        onclick="closeLightbox()"
+    >
         ×
     </button>
 
-    <img id="lightboxImage" src="" alt="USSAINT">
+    <img
+        id="lightboxImage"
+        src=""
+        alt="USSAINT"
+    >
 
-    <div class="lightbox-number" id="lightboxNumber">
+    <div
+        class="lightbox-number"
+        id="lightboxNumber"
+    >
         01 / 19
     </div>
 
 </div>
 
-<!-- CART -->
+<!-- =====================================================
+     CART
+===================================================== -->
 
-<div class="cart-overlay" id="cartOverlay" onclick="closeCartOutside(event)">
+<div
+    class="cart-overlay"
+    id="cartOverlay"
+    onclick="cartBackground(event)"
+>
 
-    <div class="cart">
+    <aside class="cart">
 
         <div class="cart-header">
 
@@ -1717,7 +2707,10 @@ footer p{
                 MON PANIER
             </h2>
 
-            <button class="close-cart" onclick="closeCart()">
+            <button
+                class="close-cart"
+                onclick="closeCart()"
+            >
                 ×
             </button>
 
@@ -1725,8 +2718,8 @@ footer p{
 
         <div id="cartItems">
 
-            <div class="empty-cart">
-                Ton panier est vide.
+            <div class="empty">
+                Ton panier est actuellement vide.
             </div>
 
         </div>
@@ -1744,13 +2737,20 @@ footer p{
 
         </div>
 
-        <button class="checkout" onclick="checkoutWhatsApp()">
-            COMMANDER SUR WHATSAPP
+        <button
+            class="checkout"
+            onclick="checkoutWhatsApp()"
+        >
+            FINALISER LA COMMANDE SUR WHATSAPP
         </button>
 
-    </div>
+    </aside>
 
 </div>
+
+<!-- =====================================================
+     TOAST
+===================================================== -->
 
 <div class="toast" id="toast">
     AJOUTÉ AU PANIER
@@ -1758,47 +2758,56 @@ footer p{
 
 <script>
 
-/* =========================
-   CONFIGURATION
-========================= */
+/* =========================================================
+   USSAINT JAVASCRIPT
+========================================================= */
 
-const WHATSAPP_NUMBER = "22248529407";
+const WHATSAPP = "22248529407";
 
 let cart = [];
 
 let selectedSize = "M";
 
-/* =========================
-   19 PHOTOS
-========================= */
+/* =========================================================
+   LOADER
+========================================================= */
 
-const galleryImages = [
+window.addEventListener("load",function(){
 
-    "2F193BED-2AD4-44D3-801C-C7F97DD0B029.jpeg",
-    "67004B9C-5990-488E-92D0-2749F608B9D7.jpeg",
-    "67004B9C-5990-488E-92D0-2749F608B9D7.png",
-    "8B72B39B-9B99-411F-A2E4-C8341C113152.jpeg",
-    "C19C25C7-52E3-44FB-9F87-0F19C6E7A766.png",
-    "IMG_1566.jpeg",
-    "IMG_1575.png",
-    "IMG_1592.png",
-    "IMG_1593.png",
-    "IMG_1628.jpeg",
-    "IMG_2192.jpeg",
-    "IMG_2192.png",
-    "IMG_2265.jpeg",
-    "IMG_2267.jpeg",
-    "IMG_2274.jpeg",
-    "IMG_2275.png",
-    "IMG_2277.png",
-    "IMG_2304.jpeg",
-    "IMG_3205.png"
+    setTimeout(function(){
 
-];
+        document
+            .getElementById("loader")
+            .classList.add("hide");
 
-/* =========================
-   MENU
-========================= */
+    },900);
+
+});
+
+/* =========================================================
+   NAVBAR SCROLL
+========================================================= */
+
+window.addEventListener("scroll",function(){
+
+    const navbar =
+        document.getElementById("navbar");
+
+    if(window.scrollY > 50){
+
+        navbar.classList.add("scrolled");
+
+    }else{
+
+        navbar.classList.remove("scrolled");
+
+    }
+
+});
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
 
 function toggleMenu(){
 
@@ -1816,18 +2825,21 @@ function closeMenu(){
 
 }
 
-/* =========================
+/* =========================================================
    SIZE
-========================= */
+========================================================= */
 
 function selectSize(button,size){
 
-    const parent = button.parentElement;
+    const parent =
+        button.parentElement;
 
     parent
         .querySelectorAll(".size")
-        .forEach(btn => {
-            btn.classList.remove("selected");
+        .forEach(function(item){
+
+            item.classList.remove("selected");
+
         });
 
     button.classList.add("selected");
@@ -1836,17 +2848,20 @@ function selectSize(button,size){
 
 }
 
-/* =========================
-   PANIER
-========================= */
+/* =========================================================
+   ADD TO CART
+========================================================= */
 
 function addToCart(name,price,image){
 
     cart.push({
 
         name:name,
+
         price:price,
+
         image:image,
+
         size:selectedSize
 
     });
@@ -1857,17 +2872,13 @@ function addToCart(name,price,image){
 
 }
 
-function removeFromCart(index){
-
-    cart.splice(index,1);
-
-    updateCart();
-
-}
+/* =========================================================
+   UPDATE CART
+========================================================= */
 
 function updateCart(){
 
-    const items =
+    const container =
         document.getElementById("cartItems");
 
     const count =
@@ -1880,9 +2891,9 @@ function updateCart(){
 
     if(cart.length === 0){
 
-        items.innerHTML = `
-            <div class="empty-cart">
-                Ton panier est vide.
+        container.innerHTML = `
+            <div class="empty">
+                Ton panier est actuellement vide.
             </div>
         `;
 
@@ -1894,13 +2905,13 @@ function updateCart(){
 
     let total = 0;
 
-    items.innerHTML = "";
+    container.innerHTML = "";
 
-    cart.forEach((item,index) => {
+    cart.forEach(function(item,index){
 
         total += item.price;
 
-        items.innerHTML += `
+        container.innerHTML += `
 
             <div class="cart-item">
 
@@ -1909,23 +2920,23 @@ function updateCart(){
                     alt="${item.name}"
                 >
 
-                <div class="cart-item-info">
+                <div class="cart-info">
 
                     <h4>
                         ${item.name}
                     </h4>
 
                     <p>
-                        Taille : ${item.size}
+                        TAILLE : ${item.size}
                     </p>
 
                     <p>
-                        ${item.price.toLocaleString("fr-FR")} MRU
+                        ${item.price} MRU
                     </p>
 
                     <button
                         class="remove"
-                        onclick="removeFromCart(${index})"
+                        onclick="removeItem(${index})"
                     >
                         SUPPRIMER
                     </button>
@@ -1943,6 +2954,22 @@ function updateCart(){
 
 }
 
+/* =========================================================
+   REMOVE ITEM
+========================================================= */
+
+function removeItem(index){
+
+    cart.splice(index,1);
+
+    updateCart();
+
+}
+
+/* =========================================================
+   OPEN CART
+========================================================= */
+
 function openCart(){
 
     document
@@ -1959,17 +2986,22 @@ function closeCart(){
 
 }
 
-function closeCartOutside(event){
+function cartBackground(event){
 
-    if(event.target.id === "cartOverlay"){
+    if(
+        event.target.id ===
+        "cartOverlay"
+    ){
+
         closeCart();
+
     }
 
 }
 
-/* =========================
-   ACHETER MAINTENANT
-========================= */
+/* =========================================================
+   BUY NOW
+========================================================= */
 
 function buyNow(name,price,image){
 
@@ -1987,23 +3019,26 @@ Merci.`;
 
     const url =
         "https://wa.me/" +
-        WHATSAPP_NUMBER +
+        WHATSAPP +
         "?text=" +
         encodeURIComponent(message);
 
-    window.open(url,"_blank");
+    window.open(
+        url,
+        "_blank"
+    );
 
 }
 
-/* =========================
-   WHATSAPP PANIER
-========================= */
+/* =========================================================
+   WHATSAPP CHECKOUT
+========================================================= */
 
 function checkoutWhatsApp(){
 
     if(cart.length === 0){
 
-        alert("Ton panier est vide.");
+        showToast("PANIER VIDE");
 
         return;
 
@@ -2018,7 +3053,7 @@ Je souhaite commander :
 
     let total = 0;
 
-    cart.forEach((item,index) => {
+    cart.forEach(function(item,index){
 
         message +=
 
@@ -2039,17 +3074,66 @@ Merci.`;
 
     const url =
         "https://wa.me/" +
-        WHATSAPP_NUMBER +
+        WHATSAPP +
         "?text=" +
         encodeURIComponent(message);
 
-    window.open(url,"_blank");
+    window.open(
+        url,
+        "_blank"
+    );
 
 }
 
-/* =========================
+/* =========================================================
+   GALLERY
+========================================================= */
+
+const gallery = [
+
+    "2F193BED-2AD4-44D3-801C-C7F97DD0B029.jpeg",
+
+    "67004B9C-5990-488E-92D0-2749F608B9D7.jpeg",
+
+    "67004B9C-5990-488E-92D0-2749F608B9D7.png",
+
+    "8B72B39B-9B99-411F-A2E4-C8341C113152.jpeg",
+
+    "C19C25C7-52E3-44FB-9F87-0F19C6E7A766.png",
+
+    "IMG_1566.jpeg",
+
+    "IMG_1575.png",
+
+    "IMG_1592.png",
+
+    "IMG_1593.png",
+
+    "IMG_1628.jpeg",
+
+    "IMG_2192.jpeg",
+
+    "IMG_2192.png",
+
+    "IMG_2265.jpeg",
+
+    "IMG_2267.jpeg",
+
+    "IMG_2274.jpeg",
+
+    "IMG_2275.png",
+
+    "IMG_2277.png",
+
+    "IMG_2304.jpeg",
+
+    "IMG_3205.png"
+
+];
+
+/* =========================================================
    LIGHTBOX
-========================= */
+========================================================= */
 
 function openLightbox(index){
 
@@ -2062,51 +3146,58 @@ function openLightbox(index){
     const number =
         document.getElementById("lightboxNumber");
 
-    image.src = galleryImages[index];
+    image.src =
+        gallery[index];
 
     number.textContent =
         String(index + 1).padStart(2,"0") +
         " / " +
-        String(galleryImages.length).padStart(2,"0");
+        String(gallery.length).padStart(2,"0");
 
     lightbox.classList.add("active");
 
-}
-
-function closeLightbox(event){
-
-    if(event.target.id === "lightbox"){
-
-        document
-            .getElementById("lightbox")
-            .classList.remove("active");
-
-    }
+    document.body.style.overflow = "hidden";
 
 }
 
-function closeLightboxButton(){
+function closeLightbox(){
 
     document
         .getElementById("lightbox")
         .classList.remove("active");
 
+    document.body.style.overflow = "";
+
 }
 
-/* =========================
-   TOAST
-========================= */
+function lightboxBackground(event){
 
-function showToast(text){
+    if(
+        event.target.id ===
+        "lightbox"
+    ){
+
+        closeLightbox();
+
+    }
+
+}
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function showToast(message){
 
     const toast =
         document.getElementById("toast");
 
-    toast.textContent = text;
+    toast.textContent =
+        message;
 
     toast.classList.add("show");
 
-    setTimeout(() => {
+    setTimeout(function(){
 
         toast.classList.remove("show");
 
@@ -2114,25 +3205,67 @@ function showToast(text){
 
 }
 
-/* =========================
-   ESC
-========================= */
+/* =========================================================
+   REVEAL ANIMATIONS
+========================================================= */
 
-document.addEventListener("keydown",function(event){
+const observer =
+    new IntersectionObserver(
 
-    if(event.key === "Escape"){
+        function(entries){
 
-        document
-            .getElementById("lightbox")
-            .classList.remove("active");
+            entries.forEach(function(entry){
 
-        document
-            .getElementById("cartOverlay")
-            .classList.remove("active");
+                if(entry.isIntersecting){
+
+                    entry.target
+                        .classList
+                        .add("visible");
+
+                    observer.unobserve(
+                        entry.target
+                    );
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold:.12
+        }
+
+    );
+
+document
+    .querySelectorAll(".reveal")
+    .forEach(function(element){
+
+        observer.observe(element);
+
+    });
+
+/* =========================================================
+   ESCAPE
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Escape"){
+
+            closeLightbox();
+
+            closeCart();
+
+            closeMenu();
+
+        }
 
     }
-
-});
+);
 
 </script>
 
