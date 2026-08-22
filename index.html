@@ -2,4275 +2,1951 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>USSAINT — Collection</title>
-
-<meta name="description" content="USSAINT — Collection streetwear premium en Mauritanie et au Sénégal.">
-
-<!-- ================================================= -->
-<!-- APPLICATION -->
-<!-- ================================================= -->
-
-<link rel="apple-touch-icon" href="IMG_3846.png">
-<link rel="icon" type="image/png" href="IMG_3846.png">
-
-<meta name="apple-mobile-web-app-title" content="USSAINT">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#071A36">
-
-<link rel="manifest" href="manifest.json">
-
-<!-- ================================================= -->
-<!-- POLICES -->
-<!-- ================================================= -->
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-
+<meta name="theme-color" content="#071426">
+<meta name="description" content="USSAINT — Premium T-shirts. Dakar, Sénégal & Mauritanie.">
+<title>USSAINT — Premium Streetwear</title>
 
 <style>
-
-/* ================================================= */
-/* VARIABLES */
-/* ================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 :root{
-
-    --blue:#071A36;
-    --blue2:#0D2D58;
-    --blue3:#164A82;
-
-    --white:#ffffff;
-    --soft:#F4F7FB;
-
-    --text:#07162D;
-    --gray:#6A788C;
-
-    --line:rgba(7,26,54,.10);
-
-    --shadow:0 25px 70px rgba(7,26,54,.13);
-
+  --blue:#071426;
+  --blue2:#0b2748;
+  --electric:#25a9ff;
+  --cyan:#62d9ff;
+  --white:#ffffff;
+  --soft:#eaf7ff;
+  --dark:#050b13;
+  --gray:#9bb0c4;
+  --green:#20d66b;
 }
 
-
-/* ================================================= */
-/* RESET */
-/* ================================================= */
-
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  scroll-behavior:smooth;
 }
 
 html{
-    scroll-behavior:smooth;
+  background:#050b13;
 }
 
 body{
-
-    font-family:'Inter',sans-serif;
-
-    color:var(--text);
-
-    background:white;
-
-    overflow-x:hidden;
-
+  font-family:'Inter',sans-serif;
+  background:
+    radial-gradient(circle at 20% 10%,rgba(37,169,255,.13),transparent 30%),
+    radial-gradient(circle at 80% 40%,rgba(98,217,255,.08),transparent 25%),
+    #050b13;
+  color:white;
+  overflow-x:hidden;
 }
 
-a{
-    color:inherit;
-    text-decoration:none;
+/* =========================
+   LOADING
+========================= */
+
+.loader{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:#050b13;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  transition:.7s ease;
 }
 
-button,
-input,
-select{
-    font-family:inherit;
+.loader.hide{
+  opacity:0;
+  visibility:hidden;
 }
 
-
-/* ================================================= */
-/* COUNTRY CHOICE */
-/* ================================================= */
-
-.country-screen{
-
-    position:fixed;
-
-    inset:0;
-
-    z-index:10000;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    padding:25px;
-
-    background:
-
-        radial-gradient(
-            circle at 20% 20%,
-            rgba(46,111,180,.35),
-            transparent 30%
-        ),
-
-        radial-gradient(
-            circle at 80% 80%,
-            rgba(25,75,135,.35),
-            transparent 30%
-        ),
-
-        linear-gradient(
-            135deg,
-            #020B19,
-            #071A36 50%,
-            #0D2D58
-        );
-
-    transition:.5s;
-
+.loader-logo{
+  width:130px;
+  animation:loaderPulse 1.2s infinite alternate;
 }
 
-.country-screen.hidden{
-
-    opacity:0;
-
-    visibility:hidden;
-
-    pointer-events:none;
-
+@keyframes loaderPulse{
+  from{
+    transform:scale(.92);
+    filter:drop-shadow(0 0 5px #25a9ff);
+  }
+  to{
+    transform:scale(1.05);
+    filter:drop-shadow(0 0 35px #25a9ff);
+  }
 }
 
-.country-box{
+/* =========================
+   PARTICLES
+========================= */
 
-    width:min(950px,100%);
-
-    text-align:center;
-
-    color:white;
-
+.energy-bg{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:-1;
 }
 
-.country-logo{
-
-    font-size:clamp(40px,8vw,80px);
-
-    font-weight:800;
-
-    letter-spacing:10px;
-
-    margin-bottom:10px;
-
+.energy-bg span{
+  position:absolute;
+  width:3px;
+  height:3px;
+  border-radius:50%;
+  background:#61d8ff;
+  box-shadow:0 0 15px #25a9ff;
+  animation:floatParticle linear infinite;
+  opacity:.5;
 }
 
-.country-subtitle{
+.energy-bg span:nth-child(1){left:5%;top:90%;animation-duration:12s}
+.energy-bg span:nth-child(2){left:15%;top:70%;animation-duration:16s}
+.energy-bg span:nth-child(3){left:28%;top:100%;animation-duration:13s}
+.energy-bg span:nth-child(4){left:42%;top:80%;animation-duration:18s}
+.energy-bg span:nth-child(5){left:55%;top:95%;animation-duration:14s}
+.energy-bg span:nth-child(6){left:68%;top:75%;animation-duration:17s}
+.energy-bg span:nth-child(7){left:80%;top:100%;animation-duration:11s}
+.energy-bg span:nth-child(8){left:93%;top:85%;animation-duration:15s}
 
-    color:#BBD2EC;
-
-    font-size:11px;
-
-    letter-spacing:4px;
-
-    text-transform:uppercase;
-
-    margin-bottom:55px;
-
+@keyframes floatParticle{
+  0%{transform:translateY(0) scale(.5);opacity:0}
+  20%{opacity:.7}
+  100%{transform:translateY(-110vh) scale(1.5);opacity:0}
 }
 
-.country-title{
-
-    font-family:'Playfair Display',serif;
-
-    font-size:clamp(35px,5vw,55px);
-
-    margin-bottom:15px;
-
-}
-
-.country-description{
-
-    max-width:520px;
-
-    margin:auto;
-
-    color:#C6D5E7;
-
-    font-size:13px;
-
-    line-height:1.8;
-
-    margin-bottom:38px;
-
-}
-
-.country-options{
-
-    display:grid;
-
-    grid-template-columns:repeat(2,1fr);
-
-    gap:20px;
-
-}
-
-.country-card{
-
-    padding:38px 25px;
-
-    border:1px solid rgba(255,255,255,.16);
-
-    background:rgba(255,255,255,.06);
-
-    backdrop-filter:blur(20px);
-
-    border-radius:28px;
-
-    color:white;
-
-    cursor:pointer;
-
-    transition:.35s;
-
-}
-
-.country-card:hover{
-
-    transform:translateY(-8px);
-
-    background:rgba(255,255,255,.12);
-
-    border-color:rgba(255,255,255,.35);
-
-}
-
-.country-flag{
-
-    font-size:55px;
-
-    margin-bottom:17px;
-
-}
-
-.country-card h2{
-
-    font-size:24px;
-
-    margin-bottom:9px;
-
-}
-
-.country-card p{
-
-    color:#BFD0E3;
-
-    font-size:11px;
-
-    line-height:1.7;
-
-}
-
-.country-price{
-
-    display:inline-block;
-
-    margin-top:17px;
-
-    padding:9px 15px;
-
-    background:white;
-
-    color:var(--blue);
-
-    border-radius:100px;
-
-    font-size:10px;
-
-    font-weight:800;
-
-}
-
-
-/* ================================================= */
-/* HEADER */
-/* ================================================= */
+/* =========================
+   HEADER
+========================= */
 
 header{
-
-    position:fixed;
-
-    top:0;
-    left:0;
-
-    width:100%;
-
-    height:78px;
-
-    z-index:1000;
-
-    background:rgba(255,255,255,.88);
-
-    backdrop-filter:blur(22px);
-
-    -webkit-backdrop-filter:blur(22px);
-
-    border-bottom:1px solid rgba(7,26,54,.08);
-
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:1000;
+  height:76px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 6%;
+  background:rgba(5,11,19,.72);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(98,217,255,.12);
 }
 
-.navbar{
-
-    max-width:1250px;
-
-    height:100%;
-
-    margin:auto;
-
-    padding:0 24px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  text-decoration:none;
+  color:white;
+  font-weight:900;
+  font-size:24px;
+  letter-spacing:3px;
 }
 
-.logo{
-
-    font-size:27px;
-
-    font-weight:800;
-
-    letter-spacing:6px;
-
-    color:var(--blue);
-
+.brand img{
+  width:44px;
+  height:44px;
+  object-fit:contain;
+  filter:drop-shadow(0 0 12px rgba(37,169,255,.65));
 }
 
-.logo small{
-
-    display:block;
-
-    text-align:center;
-
-    margin-top:3px;
-
-    font-size:7px;
-
-    letter-spacing:3px;
-
-    color:var(--blue3);
-
+nav{
+  display:flex;
+  gap:30px;
 }
 
-.nav-links{
-
-    display:flex;
-
-    gap:30px;
-
+nav a{
+  color:#d8edf9;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:1.3px;
+  transition:.3s;
 }
 
-.nav-links a{
-
-    font-size:10px;
-
-    font-weight:800;
-
-    letter-spacing:1.5px;
-
+nav a:hover{
+  color:#62d9ff;
+  text-shadow:0 0 15px #25a9ff;
 }
 
-.nav-links a:hover{
-
-    color:var(--blue3);
-
-}
-
-.actions{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:9px;
-
-}
-
-.country-switch{
-
-    height:43px;
-
-    padding:0 15px;
-
-    border:1px solid var(--line);
-
-    background:white;
-
-    border-radius:100px;
-
-    cursor:pointer;
-
-    font-size:10px;
-
-    font-weight:800;
-
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:12px;
 }
 
 .cart-btn{
-
-    position:relative;
-
-    width:46px;
-    height:46px;
-
-    border:1px solid var(--line);
-
-    border-radius:50%;
-
-    background:white;
-
-    cursor:pointer;
-
+  border:1px solid rgba(98,217,255,.35);
+  background:rgba(37,169,255,.08);
+  color:white;
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  cursor:pointer;
+  font-size:19px;
+  position:relative;
+  transition:.3s;
 }
 
-.cart-number{
-
-    position:absolute;
-
-    top:-3px;
-    right:-2px;
-
-    width:20px;
-    height:20px;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    border-radius:50%;
-
-    background:var(--blue);
-
-    color:white;
-
-    font-size:9px;
-
-    font-weight:800;
-
+.cart-btn:hover{
+  transform:scale(1.08);
+  box-shadow:0 0 25px rgba(37,169,255,.5);
 }
 
-.menu-btn{
-
-    display:none;
-
-    width:46px;
-    height:46px;
-
-    border:0;
-
-    border-radius:12px;
-
-    background:var(--blue);
-
-    color:white;
-
-    font-size:21px;
-
-    cursor:pointer;
-
+.cart-count{
+  position:absolute;
+  top:-3px;
+  right:-3px;
+  background:#25a9ff;
+  color:white;
+  font-size:10px;
+  width:19px;
+  height:19px;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-weight:900;
 }
 
-
-/* ================================================= */
-/* MOBILE MENU */
-/* ================================================= */
-
-.mobile-menu{
-
-    display:none;
-
-    position:absolute;
-
-    top:78px;
-
-    left:0;
-
-    width:100%;
-
-    padding:20px;
-
-    background:white;
-
-    box-shadow:0 20px 50px rgba(0,0,0,.15);
-
+.menu{
+  display:none;
+  font-size:26px;
+  cursor:pointer;
 }
 
-.mobile-menu.active{
-
-    display:flex;
-
-    flex-direction:column;
-
-}
-
-.mobile-menu a{
-
-    padding:15px 0;
-
-    border-bottom:1px solid var(--line);
-
-    font-size:12px;
-
-    font-weight:800;
-
-}
-
-
-/* ================================================= */
-/* HERO */
-/* ================================================= */
+/* =========================
+   HERO
+========================= */
 
 .hero{
+  min-height:100vh;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:120px 20px 80px;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at center,rgba(37,169,255,.18),transparent 38%),
+    linear-gradient(180deg,#071426 0%,#050b13 100%);
+}
 
-    min-height:100vh;
+.hero::before{
+  content:"";
+  position:absolute;
+  width:700px;
+  height:700px;
+  border-radius:50%;
+  border:1px solid rgba(98,217,255,.12);
+  box-shadow:
+    0 0 100px rgba(37,169,255,.08),
+    inset 0 0 100px rgba(37,169,255,.05);
+  animation:heroRing 9s linear infinite;
+}
 
-    padding:150px 25px 80px;
+.hero::after{
+  content:"";
+  position:absolute;
+  width:400px;
+  height:400px;
+  border-radius:50%;
+  border:1px solid rgba(37,169,255,.1);
+  animation:heroRing 6s linear infinite reverse;
+}
 
-    display:flex;
-
-    align-items:center;
-
-    color:white;
-
-    position:relative;
-
-    overflow:hidden;
-
-    background:
-
-        radial-gradient(
-            circle at 80% 25%,
-            rgba(38,105,177,.35),
-            transparent 32%
-        ),
-
-        radial-gradient(
-            circle at 15% 80%,
-            rgba(18,65,120,.25),
-            transparent 35%
-        ),
-
-        linear-gradient(
-            135deg,
-            #041126,
-            #0A2850 55%,
-            #061A36
-        );
-
+@keyframes heroRing{
+  from{transform:rotate(0deg) scale(1)}
+  50%{transform:rotate(180deg) scale(1.05)}
+  to{transform:rotate(360deg) scale(1)}
 }
 
 .hero-content{
-
-    max-width:1250px;
-
-    width:100%;
-
-    margin:auto;
-
-    position:relative;
-
-    z-index:2;
-
+  position:relative;
+  z-index:2;
+  max-width:900px;
 }
 
-.hero-label{
+.hero-logo{
+  width:min(270px,65vw);
+  margin:0 auto 18px;
+  opacity:.98;
+  filter:
+    drop-shadow(0 0 10px rgba(37,169,255,.75))
+    drop-shadow(0 0 40px rgba(37,169,255,.4));
+  animation:logoEnergy 2.5s ease-in-out infinite alternate;
+}
 
-    font-size:10px;
+@keyframes logoEnergy{
+  from{
+    transform:scale(1);
+    filter:
+      drop-shadow(0 0 10px rgba(37,169,255,.65))
+      drop-shadow(0 0 25px rgba(37,169,255,.2));
+  }
+  to{
+    transform:scale(1.035);
+    filter:
+      drop-shadow(0 0 20px rgba(37,169,255,1))
+      drop-shadow(0 0 60px rgba(37,169,255,.5));
+  }
+}
 
-    letter-spacing:4px;
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 15px;
+  border:1px solid rgba(98,217,255,.28);
+  border-radius:999px;
+  background:rgba(37,169,255,.07);
+  color:#7edfff;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:22px;
+}
 
-    color:#B9D5F5;
+.eyebrow::before{
+  content:"";
+  width:7px;
+  height:7px;
+  background:#25a9ff;
+  border-radius:50%;
+  box-shadow:0 0 12px #25a9ff;
+  animation:blink 1s infinite alternate;
+}
 
-    margin-bottom:27px;
-
+@keyframes blink{
+  to{opacity:.3;transform:scale(.6)}
 }
 
 .hero h1{
-
-    max-width:850px;
-
-    font-family:'Playfair Display',serif;
-
-    font-size:clamp(60px,9vw,120px);
-
-    line-height:.88;
-
-    letter-spacing:-5px;
-
+  font-size:clamp(45px,8vw,100px);
+  line-height:.9;
+  font-weight:900;
+  letter-spacing:-5px;
+  margin-bottom:24px;
+  background:linear-gradient(110deg,#fff 10%,#9eeaff 45%,#25a9ff 70%,#fff 90%);
+  background-size:250%;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  animation:textEnergy 5s linear infinite;
 }
 
-.hero h1 span{
-
-    color:#B9D8FA;
-
+@keyframes textEnergy{
+  from{background-position:0%}
+  to{background-position:250%}
 }
 
-.hero-description{
-
-    max-width:560px;
-
-    margin-top:32px;
-
-    color:#D9E6F6;
-
-    font-size:14px;
-
-    line-height:1.8;
-
+.hero p{
+  max-width:650px;
+  margin:auto;
+  color:#a8bfd1;
+  font-size:16px;
+  line-height:1.8;
 }
 
 .hero-buttons{
-
-    display:flex;
-
-    flex-wrap:wrap;
-
-    gap:13px;
-
-    margin-top:38px;
-
+  margin-top:32px;
+  display:flex;
+  justify-content:center;
+  gap:13px;
+  flex-wrap:wrap;
 }
 
 .btn{
-
-    min-height:55px;
-
-    padding:0 27px;
-
-    border-radius:100px;
-
-    display:inline-flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-size:10px;
-
-    font-weight:800;
-
-    letter-spacing:1px;
-
-    cursor:pointer;
-
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:52px;
+  padding:0 25px;
+  border-radius:14px;
+  text-decoration:none;
+  font-weight:900;
+  font-size:12px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  transition:.35s;
+  cursor:pointer;
 }
 
-.btn-white{
-
-    background:white;
-
-    color:var(--blue);
-
+.btn-primary{
+  color:white;
+  background:linear-gradient(110deg,#0d77bd,#25a9ff,#0d77bd);
+  background-size:200%;
+  box-shadow:
+    0 10px 35px rgba(37,169,255,.25),
+    0 0 0 1px rgba(255,255,255,.12) inset;
+  animation:buttonEnergy 3s linear infinite;
 }
 
-.btn-transparent{
-
-    border:1px solid rgba(255,255,255,.3);
-
-    color:white;
-
+@keyframes buttonEnergy{
+  from{background-position:0}
+  to{background-position:200%}
 }
 
-
-/* ================================================= */
-/* MARQUEE */
-/* ================================================= */
-
-.marquee{
-
-    background:var(--blue);
-
-    color:white;
-
-    padding:14px 0;
-
-    overflow:hidden;
-
-    white-space:nowrap;
-
-    font-size:9px;
-
-    font-weight:800;
-
-    letter-spacing:3px;
-
+.btn-primary:hover{
+  transform:translateY(-4px) scale(1.02);
+  box-shadow:0 15px 45px rgba(37,169,255,.45);
 }
 
-.marquee-content{
-
-    display:inline-block;
-
-    animation:marquee 25s linear infinite;
-
+.btn-outline{
+  color:#dff7ff;
+  border:1px solid rgba(98,217,255,.3);
+  background:rgba(255,255,255,.03);
 }
 
-@keyframes marquee{
-
-    from{
-        transform:translateX(0);
-    }
-
-    to{
-        transform:translateX(-50%);
-    }
-
+.btn-outline:hover{
+  border-color:#25a9ff;
+  background:rgba(37,169,255,.1);
+  transform:translateY(-4px);
 }
 
+/* =========================
+   ENERGY TICKER
+========================= */
 
-/* ================================================= */
-/* GENERAL */
-/* ================================================= */
-
-section{
-
-    padding:100px 25px;
-
+.ticker{
+  overflow:hidden;
+  border-top:1px solid rgba(98,217,255,.1);
+  border-bottom:1px solid rgba(98,217,255,.1);
+  background:#071426;
+  white-space:nowrap;
 }
 
-.container{
-
-    max-width:1250px;
-
-    margin:auto;
-
+.ticker-track{
+  display:inline-flex;
+  animation:ticker 22s linear infinite;
 }
 
-.section-label{
-
-    color:var(--blue3);
-
-    font-size:9px;
-
-    font-weight:800;
-
-    letter-spacing:3px;
-
-    text-transform:uppercase;
-
-    margin-bottom:13px;
-
+.ticker span{
+  display:inline-block;
+  padding:16px 28px;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:3px;
+  color:#8de5ff;
 }
 
-.section-head{
+@keyframes ticker{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
 
-    display:flex;
+/* =========================
+   MARKET
+========================= */
 
-    justify-content:space-between;
-
-    align-items:flex-end;
-
-    gap:30px;
-
-    margin-bottom:45px;
-
+.market{
+  padding:90px 6% 30px;
 }
 
 .section-title{
-
-    font-family:'Playfair Display',serif;
-
-    font-size:clamp(40px,5vw,62px);
-
-    line-height:.95;
-
+  text-align:center;
+  margin-bottom:45px;
 }
 
-.section-description{
-
-    max-width:430px;
-
-    color:var(--gray);
-
-    font-size:12px;
-
-    line-height:1.8;
-
+.section-title small{
+  color:#56ceff;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:3px;
+  text-transform:uppercase;
 }
 
-
-/* ================================================= */
-/* COLLECTION */
-/* ================================================= */
-
-.collection{
-
-    background:var(--soft);
-
+.section-title h2{
+  font-size:clamp(30px,5vw,55px);
+  margin-top:10px;
+  font-weight:900;
+  letter-spacing:-2px;
 }
 
-.products{
-
-    display:grid;
-
-    grid-template-columns:repeat(3,1fr);
-
-    gap:25px;
-
+.section-title p{
+  color:#8fa9bd;
+  max-width:600px;
+  margin:12px auto 0;
+  line-height:1.7;
 }
 
-.product{
-
-    background:white;
-
-    border-radius:25px;
-
-    overflow:hidden;
-
-    border:1px solid rgba(7,26,54,.05);
-
-    box-shadow:0 8px 30px rgba(7,26,54,.06);
-
-    transition:.4s;
-
+.market-grid{
+  max-width:1000px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:22px;
 }
 
-.product:hover{
-
-    transform:translateY(-7px);
-
-    box-shadow:var(--shadow);
-
+.market-card{
+  position:relative;
+  padding:35px;
+  border-radius:25px;
+  overflow:hidden;
+  background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(37,169,255,.03));
+  border:1px solid rgba(98,217,255,.15);
+  transition:.4s;
 }
 
-.product-image{
-
-    position:relative;
-
-    aspect-ratio:4/5;
-
-    background:#E9EEF5;
-
-    overflow:hidden;
-
+.market-card:hover{
+  transform:translateY(-8px);
+  border-color:rgba(98,217,255,.5);
+  box-shadow:0 25px 60px rgba(0,0,0,.3),0 0 35px rgba(37,169,255,.1);
 }
 
-.product-image img{
-
-    width:100%;
-
-    height:100%;
-
-    object-fit:cover;
-
-    display:block;
-
-    transition:.6s;
-
-    cursor:zoom-in;
-
+.market-card::before{
+  content:"";
+  position:absolute;
+  width:200px;
+  height:200px;
+  border-radius:50%;
+  right:-80px;
+  top:-80px;
+  background:rgba(37,169,255,.1);
+  filter:blur(20px);
 }
 
-.product:hover .product-image img{
-
-    transform:scale(1.04);
-
+.flag{
+  font-size:40px;
 }
 
-.badge{
-
-    position:absolute;
-
-    top:15px;
-    left:15px;
-
-    z-index:3;
-
-    padding:8px 13px;
-
-    border-radius:100px;
-
-    background:var(--blue);
-
-    color:white;
-
-    font-size:8px;
-
-    font-weight:800;
-
-    letter-spacing:1px;
-
+.market-card h3{
+  margin:14px 0 8px;
+  font-size:25px;
 }
 
-.product-info{
-
-    padding:22px;
-
-}
-
-.product-name{
-
-    font-family:'Playfair Display',serif;
-
-    font-size:22px;
-
-    margin-bottom:7px;
-
-}
-
-.product-sub{
-
-    color:var(--gray);
-
-    font-size:10px;
-
-    margin-bottom:18px;
-
-}
-
-.product-bottom{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
+.market-card p{
+  color:#9bb0c4;
+  line-height:1.6;
 }
 
 .price{
-
-    color:var(--blue);
-
-    font-size:16px;
-
-    font-weight:800;
-
+  margin-top:20px;
+  font-size:30px;
+  font-weight:900;
+  color:#65dbff;
 }
 
-.buy-button{
-
-    border:0;
-
-    padding:12px 17px;
-
-    border-radius:100px;
-
-    background:var(--blue);
-
-    color:white;
-
-    font-size:9px;
-
-    font-weight:800;
-
-    cursor:pointer;
-
+.market-card .btn{
+  margin-top:20px;
 }
 
+/* =========================
+   PRODUCTS
+========================= */
 
-/* ================================================= */
-/* FEATURES */
-/* ================================================= */
-
-.features{
-
-    background:white;
-
+.products{
+  padding:90px 5% 110px;
 }
 
-.features-grid{
-
-    display:grid;
-
-    grid-template-columns:repeat(3,1fr);
-
-    gap:20px;
-
+.product-grid{
+  max-width:1250px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
 }
 
-.feature{
-
-    padding:34px;
-
-    border:1px solid var(--line);
-
-    border-radius:23px;
-
+.product{
+  position:relative;
+  overflow:hidden;
+  border-radius:22px;
+  background:linear-gradient(145deg,#0a1a2b,#07111e);
+  border:1px solid rgba(98,217,255,.12);
+  transition:.45s;
+  opacity:0;
+  transform:translateY(30px);
 }
 
-.feature-icon{
-
-    width:50px;
-    height:50px;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    border-radius:50%;
-
-    background:#EDF4FC;
-
-    margin-bottom:20px;
-
-    font-size:20px;
-
+.product.show{
+  opacity:1;
+  transform:translateY(0);
 }
 
-.feature h3{
-
-    font-size:16px;
-
-    margin-bottom:10px;
-
+.product:hover{
+  transform:translateY(-10px);
+  border-color:rgba(98,217,255,.5);
+  box-shadow:
+    0 25px 60px rgba(0,0,0,.45),
+    0 0 35px rgba(37,169,255,.12);
 }
 
-.feature p{
-
-    color:var(--gray);
-
-    font-size:12px;
-
-    line-height:1.8;
-
+.product-image{
+  position:relative;
+  aspect-ratio:4/5;
+  overflow:hidden;
+  background:#eef6fb;
 }
 
-
-/* ================================================= */
-/* ABOUT */
-/* ================================================= */
-
-.about{
-
-    background:var(--blue);
-
-    color:white;
-
+.product-image::after{
+  content:"";
+  position:absolute;
+  inset:-100%;
+  background:linear-gradient(
+    110deg,
+    transparent 35%,
+    rgba(255,255,255,.45) 50%,
+    transparent 65%
+  );
+  transform:translateX(-100%);
+  transition:.7s;
 }
 
-.about-grid{
-
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-
-    gap:70px;
-
-    align-items:center;
-
+.product:hover .product-image::after{
+  transform:translateX(100%);
 }
 
-.about .section-label{
-
-    color:#A8CDEF;
-
+.product-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transition:.6s;
 }
 
-.about h2{
-
-    font-family:'Playfair Display',serif;
-
-    font-size:clamp(42px,5vw,68px);
-
-    line-height:.95;
-
-    margin-bottom:25px;
-
+.product:hover .product-image img{
+  transform:scale(1.07);
 }
 
-.about p{
-
-    color:#D2DFEF;
-
-    font-size:13px;
-
-    line-height:1.9;
-
+.product-number{
+  position:absolute;
+  top:12px;
+  left:12px;
+  z-index:3;
+  padding:6px 9px;
+  border-radius:8px;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:1px;
+  background:rgba(5,11,19,.72);
+  backdrop-filter:blur(10px);
+  color:#9deaff;
 }
 
-.about-visual{
-
-    min-height:400px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    border-radius:30px;
-
-    border:1px solid rgba(255,255,255,.1);
-
-    background:
-
-        radial-gradient(
-            circle,
-            rgba(94,159,225,.2),
-            transparent 40%
-        ),
-
-        rgba(255,255,255,.025);
-
+.product-info{
+  padding:17px;
 }
 
-.about-visual strong{
-
-    font-size:55px;
-
-    letter-spacing:7px;
-
+.product-info h3{
+  font-size:14px;
+  margin-bottom:8px;
 }
 
-
-/* ================================================= */
-/* ORDER */
-/* ================================================= */
-
-.order{
-
-    background:var(--soft);
-
+.product-info p{
+  color:#7f98aa;
+  font-size:11px;
 }
 
-.order-card{
-
-    max-width:700px;
-
-    margin:auto;
-
-    padding:38px;
-
-    background:white;
-
-    border-radius:30px;
-
-    box-shadow:var(--shadow);
-
+.product-bottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-top:15px;
 }
 
-.order-card h2{
-
-    font-family:'Playfair Display',serif;
-
-    font-size:40px;
-
-    margin-bottom:10px;
-
+.product-price{
+  color:#65dbff;
+  font-size:16px;
+  font-weight:900;
 }
 
-.order-card > p{
-
-    color:var(--gray);
-
-    font-size:12px;
-
-    line-height:1.7;
-
-    margin-bottom:30px;
-
+.buy{
+  border:0;
+  border-radius:10px;
+  background:#25a9ff;
+  color:white;
+  padding:10px 12px;
+  font-size:10px;
+  font-weight:900;
+  cursor:pointer;
+  transition:.3s;
 }
 
-.form-group{
-
-    margin-bottom:18px;
-
+.buy:hover{
+  background:#62d9ff;
+  color:#03101d;
+  box-shadow:0 0 20px rgba(37,169,255,.45);
 }
 
-.form-group label{
+/* =========================
+   GALERIE
+========================= */
 
-    display:block;
-
-    margin-bottom:8px;
-
-    font-size:9px;
-
-    font-weight:800;
-
-    letter-spacing:1.5px;
-
-    text-transform:uppercase;
-
+.gallery{
+  padding:90px 5%;
+  background:
+    radial-gradient(circle at 50% 0,rgba(37,169,255,.1),transparent 35%);
 }
 
-.form-group input,
-.form-group select{
-
-    width:100%;
-
-    height:52px;
-
-    padding:0 15px;
-
-    border:1px solid var(--line);
-
-    border-radius:12px;
-
-    background:white;
-
-    outline:none;
-
+.gallery-grid{
+  max-width:1250px;
+  margin:auto;
+  columns:4 220px;
+  column-gap:15px;
 }
 
-.order-button{
-
-    width:100%;
-
-    height:55px;
-
-    border:0;
-
-    border-radius:100px;
-
-    background:var(--blue);
-
-    color:white;
-
-    font-size:10px;
-
-    font-weight:800;
-
-    letter-spacing:1px;
-
-    cursor:pointer;
-
+.gallery-item{
+  position:relative;
+  break-inside:avoid;
+  margin-bottom:15px;
+  overflow:hidden;
+  border-radius:18px;
+  cursor:pointer;
+  border:1px solid rgba(98,217,255,.1);
 }
 
-
-/* ================================================= */
-/* SOCIAL */
-/* ================================================= */
-
-.social{
-
-    text-align:center;
-
+.gallery-item img{
+  width:100%;
+  display:block;
+  transition:.5s;
 }
 
-.social h2{
-
-    font-family:'Playfair Display',serif;
-
-    font-size:48px;
-
-    margin-bottom:12px;
-
+.gallery-item:hover img{
+  transform:scale(1.06);
+  filter:brightness(1.08);
 }
 
-.social p{
-
-    color:var(--gray);
-
-    font-size:13px;
-
-    margin-bottom:25px;
-
+.gallery-item::after{
+  content:"VIEW";
+  position:absolute;
+  inset:auto 12px 12px auto;
+  padding:6px 9px;
+  border-radius:7px;
+  background:rgba(5,11,19,.75);
+  color:white;
+  font-size:8px;
+  letter-spacing:2px;
+  opacity:0;
+  transition:.3s;
 }
 
-.instagram-button{
-
-    display:inline-flex;
-
-    padding:15px 25px;
-
-    border-radius:100px;
-
-    background:var(--blue);
-
-    color:white;
-
-    font-size:10px;
-
-    font-weight:800;
-
+.gallery-item:hover::after{
+  opacity:1;
 }
 
-
-/* ================================================= */
-/* FOOTER */
-/* ================================================= */
-
-footer{
-
-    background:#031025;
-
-    color:white;
-
-    padding:55px 25px 28px;
-
-}
-
-.footer-container{
-
-    max-width:1250px;
-
-    margin:auto;
-
-}
-
-.footer-top{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    gap:40px;
-
-    padding-bottom:40px;
-
-    border-bottom:1px solid rgba(255,255,255,.1);
-
-}
-
-.footer-logo{
-
-    font-size:29px;
-
-    font-weight:800;
-
-    letter-spacing:6px;
-
-}
-
-.footer-text{
-
-    color:#91A4BB;
-
-    max-width:350px;
-
-    margin-top:14px;
-
-    font-size:12px;
-
-    line-height:1.8;
-
-}
-
-.footer-links{
-
-    display:flex;
-
-    gap:25px;
-
-    flex-wrap:wrap;
-
-}
-
-.footer-links a{
-
-    color:#D8E3EF;
-
-    font-size:11px;
-
-}
-
-.footer-bottom{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    padding-top:25px;
-
-    color:#73879F;
-
-    font-size:10px;
-
-}
-
-
-/* ================================================= */
-/* CART */
-/* ================================================= */
-
-.overlay{
-
-    position:fixed;
-
-    inset:0;
-
-    z-index:1500;
-
-    background:rgba(0,0,0,.5);
-
-    opacity:0;
-
-    visibility:hidden;
-
-    transition:.3s;
-
-}
-
-.overlay.active{
-
-    opacity:1;
-
-    visibility:visible;
-
-}
-
-.cart-panel{
-
-    position:fixed;
-
-    top:0;
-
-    right:-440px;
-
-    width:min(440px,100%);
-
-    height:100vh;
-
-    z-index:2000;
-
-    background:white;
-
-    padding:28px;
-
-    box-shadow:-20px 0 70px rgba(0,0,0,.18);
-
-    transition:.4s;
-
-    display:flex;
-
-    flex-direction:column;
-
-}
-
-.cart-panel.active{
-
-    right:0;
-
-}
-
-.cart-header{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    padding-bottom:20px;
-
-    border-bottom:1px solid var(--line);
-
-}
-
-.cart-header h2{
-
-    font-family:'Playfair Display',serif;
-
-    font-size:30px;
-
-}
-
-.close-cart{
-
-    width:40px;
-    height:40px;
-
-    border:1px solid var(--line);
-
-    border-radius:50%;
-
-    background:white;
-
-    cursor:pointer;
-
-    font-size:20px;
-
-}
-
-.cart-items{
-
-    flex:1;
-
-    overflow:auto;
-
-    padding:20px 0;
-
-}
-
-.empty-cart{
-
-    margin-top:80px;
-
-    text-align:center;
-
-    color:var(--gray);
-
-    font-size:13px;
-
-}
-
-.cart-item{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:14px;
-
-    margin-bottom:18px;
-
-}
-
-.cart-item img{
-
-    width:70px;
-    height:80px;
-
-    object-fit:cover;
-
-    border-radius:12px;
-
-}
-
-.cart-info{
-
-    flex:1;
-
-}
-
-.cart-info strong{
-
-    display:block;
-
-    font-size:12px;
-
-}
-
-.cart-info small{
-
-    display:block;
-
-    margin-top:5px;
-
-    color:var(--gray);
-
-}
-
-.remove{
-
-    border:0;
-
-    background:none;
-
-    color:#C62828;
-
-    cursor:pointer;
-
-}
-
-.cart-footer{
-
-    border-top:1px solid var(--line);
-
-    padding-top:20px;
-
-}
-
-.total{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    margin-bottom:15px;
-
-    font-weight:800;
-
-}
-
-.whatsapp-checkout{
-
-    width:100%;
-
-    height:53px;
-
-    border:0;
-
-    border-radius:100px;
-
-    background:#25D366;
-
-    color:white;
-
-    font-weight:800;
-
-    cursor:pointer;
-
-}
-
-
-/* ================================================= */
-/* LIGHTBOX */
-/* ================================================= */
+/* =========================
+   LIGHTBOX
+========================= */
 
 .lightbox{
-
-    position:fixed;
-
-    inset:0;
-
-    z-index:3000;
-
-    display:none;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:25px;
-
-    background:rgba(3,12,25,.95);
-
+  position:fixed;
+  inset:0;
+  z-index:5000;
+  background:rgba(0,5,12,.94);
+  backdrop-filter:blur(15px);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:25px;
 }
 
 .lightbox.active{
-
-    display:flex;
-
+  display:flex;
 }
 
 .lightbox img{
-
-    max-width:95%;
-
-    max-height:90vh;
-
-    object-fit:contain;
-
-    border-radius:15px;
-
+  max-width:95%;
+  max-height:88vh;
+  border-radius:16px;
+  box-shadow:0 0 80px rgba(37,169,255,.3);
 }
 
 .close-lightbox{
-
-    position:absolute;
-
-    top:20px;
-    right:25px;
-
-    width:45px;
-    height:45px;
-
-    border:1px solid rgba(255,255,255,.3);
-
-    border-radius:50%;
-
-    background:rgba(255,255,255,.1);
-
-    color:white;
-
-    font-size:25px;
-
-    cursor:pointer;
-
+  position:absolute;
+  top:25px;
+  right:30px;
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.2);
+  background:rgba(255,255,255,.08);
+  color:white;
+  font-size:25px;
+  cursor:pointer;
 }
 
+/* =========================
+   WHY USSAINT
+========================= */
 
-/* ================================================= */
-/* WHATSAPP */
-/* ================================================= */
+.features{
+  padding:100px 6%;
+}
+
+.features-grid{
+  max-width:1100px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+}
+
+.feature{
+  padding:28px 20px;
+  text-align:center;
+  border:1px solid rgba(98,217,255,.1);
+  border-radius:20px;
+  background:rgba(255,255,255,.025);
+  transition:.4s;
+}
+
+.feature:hover{
+  transform:translateY(-7px);
+  background:rgba(37,169,255,.06);
+  border-color:rgba(98,217,255,.3);
+}
+
+.feature-icon{
+  font-size:28px;
+  margin-bottom:14px;
+}
+
+.feature h3{
+  font-size:14px;
+  margin-bottom:8px;
+}
+
+.feature p{
+  font-size:11px;
+  color:#8199aa;
+  line-height:1.6;
+}
+
+/* =========================
+   CTA
+========================= */
+
+.cta{
+  padding:100px 20px;
+  text-align:center;
+}
+
+.cta-box{
+  max-width:1050px;
+  margin:auto;
+  padding:70px 30px;
+  border-radius:35px;
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at center,rgba(37,169,255,.25),transparent 50%),
+    linear-gradient(135deg,#0b2748,#06101d);
+  border:1px solid rgba(98,217,255,.25);
+  box-shadow:0 30px 100px rgba(0,0,0,.35);
+}
+
+.cta-box::before{
+  content:"";
+  position:absolute;
+  width:500px;
+  height:2px;
+  background:linear-gradient(90deg,transparent,#62d9ff,transparent);
+  top:0;
+  left:-100%;
+  animation:laser 4s linear infinite;
+}
+
+@keyframes laser{
+  to{left:100%}
+}
+
+.cta-box h2{
+  position:relative;
+  font-size:clamp(32px,5vw,60px);
+  font-weight:900;
+  margin-bottom:15px;
+}
+
+.cta-box p{
+  position:relative;
+  color:#a8bfd1;
+  max-width:600px;
+  margin:auto;
+  line-height:1.7;
+}
+
+.cta-box .btn{
+  margin-top:28px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  padding:45px 6%;
+  border-top:1px solid rgba(98,217,255,.1);
+  background:#03080e;
+}
+
+.footer-content{
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+}
+
+.footer-brand{
+  font-size:22px;
+  font-weight:900;
+  letter-spacing:3px;
+}
+
+.footer-content p{
+  color:#718799;
+  font-size:11px;
+}
+
+.social{
+  display:flex;
+  gap:10px;
+}
+
+.social a{
+  width:38px;
+  height:38px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  border-radius:50%;
+  border:1px solid rgba(98,217,255,.15);
+  color:white;
+  text-decoration:none;
+  transition:.3s;
+}
+
+.social a:hover{
+  border-color:#25a9ff;
+  color:#62d9ff;
+  box-shadow:0 0 20px rgba(37,169,255,.25);
+}
+
+/* =========================
+   WHATSAPP
+========================= */
 
 .whatsapp{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  z-index:900;
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
+  text-decoration:none;
+  font-size:26px;
+  background:#20d66b;
+  box-shadow:0 8px 30px rgba(32,214,107,.3);
+  animation:whatsappPulse 2s infinite;
+}
 
-    position:fixed;
+@keyframes whatsappPulse{
+  0%,100%{box-shadow:0 8px 30px rgba(32,214,107,.3)}
+  50%{box-shadow:0 8px 45px rgba(32,214,107,.7)}
+}
 
-    left:20px;
-    bottom:20px;
+/* =========================
+   CART
+========================= */
 
-    width:58px;
-    height:58px;
+.cart-panel{
+  position:fixed;
+  right:-430px;
+  top:0;
+  width:min(420px,92vw);
+  height:100vh;
+  z-index:3000;
+  background:#071426;
+  border-left:1px solid rgba(98,217,255,.2);
+  box-shadow:-30px 0 80px rgba(0,0,0,.5);
+  transition:.45s;
+  padding:25px;
+  display:flex;
+  flex-direction:column;
+}
 
-    z-index:900;
+.cart-panel.active{
+  right:0;
+}
 
+.cart-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding-bottom:20px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.cart-head h2{
+  font-size:22px;
+}
+
+.close-cart{
+  background:none;
+  border:0;
+  color:white;
+  font-size:25px;
+  cursor:pointer;
+}
+
+.cart-items{
+  flex:1;
+  overflow:auto;
+  padding:20px 0;
+}
+
+.empty{
+  color:#8098aa;
+  text-align:center;
+  padding-top:60px;
+}
+
+.cart-item{
+  display:flex;
+  gap:12px;
+  padding:12px 0;
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+
+.cart-item img{
+  width:70px;
+  height:85px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+.cart-item-info{
+  flex:1;
+}
+
+.cart-item-info h4{
+  font-size:12px;
+}
+
+.cart-item-info p{
+  color:#65dbff;
+  font-size:12px;
+  font-weight:800;
+  margin-top:6px;
+}
+
+.remove{
+  border:0;
+  background:none;
+  color:#ff7181;
+  cursor:pointer;
+}
+
+.cart-total{
+  border-top:1px solid rgba(255,255,255,.08);
+  padding-top:18px;
+}
+
+.total-line{
+  display:flex;
+  justify-content:space-between;
+  font-weight:900;
+  margin-bottom:15px;
+}
+
+.checkout{
+  width:100%;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1000px){
+  .product-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .features-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:750px){
+  header{
+    padding:0 18px;
+  }
+
+  nav{
+    position:absolute;
+    top:76px;
+    left:0;
+    right:0;
+    background:rgba(5,11,19,.97);
+    backdrop-filter:blur(20px);
+    display:none;
+    flex-direction:column;
+    padding:25px;
+    border-bottom:1px solid rgba(98,217,255,.12);
+  }
+
+  nav.active{
     display:flex;
+  }
 
-    align-items:center;
-    justify-content:center;
+  .menu{
+    display:block;
+  }
 
-    border-radius:50%;
+  .hero{
+    min-height:95vh;
+  }
 
-    background:#25D366;
+  .hero::before{
+    width:450px;
+    height:450px;
+  }
 
-    color:white;
+  .hero h1{
+    letter-spacing:-3px;
+  }
 
-    font-size:27px;
+  .market-grid{
+    grid-template-columns:1fr;
+  }
 
-    box-shadow:0 12px 35px rgba(37,211,102,.35);
+  .product-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+  }
 
+  .product{
+    border-radius:17px;
+  }
+
+  .product-info{
+    padding:12px;
+  }
+
+  .product-info h3{
+    font-size:12px;
+  }
+
+  .product-price{
+    font-size:14px;
+  }
+
+  .buy{
+    padding:9px;
+  }
+
+  .features-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .footer-content{
+    flex-direction:column;
+    text-align:center;
+  }
 }
 
+@media(max-width:430px){
+  .brand{
+    font-size:19px;
+  }
 
-/* ================================================= */
-/* RESPONSIVE */
-/* ================================================= */
+  .brand img{
+    width:38px;
+    height:38px;
+  }
 
-@media(max-width:900px){
+  .hero-logo{
+    width:210px;
+  }
 
-    .nav-links{
-        display:none;
-    }
+  .hero h1{
+    font-size:45px;
+  }
 
-    .menu-btn{
-        display:block;
-    }
+  .product-grid{
+    grid-template-columns:1fr 1fr;
+  }
 
-    .products{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .features-grid{
-        grid-template-columns:1fr;
-    }
-
-    .about-grid{
-        grid-template-columns:1fr;
-    }
-
+  .features-grid{
+    grid-template-columns:1fr;
+  }
 }
-
-@media(max-width:600px){
-
-    header{
-        height:70px;
-    }
-
-    .navbar{
-        padding:0 15px;
-    }
-
-    .mobile-menu{
-        top:70px;
-    }
-
-    .logo{
-        font-size:22px;
-    }
-
-    .country-options{
-        grid-template-columns:1fr;
-    }
-
-    .country-subtitle{
-        margin-bottom:35px;
-    }
-
-    .country-description{
-        margin-bottom:25px;
-    }
-
-    .country-card{
-        padding:25px 20px;
-    }
-
-    .country-flag{
-        font-size:42px;
-    }
-
-    .country-card h2{
-        font-size:21px;
-    }
-
-    .country-switch{
-        padding:0 10px;
-    }
-
-    .hero{
-        padding:125px 20px 70px;
-    }
-
-    .hero h1{
-        font-size:62px;
-        letter-spacing:-3px;
-    }
-
-    section{
-        padding:70px 18px;
-    }
-
-    .section-head{
-        display:block;
-    }
-
-    .section-description{
-        margin-top:20px;
-    }
-
-    .products{
-        grid-template-columns:1fr;
-    }
-
-    .order-card{
-        padding:25px 20px;
-    }
-
-    .footer-top{
-        display:block;
-    }
-
-    .footer-links{
-        margin-top:30px;
-    }
-
-    .footer-bottom{
-        display:block;
-        line-height:2;
-    }
-
-}
-
 </style>
 </head>
 
-
 <body>
 
-
-<!-- ================================================= -->
-<!-- CHOIX DU PAYS -->
-<!-- ================================================= -->
-
-<div class="country-screen" id="countryScreen">
-
-<div class="country-box">
-
-<div class="country-logo">
-USSAINT
+<!-- LOADER -->
+<div class="loader" id="loader">
+  <img
+    class="loader-logo"
+    src="https://raw.githubusercontent.com/daoudakane4095-gif/ussaint-store/main/IMG_3846.png"
+    alt="USSAINT">
 </div>
 
-<div class="country-subtitle">
-Dakar • Nouakchott • Sénégal • Mauritanie
+<!-- PARTICULES -->
+<div class="energy-bg">
+  <span></span><span></span><span></span><span></span>
+  <span></span><span></span><span></span><span></span>
 </div>
 
-<h1 class="country-title">
-Bienvenue chez USSAINT
-</h1>
-
-<p class="country-description">
-
-Choisis ton pays pour découvrir la collection,
-voir les prix dans ta monnaie et commander
-avec les informations adaptées à ta destination.
-
-</p>
-
-
-<div class="country-options">
-
-
-<button
-class="country-card"
-onclick="selectCountry('mauritanie')">
-
-<div class="country-flag">
-🇲🇷
-</div>
-
-<h2>
-Mauritanie
-</h2>
-
-<p>
-Collection USSAINT<br>
-Livraison en Mauritanie<br>
-Prix en MRU
-</p>
-
-<span class="country-price">
-À partir de 500 MRU
-</span>
-
-</button>
-
-
-<button
-class="country-card"
-onclick="selectCountry('senegal')">
-
-<div class="country-flag">
-🇸🇳
-</div>
-
-<h2>
-Sénégal
-</h2>
-
-<p>
-Collection USSAINT<br>
-Livraison au Sénégal<br>
-Prix en FCFA
-</p>
-
-<span class="country-price">
-À partir de 7 000 FCFA
-</span>
-
-</button>
-
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- ================================================= -->
 <!-- HEADER -->
-<!-- ================================================= -->
-
 <header>
+  <a href="#accueil" class="brand">
+    <img src="https://raw.githubusercontent.com/daoudakane4095-gif/ussaint-store/main/IMG_3846.png" alt="USSAINT">
+    USSAINT
+  </a>
 
-<div class="navbar">
+  <nav id="nav">
+    <a href="#accueil">Accueil</a>
+    <a href="#collections">Collection</a>
+    <a href="#galerie">Galerie</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-
-<a
-href="#accueil"
-class="logo">
-
-USSAINT
-
-<small id="headerCountry">
-COLLECTION
-</small>
-
-</a>
-
-
-<nav class="nav-links">
-
-<a href="#accueil">
-ACCUEIL
-</a>
-
-<a href="#collection">
-COLLECTION
-</a>
-
-<a href="#univers">
-L'UNIVERS
-</a>
-
-<a href="#commande">
-COMMANDER
-</a>
-
-</nav>
-
-
-<div class="actions">
-
-
-<button
-class="country-switch"
-onclick="changeCountry()"
-id="countrySwitch">
-
-🇸🇳 Sénégal
-
-</button>
-
-
-<button
-class="cart-btn"
-onclick="openCart()">
-
-🛍️
-
-<span
-class="cart-number"
-id="cartNumber">
-
-0
-
-</span>
-
-</button>
-
-
-<button
-class="menu-btn"
-onclick="toggleMenu()">
-
-☰
-
-</button>
-
-
-</div>
-
-</div>
-
-
-<div
-class="mobile-menu"
-id="mobileMenu">
-
-<a href="#accueil" onclick="toggleMenu()">
-Accueil
-</a>
-
-<a href="#collection" onclick="toggleMenu()">
-Collection
-</a>
-
-<a href="#univers" onclick="toggleMenu()">
-L'univers USSAINT
-</a>
-
-<a href="#commande" onclick="toggleMenu()">
-Commander
-</a>
-
-<a href="#contact" onclick="toggleMenu()">
-Contact
-</a>
-
-</div>
-
+  <div class="header-actions">
+    <button class="cart-btn" onclick="toggleCart()">
+      🛒
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+    <div class="menu" onclick="toggleMenu()">☰</div>
+  </div>
 </header>
 
-
-<!-- ================================================= -->
 <!-- HERO -->
-<!-- ================================================= -->
+<section class="hero" id="accueil">
+  <div class="hero-content">
 
-<section
-class="hero"
-id="accueil">
+    <div class="eyebrow">
+      USSAINT • PREMIUM STREETWEAR
+    </div>
 
-<div class="hero-content">
+    <img
+      class="hero-logo"
+      src="https://raw.githubusercontent.com/daoudakane4095-gif/ussaint-store/main/IMG_3846.png"
+      alt="Logo USSAINT"
+    >
 
-<div
-class="hero-label"
-id="heroCountry">
+    <h1>PORTE<br>L'ÉNERGIE.</h1>
 
-USSAINT • SÉNÉGAL
+    <p>
+      Bienvenue chez <strong>USSAINT</strong>.
+      Une collection de T-shirts pensée pour ceux qui veulent
+      du style, de l'énergie et une présence qui se remarque.
+    </p>
 
-</div>
+    <div class="hero-buttons">
+      <a href="#collections" class="btn btn-primary">
+        ⚡ Découvrir la collection
+      </a>
 
+      <a href="#galerie" class="btn btn-outline">
+        Voir la galerie
+      </a>
+    </div>
 
-<h1>
-
-L'attitude.<br>
-
-Le <span>style.</span><br>
-
-USSAINT.
-
-</h1>
-
-
-<p class="hero-description">
-
-Bienvenue dans l'univers USSAINT.
-
-Une collection streetwear pensée pour celles et ceux
-qui veulent porter leur identité avec confiance.
-
-Des pièces simples, modernes et fortes.
-
-</p>
-
-
-<div class="hero-buttons">
-
-<a
-href="#collection"
-class="btn btn-white">
-
-DÉCOUVRIR LA COLLECTION
-
-</a>
-
-
-<a
-href="#commande"
-class="btn btn-transparent">
-
-COMMANDER
-
-</a>
-
-</div>
-
-</div>
-
+  </div>
 </section>
 
-
-<!-- ================================================= -->
-<!-- MARQUEE -->
-<!-- ================================================= -->
-
-<div class="marquee">
-
-<div class="marquee-content"
-id="marqueeContent">
-
-USSAINT • COLLECTION • SÉNÉGAL • 7 000 FCFA • STREETWEAR PREMIUM • USSAINT • COLLECTION • SÉNÉGAL • 7 000 FCFA • STREETWEAR PREMIUM •
-
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span>⚡ USSAINT</span>
+    <span>PREMIUM STREETWEAR</span>
+    <span>🔥 DAKAR</span>
+    <span>🇸🇳 SÉNÉGAL</span>
+    <span>🇲🇷 MAURITANIE</span>
+    <span>7 000 FCFA</span>
+    <span>500 MRU</span>
+    <span>⚡ USSAINT</span>
+    <span>PREMIUM STREETWEAR</span>
+    <span>🔥 DAKAR</span>
+    <span>🇸🇳 SÉNÉGAL</span>
+    <span>🇲🇷 MAURITANIE</span>
+  </div>
 </div>
 
-</div>
+<!-- MARCHÉS -->
+<section class="market">
 
+  <div class="section-title">
+    <small>Choisis ton espace</small>
+    <h2>USSAINT partout.</h2>
+    <p>
+      Sélectionne ton pays pour découvrir les tarifs adaptés.
+    </p>
+  </div>
 
-<!-- ================================================= -->
+  <div class="market-grid">
+
+    <div class="market-card">
+      <div class="flag">🇸🇳</div>
+      <h3>Sénégal</h3>
+      <p>
+        Livraison et retrait à Dakar.
+        Collection USSAINT disponible au Sénégal.
+      </p>
+
+      <div class="price">7 000 FCFA</div>
+
+      <a href="#collections" class="btn btn-primary">
+        Boutique Sénégal
+      </a>
+    </div>
+
+    <div class="market-card">
+      <div class="flag">🇲🇷</div>
+      <h3>Mauritanie</h3>
+      <p>
+        Retrouvez USSAINT en Mauritanie avec
+        des tarifs adaptés au marché local.
+      </p>
+
+      <div class="price">500 MRU</div>
+
+      <a href="#collections" class="btn btn-outline">
+        Boutique Mauritanie
+      </a>
+    </div>
+
+  </div>
+</section>
+
 <!-- COLLECTION -->
-<!-- ================================================= -->
-
-<section
-class="collection"
-id="collection">
-
-<div class="container">
-
-
-<div class="section-head">
-
-
-<div>
-
-<div class="section-label">
-Collection
-</div>
-
-<h2 class="section-title">
-
-Les pièces<br>
-
-USSAINT.
-
-</h2>
-
-</div>
-
-
-<p class="section-description">
-
-Découvre les modèles USSAINT.
-
-Chaque T-shirt est proposé au prix de
-
-<strong id="collectionPrice">
-7 000 FCFA
-</strong>.
-
-Choisis ton modèle et ta taille puis commande directement.
-
-</p>
-
-</div>
-
-
-<div class="products">
-
-
-<!-- 01 -->
-
-<article class="product">
-
-<div class="product-image">
-
-<span class="badge">
-USSAINT
-</span>
-
-<img
-src="2F193BED-2AD4-44D3-801C-C7F97DD0B029.jpeg"
-alt="USSAINT 01">
-
-</div>
-
-<div class="product-info">
-
-<h3 class="product-name">
-USSAINT 01
-</h3>
-
-<p class="product-sub">
-Collection premium
-</p>
-
-<div class="product-bottom">
-
-<span
-class="price product-price">
-7 000 FCFA
-</span>
-
-<button
-class="buy-button"
-onclick="addToCart(0)">
-
-ACHETER
-
-</button>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- 02 -->
-
-<article class="product">
-
-<div class="product-image">
-
-<span class="badge">
-PREMIUM
-</span>
-
-<img
-src="67004B9C-5990-488E-92D0-2749F608B9D7.jpeg"
-alt="USSAINT 02">
-
-</div>
-
-<div class="product-info">
-
-<h3 class="product-name">
-USSAINT 02
-</h3>
-
-<p class="product-sub">
-Collection premium
-</p>
-
-<div class="product-bottom">
-
-<span class="price product-price">
-7 000 FCFA
-</span>
-
-<button
-class="buy-button"
-onclick="addToCart(1)">
-ACHETER
-</button>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- 03 -->
-
-<article class="product">
-
-<div class="product-image">
-
-<img
-src="67004B9C-5990-488E-92D0-2749F608B9D7.png"
-alt="USSAINT 03">
-
-</div>
-
-<div class="product-info">
-
-<h3 class="product-name">
-USSAINT 03
-</h3>
-
-<p class="product-sub">
-Collection premium
-</p>
-
-<div class="product-bottom">
-
-<span class="price product-price">
-7 000 FCFA
-</span>
-
-<button
-class="buy-button"
-onclick="addToCart(2)">
-ACHETER
-</button>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- 04 -->
-
-<article class="product">
-
-<div class="product-image">
-
-<img
-src="8B72B39B-9B99-411F-A2E4-C8341C113152.jpeg"
-alt="USSAINT 04">
-
-</div>
-
-<div class="product-info">
-
-<h3 class="product-name">
-USSAINT 04
-</h3>
-
-<p class="product-sub">
-Collection premium
-</p>
-
-<div class="product-bottom">
-
-<span class="price product-price">
-7 000 FCFA
-</span>
-
-<button
-class="buy-button"
-onclick="addToCart(3)">
-ACHETER
-</button>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- 05 -->
-
-<article class="product">
-
-<div class="product-image">
-
-<span class="badge">
-LIMITÉ
-</span>
-
-<img
-src="C19C25C7-52E3-44FB-9F87-0F19C6E7A766.png"
-alt="USSAINT 05">
-
-</div>
-
-<div class="product-info">
-
-<h3 class="product-name">
-USSAINT 05
-</h3>
-
-<p class="product-sub">
-Collection premium
-</p>
-
-<div class="product-bottom">
-
-<span class="price product-price">
-7 000 FCFA
-</span>
-
-<button
-class="buy-button"
-onclick="addToCart(4)">
-ACHETER
-</button>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- 06 -->
-
-<article class="product">
-
-<div class="product-image">
-
-<img
-src="IMG_1566.jpeg"
-alt="USSAINT 06">
-
-</div>
-
-<div class="product-info">
-
-<h3 class="product-name">
-USSAINT 06
-</h3>
-
-<p class="product-sub">
-Collection premium
-</p>
-
-<div class="product-bottom">
-
-<span class="price product-price">
-7 000 FCFA
-</span>
-
-<button
-class="buy-button"
-onclick="addToCart(5)">
-ACHETER
-</button>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- 07 -->
-
-<article class="product">
-
-<div class="product-image">
-
-<img
-src="IMG_1575.png"
-alt="USSAINT 07">
-
-</div>
-
-<div class="product-info">
-
-<h3 class="product-name">
-USSAINT 07
-</h3>
-
-<p class="product-sub">
-Collection premium
-</p>
-
-<div class="product-bottom">
-
-<span class="price product-price">
-7 000 FCFA
-</span>
-
-<button
-class="buy-button"
-onclick="addToCart(6)">
-ACHETER
-</button>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- 08 -->
-
-<article class="product">
-
-<div class="product-image">
-
-<img
-src="IMG_1592.png"
-alt="USSAINT 08">
-
-</div>
-
-<div class="product-info">
-
-<h3 class="product-name">
-USSAINT 08
-</h3>
-
-<p class="product-sub">
-Collection premium
-</p>
-
-<div class="product-bottom">
-
-<span class="price product-price">
-7 000 FCFA
-</span>
-
-<button
-class="buy-button"
-onclick="addToCart(7)">
-ACHETER
-</button>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- 09 -->
-
-<article class="product">
-
-<div class="product-image">
-
-<img
-src="IMG_1593.png"
-alt="USSAINT 09">
-
-</div>
-
-<div class="product-info">
-
-<h3 class="product-name">
-USSAINT 09
-</h3>
-
-<p class="product-sub">
-Collection premium
-</p>
-
-<div class="product-bottom">
-
-<span class="price product-price">
-7 000 FCFA
-</span>
-
-<button
-class="buy-button"
-onclick="addToCart(8)">
-ACHETER
-</button>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- 10 -->
-
-<article class="product">
-
-<div class="product-image">
-
-<img
-src="IMG_1628.jpeg"
-alt="USSAINT 10">
-
-</div>
-
-<div class="product-info">
-
-<h3 class="product-name">
-USSAINT 10
-</h3>
-
-<p class="product-sub">
-Collection premium
-</p>
-
-<div class="product-bottom">
-
-<span class="price product-price">
-7 000 FCFA
-</span>
-
-<button
-class="buy-button"
-onclick="addToCart(9)">
-ACHETER
-</button>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- 11 -->
-
-<article class="product">
-
-<div class="product-image">
-
-<img
-src="IMG_2192.jpeg"
-alt="USSAINT 11">
-
-</div>
-
-<div class="product-info">
-
-<h3 class="product-name">
-USSAINT 11
-</h3>
-
-<p class="product-sub">
-Collection premium
-</p>
-
-<div class="product-bottom">
-
-<span class="price product-price">
-7 000 FCFA
-</span>
-
-<button
-class="buy-button"
-onclick="addToCart(10)">
-ACHETER
-</button>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- 12 -->
-
-<article class="product">
-
-<div class="product-image">
-
-<img
-src="IMG_2192.png"
-alt="USSAINT 12">
-
-</div>
-
-<div class="product-info">
-
-<h3 class="product-name">
-USSAINT 12
-</h3>
-
-<p class="product-sub">
-Collection premium
-</p>
-
-<div class="product-bottom">
-
-<span class="price product-price">
-7 000 FCFA
-</span>
-
-<button
-class="buy-button"
-onclick="addToCart(11)">
-ACHETER
-</button>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- 13 -->
-
-<article class="product">
-
-<div class="product-image">
-
-<img
-src="IMG_2265.jpeg"
-alt="USSAINT 13">
-
-</div>
-
-<div class="product-info">
-
-<h3 class="product-name">
-USSAINT 13
-</h3>
-
-<p class="product-sub">
-Collection premium
-</p>
-
-<div class="product-bottom">
-
-<span class="price product-price">
-7 000 FCFA
-</span>
-
-<button
-class="buy-button"
-onclick="addToCart(12)">
-ACHETER
-</button>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- 14 -->
-
-<article class="product">
-
-<div class="product-image">
-
-<img
-src="IMG_2267.jpeg"
-alt="USSAINT 14">
-
-</div>
-
-<div class="product-info">
-
-<h3 class="product-name">
-USSAINT 14
-</h3>
-
-<p class="product-sub">
-Collection premium
-</p>
-
-<div class="product-bottom">
-
-<span class="price product-price">
-7 000 FCFA
-</span>
-
-<button
-class="buy-button"
-onclick="addToCart(13)">
-ACHETER
-</button>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- 15 -->
-
-<article class="product">
-
-<div class="product-image">
-
-<img
-src="IMG_2274.jpeg"
-alt="USSAINT 15">
-
-</div>
-
-<div class="product-info">
-
-<h3 class="product-name">
-USSAINT 15
-</h3>
-
-<p class="product-sub">
-Collection premium
-</p>
-
-<div class="product-bottom">
-
-<span class="price product-price">
-7 000 FCFA
-</span>
-
-<button
-class="buy-button"
-onclick="addToCart(14)">
-ACHETER
-</button>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- 16 -->
-
-<article class="product">
-
-<div class="product-image">
-
-<img
-src="IMG_2275.png"
-alt="USSAINT 16">
-
-</div>
-
-<div class="product-info">
-
-<h3 class="product-name">
-USSAINT 16
-</h3>
-
-<p class="product-sub">
-Collection premium
-</p>
-
-<div class="product-bottom">
-
-<span class="price product-price">
-7 000 FCFA
-</span>
-
-<button
-class="buy-button"
-onclick="addToCart(15)">
-ACHETER
-</button>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- 17 -->
-
-<article class="product">
-
-<div class="product-image">
-
-<img
-src="IMG_2277.png"
-alt="USSAINT 17">
-
-</div>
-
-<div class="product-info">
-
-<h3 class="product-name">
-USSAINT 17
-</h3>
-
-<p class="product-sub">
-Collection premium
-</p>
-
-<div class="product-bottom">
-
-<span class="price product-price">
-7 000 FCFA
-</span>
-
-<button
-class="buy-button"
-onclick="addToCart(16)">
-ACHETER
-</button>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- 18 -->
-
-<article class="product">
-
-<div class="product-image">
-
-<img
-src="IMG_2304.jpeg"
-alt="USSAINT 18">
-
-</div>
-
-<div class="product-info">
-
-<h3 class="product-name">
-USSAINT 18
-</h3>
-
-<p class="product-sub">
-Collection premium
-</p>
-
-<div class="product-bottom">
-
-<span class="price product-price">
-7 000 FCFA
-</span>
-
-<button
-class="buy-button"
-onclick="addToCart(17)">
-ACHETER
-</button>
-
-</div>
-
-</div>
-
-</article>
-
-
-<!-- 19 -->
-
-<article class="product">
-
-<div class="product-image">
-
-<span class="badge">
-NEW
-</span>
-
-<img
-src="IMG_3205.png"
-alt="USSAINT 19">
-
-</div>
-
-<div class="product-info">
-
-<h3 class="product-name">
-USSAINT 19
-</h3>
-
-<p class="product-sub">
-Collection premium
-</p>
-
-<div class="product-bottom">
-
-<span class="price product-price">
-7 000 FCFA
-</span>
-
-<button
-class="buy-button"
-onclick="addToCart(18)">
-ACHETER
-</button>
-
-</div>
-
-</div>
-
-</article>
-
-
-</div>
-
-</div>
+<section class="products" id="collections">
+
+  <div class="section-title">
+    <small>Nouvelle collection</small>
+    <h2>USSAINT ENERGY.</h2>
+    <p>
+      Chaque T-shirt est proposé à <strong>7 000 FCFA</strong>
+      au Sénégal.
+    </p>
+  </div>
+
+  <div class="product-grid" id="productGrid"></div>
 
 </section>
 
+<!-- GALERIE -->
+<section class="gallery" id="galerie">
 
-<!-- ================================================= -->
+  <div class="section-title">
+    <small>USSAINT VISUALS</small>
+    <h2>La collection en images.</h2>
+    <p>
+      Explore les différents modèles de la collection USSAINT.
+    </p>
+  </div>
+
+  <div class="gallery-grid" id="galleryGrid"></div>
+
+</section>
+
 <!-- FEATURES -->
-<!-- ================================================= -->
-
 <section class="features">
 
-<div class="container">
+  <div class="section-title">
+    <small>Pourquoi USSAINT</small>
+    <h2>Plus qu'un T-shirt.</h2>
+  </div>
 
-<div class="section-head">
+  <div class="features-grid">
 
-<div>
+    <div class="feature">
+      <div class="feature-icon">⚡</div>
+      <h3>ÉNERGIE</h3>
+      <p>
+        Une identité forte pensée pour se démarquer.
+      </p>
+    </div>
 
-<div class="section-label">
-L'expérience USSAINT
-</div>
+    <div class="feature">
+      <div class="feature-icon">👕</div>
+      <h3>STYLE</h3>
+      <p>
+        Des modèles pensés pour ton quotidien.
+      </p>
+    </div>
 
-<h2 class="section-title">
-Simple.<br>
-Premium.
-</h2>
+    <div class="feature">
+      <div class="feature-icon">✨</div>
+      <h3>PREMIUM</h3>
+      <p>
+        Une présentation premium jusque dans les détails.
+      </p>
+    </div>
 
-</div>
+    <div class="feature">
+      <div class="feature-icon">🚚</div>
+      <h3>LIVRAISON</h3>
+      <p>
+        Livraison ou retrait selon ta zone.
+      </p>
+    </div>
 
-</div>
-
-
-<div class="features-grid">
-
-
-<div class="feature">
-
-<div class="feature-icon">
-✦
-</div>
-
-<h3>
-Style original
-</h3>
-
-<p>
-Des modèles pensés pour créer une identité forte et moderne.
-</p>
-
-</div>
-
-
-<div class="feature">
-
-<div class="feature-icon">
-📦
-</div>
-
-<h3 id="deliveryTitle">
-Livraison
-</h3>
-
-<p id="deliveryText">
-Livraison adaptée à ton pays.
-</p>
-
-</div>
-
-
-<div class="feature">
-
-<div class="feature-icon">
-✓
-</div>
-
-<h3>
-Commande rapide
-</h3>
-
-<p>
-Ajoute tes pièces au panier et commande directement sur WhatsApp.
-</p>
-
-</div>
-
-
-</div>
-
-</div>
+  </div>
 
 </section>
 
+<!-- CTA -->
+<section class="cta" id="contact">
 
-<!-- ================================================= -->
-<!-- UNIVERS -->
-<!-- ================================================= -->
+  <div class="cta-box">
 
-<section
-class="about"
-id="univers">
+    <h2>TON STYLE.<br>TON ÉNERGIE.</h2>
 
-<div class="container">
+    <p>
+      Découvre la collection USSAINT et choisis
+      le modèle qui représente ton énergie.
+    </p>
 
-<div class="about-grid">
+    <a
+      class="btn btn-primary"
+      href="#collections"
+    >
+      ⚡ Acheter maintenant
+    </a>
 
-
-<div>
-
-<div class="section-label">
-L'univers USSAINT
-</div>
-
-<h2>
-Plus qu'un<br>
-T-shirt.
-</h2>
-
-<p>
-USSAINT est une marque pensée autour du style,
-de l'attitude et de l'expression personnelle.
-</p>
-
-<br>
-
-<p id="aboutCountry">
-
-📍 Sénégal<br>
-💰 7 000 FCFA par T-shirt
-
-</p>
-
-</div>
-
-
-<div class="about-visual">
-
-<strong>
-USSAINT
-</strong>
-
-</div>
-
-
-</div>
-
-</div>
+  </div>
 
 </section>
 
-
-<!-- ================================================= -->
-<!-- COMMANDE -->
-<!-- ================================================= -->
-
-<section
-class="order"
-id="commande">
-
-<div class="container">
-
-<div class="order-card">
-
-<h2>
-Commander.
-</h2>
-
-<p id="orderDescription">
-
-Remplis tes informations et envoie ta commande
-directement sur WhatsApp.
-
-</p>
-
-
-<form id="orderForm">
-
-
-<div class="form-group">
-
-<label>
-Nom & prénom
-</label>
-
-<input
-type="text"
-id="customerName"
-placeholder="Ton nom et prénom"
-required>
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-Téléphone
-</label>
-
-<input
-type="tel"
-id="customerPhone"
-placeholder="Ton numéro"
-required>
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-Modèle
-</label>
-
-<select id="customerModel">
-
-<option>USSAINT 01</option>
-<option>USSAINT 02</option>
-<option>USSAINT 03</option>
-<option>USSAINT 04</option>
-<option>USSAINT 05</option>
-<option>USSAINT 06</option>
-<option>USSAINT 07</option>
-<option>USSAINT 08</option>
-<option>USSAINT 09</option>
-<option>USSAINT 10</option>
-<option>USSAINT 11</option>
-<option>USSAINT 12</option>
-<option>USSAINT 13</option>
-<option>USSAINT 14</option>
-<option>USSAINT 15</option>
-<option>USSAINT 16</option>
-<option>USSAINT 17</option>
-<option>USSAINT 18</option>
-<option>USSAINT 19</option>
-
-</select>
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-Taille
-</label>
-
-<select id="customerSize">
-
-<option>S</option>
-<option>M</option>
-<option>L</option>
-<option>XL</option>
-<option>XXL</option>
-
-</select>
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-Livraison
-</label>
-
-<select id="customerDelivery">
-
-<option id="deliveryOption">
-Livraison
-</option>
-
-<option>
-Retrait
-</option>
-
-</select>
-
-</div>
-
-
-<button
-type="submit"
-class="order-button">
-
-COMMANDER SUR WHATSAPP
-
-</button>
-
-
-</form>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ================================================= -->
-<!-- SOCIAL -->
-<!-- ================================================= -->
-
-<section
-class="social"
-id="contact">
-
-<div class="container">
-
-<div class="section-label">
-USSAINT
-</div>
-
-<h2>
-Le style continue.
-</h2>
-
-<p>
-Retrouve les nouveautés et les prochaines collections.
-</p>
-
-<a
-class="instagram-button"
-href="https://instagram.com/"
-target="_blank">
-
-INSTAGRAM
-
-</a>
-
-</div>
-
-</section>
-
-
-<!-- ================================================= -->
 <!-- FOOTER -->
-<!-- ================================================= -->
-
 <footer>
 
-<div class="footer-container">
+  <div class="footer-content">
 
+    <div>
+      <div class="footer-brand">USSAINT</div>
+      <p>Premium Streetwear • Dakar, Sénégal</p>
+    </div>
 
-<div class="footer-top">
+    <div class="social">
+      <a href="#accueil">U</a>
+      <a href="#collections">IG</a>
+      <a href="#contact">WA</a>
+    </div>
 
+    <p>
+      © <span id="year"></span> USSAINT. Tous droits réservés.
+    </p>
 
-<div>
-
-<div class="footer-logo">
-USSAINT
-</div>
-
-<p class="footer-text">
-
-Collection streetwear premium.<br>
-Mauritanie • Sénégal.
-
-</p>
-
-</div>
-
-
-<div class="footer-links">
-
-<a href="#accueil">
-Accueil
-</a>
-
-<a href="#collection">
-Collection
-</a>
-
-<a href="#commande">
-Commander
-</a>
-
-<a href="#contact">
-Contact
-</a>
-
-</div>
-
-
-</div>
-
-
-<div class="footer-bottom">
-
-<span>
-© 2026 USSAINT. Tous droits réservés.
-</span>
-
-<span id="footerCountry">
-SÉNÉGAL
-</span>
-
-</div>
-
-</div>
+  </div>
 
 </footer>
 
-
-<!-- ================================================= -->
 <!-- WHATSAPP -->
-<!-- ================================================= -->
-
 <a
-class="whatsapp"
-href="#"
-id="whatsappButton"
-target="_blank">
-
-💬
-
+  class="whatsapp"
+  href="https://wa.me/"
+  target="_blank"
+  aria-label="WhatsApp"
+>
+  ☎
 </a>
 
-
-<!-- ================================================= -->
-<!-- PANIER -->
-<!-- ================================================= -->
-
-<div
-class="overlay"
-id="overlay"
-onclick="closeCart()">
-</div>
-
-
-<aside
-class="cart-panel"
-id="cartPanel">
-
-
-<div class="cart-header">
-
-<h2>
-Ton panier
-</h2>
-
-<button
-class="close-cart"
-onclick="closeCart()">
-
-×
-
-</button>
-
-</div>
-
-
-<div
-class="cart-items"
-id="cartItems">
-
-<div class="empty-cart">
-Ton panier est vide.
-</div>
-
-</div>
-
-
-<div class="cart-footer">
-
-<div class="total">
-
-<span>
-Total
-</span>
-
-<span id="cartTotal">
-0
-</span>
-
-</div>
-
-
-<button
-class="whatsapp-checkout"
-onclick="checkoutWhatsApp()">
-
-COMMANDER SUR WHATSAPP
-
-</button>
-
-</div>
-
-</aside>
-
-
-<!-- ================================================= -->
 <!-- LIGHTBOX -->
-<!-- ================================================= -->
-
-<div
-class="lightbox"
-id="lightbox"
-onclick="closeLightbox()">
-
-<button
-class="close-lightbox"
-onclick="closeLightbox">
-
-×
-
-</button>
-
-<img
-id="lightboxImg"
-src=""
-alt="Produit USSAINT">
-
+<div class="lightbox" id="lightbox">
+  <button class="close-lightbox" onclick="closeLightbox()">×</button>
+  <img id="lightboxImg" src="" alt="USSAINT">
 </div>
 
+<!-- CART -->
+<div class="cart-panel" id="cartPanel">
+
+  <div class="cart-head">
+    <h2>Ton panier 🛒</h2>
+    <button class="close-cart" onclick="toggleCart()">×</button>
+  </div>
+
+  <div class="cart-items" id="cartItems">
+    <div class="empty">
+      Ton panier est vide.
+    </div>
+  </div>
+
+  <div class="cart-total">
+
+    <div class="total-line">
+      <span>Total</span>
+      <span id="cartTotal">0 FCFA</span>
+    </div>
+
+    <button class="btn btn-primary checkout" onclick="checkout()">
+      Commander maintenant
+    </button>
+
+  </div>
+
+</div>
 
 <script>
 
-/* ================================================= */
-/* CONFIGURATION PAYS */
-/* ================================================= */
+/* =========================
+   LOGO
+========================= */
 
-const countries = {
-
-    mauritanie: {
-
-        name:"Mauritanie",
-
-        flag:"🇲🇷",
-
-        currency:"MRU",
-
-        price:500,
-
-        priceText:"500 MRU",
-
-        whatsapp:"22248529407",
-
-        location:"Mauritanie",
-
-        delivery:"Livraison en Mauritanie",
-
-        deliveryTitle:"Livraison en Mauritanie",
-
-        about:"📍 Mauritanie<br>💰 500 MRU par T-shirt"
-
-    },
-
-    senegal: {
-
-        name:"Sénégal",
-
-        flag:"🇸🇳",
-
-        currency:"FCFA",
-
-        price:7000,
-
-        priceText:"7 000 FCFA",
-
-        whatsapp:"221781383200",
-
-        location:"Dakar, Sénégal",
-
-        delivery:"Livraison au Sénégal",
-
-        deliveryTitle:"Livraison au Sénégal",
-
-        about:"📍 Dakar, Sénégal<br>💰 7 000 FCFA par T-shirt"
-
-    }
-
-};
+const LOGO =
+"https://raw.githubusercontent.com/daoudakane4095-gif/ussaint-store/main/IMG_3846.png";
 
 
-let currentCountry =
-localStorage.getItem("ussaintCountry") || null;
+/* =========================
+   TES 19 PHOTOS
+========================= */
 
+const photos = [
 
-/* ================================================= */
-/* PRODUITS */
-/* ================================================= */
+"https://raw.githubusercontent.com/daoudakane4095-gif/ussaint-store/main/2F193BED-2AD4-44D3-801C-C7F97DD0B029.jpeg",
 
-const products = [
+"https://raw.githubusercontent.com/daoudakane4095-gif/ussaint-store/main/67004B9C-5990-488E-92D0-2749F608B9D7.jpeg",
 
-{
-name:"USSAINT 01",
-image:"2F193BED-2AD4-44D3-801C-C7F97DD0B029.jpeg"
-},
+"https://raw.githubusercontent.com/daoudakane4095-gif/ussaint-store/main/67004B9C-5990-488E-92D0-2749F608B9D7.png",
 
-{
-name:"USSAINT 02",
-image:"67004B9C-5990-488E-92D0-2749F608B9D7.jpeg"
-},
+"https://raw.githubusercontent.com/daoudakane4095-gif/ussaint-store/main/8B72B39B-9B99-411F-A2E4-C8341C113152.jpeg",
 
-{
-name:"USSAINT 03",
-image:"67004B9C-5990-488E-92D0-2749F608B9D7.png"
-},
+"https://raw.githubusercontent.com/daoudakane4095-gif/ussaint-store/main/C19C25C7-52E3-44FB-9F87-0F19C6E7A766.png",
 
-{
-name:"USSAINT 04",
-image:"8B72B39B-9B99-411F-A2E4-C8341C113152.jpeg"
-},
+"https://raw.githubusercontent.com/daoudakane4095-gif/ussaint-store/main/IMG_1566.jpeg",
 
-{
-name:"USSAINT 05",
-image:"C19C25C7-52E3-44FB-9F87-0F19C6E7A766.png"
-},
+"https://raw.githubusercontent.com/daoudakane4095-gif/ussaint-store/main/IMG_1575.png",
 
-{
-name:"USSAINT 06",
-image:"IMG_1566.jpeg"
-},
+"https://raw.githubusercontent.com/daoudakane4095-gif/ussaint-store/main/IMG_1592.png",
 
-{
-name:"USSAINT 07",
-image:"IMG_1575.png"
-},
+"https://raw.githubusercontent.com/daoudakane4095-gif/ussaint-store/main/IMG_1593.png",
 
-{
-name:"USSAINT 08",
-image:"IMG_1592.png"
-},
+"https://raw.githubusercontent.com/daoudakane4095-gif/ussaint-store/main/IMG_1628.jpeg",
 
-{
-name:"USSAINT 09",
-image:"IMG_1593.png"
-},
+"https://raw.githubusercontent.com/daoudakane4095-gif/ussaint-store/main/IMG_2192.jpeg",
 
-{
-name:"USSAINT 10",
-image:"IMG_1628.jpeg"
-},
+"https://raw.githubusercontent.com/daoudakane4095-gif/ussaint-store/main/IMG_2192.png",
 
-{
-name:"USSAINT 11",
-image:"IMG_2192.jpeg"
-},
+"https://raw.githubusercontent.com/daoudakane4095-gif/ussaint-store/main/IMG_2265.jpeg",
 
-{
-name:"USSAINT 12",
-image:"IMG_2192.png"
-},
+"https://raw.githubusercontent.com/daoudakane4095-gif/ussaint-store/main/IMG_2267.jpeg",
 
-{
-name:"USSAINT 13",
-image:"IMG_2265.jpeg"
-},
+"https://raw.githubusercontent.com/daoudakane4095-gif/ussaint-store/main/IMG_2274.jpeg",
 
-{
-name:"USSAINT 14",
-image:"IMG_2267.jpeg"
-},
+"https://raw.githubusercontent.com/daoudakane4095-gif/ussaint-store/main/IMG_2275.png",
 
-{
-name:"USSAINT 15",
-image:"IMG_2274.jpeg"
-},
+"https://raw.githubusercontent.com/daoudakane4095-gif/ussaint-store/main/IMG_2277.png",
 
-{
-name:"USSAINT 16",
-image:"IMG_2275.png"
-},
+"https://raw.githubusercontent.com/daoudakane4095-gif/ussaint-store/main/IMG_2304.jpeg",
 
-{
-name:"USSAINT 17",
-image:"IMG_2277.png"
-},
-
-{
-name:"USSAINT 18",
-image:"IMG_2304.jpeg"
-},
-
-{
-name:"USSAINT 19",
-image:"IMG_3205.png"
-}
+"https://raw.githubusercontent.com/daoudakane4095-gif/ussaint-store/main/IMG_3205.png"
 
 ];
 
 
-/* ================================================= */
-/* PANIER */
-/* ================================================= */
+/* =========================
+   PRODUITS
+========================= */
 
-let cart=[];
+const productGrid =
+document.getElementById("productGrid");
+
+photos.forEach((photo,index)=>{
+
+  const product =
+  document.createElement("article");
+
+  product.className="product";
+
+  product.innerHTML=`
+
+    <div class="product-image">
+
+      <span class="product-number">
+        USSAINT ${String(index+1).padStart(2,"0")}
+      </span>
+
+      <img
+        src="${photo}"
+        alt="T-shirt USSAINT ${index+1}"
+        loading="lazy"
+        onerror="this.style.display='none'"
+      >
+
+    </div>
+
+    <div class="product-info">
+
+      <h3>
+        T-Shirt USSAINT ${String(index+1).padStart(2,"0")}
+      </h3>
+
+      <p>
+        Collection Energy • Premium
+      </p>
+
+      <div class="product-bottom">
+
+        <span class="product-price">
+          7 000 FCFA
+        </span>
+
+        <button
+          class="buy"
+          onclick="addToCart(${index})"
+        >
+          ACHETER
+        </button>
+
+      </div>
+
+    </div>
+  `;
+
+  productGrid.appendChild(product);
+
+});
 
 
-function addToCart(index){
+/* =========================
+   GALERIE
+========================= */
 
-    if(!currentCountry){
+const galleryGrid =
+document.getElementById("galleryGrid");
 
-        showCountryScreen();
+photos.forEach((photo,index)=>{
 
-        return;
+  const item =
+  document.createElement("div");
 
+  item.className="gallery-item";
+
+  item.innerHTML=`
+    <img
+      src="${photo}"
+      alt="USSAINT ${index+1}"
+      loading="lazy"
+    >
+  `;
+
+  item.onclick=()=>{
+    openLightbox(photo);
+  };
+
+  galleryGrid.appendChild(item);
+
+});
+
+
+/* =========================
+   ANIMATION PRODUITS
+========================= */
+
+const observer =
+new IntersectionObserver(
+(entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
     }
+  });
+},
+{
+  threshold:.1
+});
 
-    const product=products[index];
+document
+.querySelectorAll(".product")
+.forEach((product,index)=>{
+  product.style.transitionDelay =
+  `${Math.min(index*40,500)}ms`;
 
-    cart.push({
+  observer.observe(product);
+});
 
-        name:product.name,
 
-        image:product.image,
+/* =========================
+   LIGHTBOX
+========================= */
 
-        price:countries[currentCountry].price,
+function openLightbox(src){
 
-        currency:countries[currentCountry].currency,
+  document
+  .getElementById("lightboxImg")
+  .src=src;
 
-        country:currentCountry,
+  document
+  .getElementById("lightbox")
+  .classList.add("active");
 
-        size:"M"
+  document.body.style.overflow="hidden";
+}
 
-    });
+function closeLightbox(){
 
-    updateCart();
+  document
+  .getElementById("lightbox")
+  .classList.remove("active");
 
-    openCart();
+  document.body.style.overflow="";
+}
+
+document
+.getElementById("lightbox")
+.addEventListener("click",function(e){
+
+  if(e.target===this){
+    closeLightbox();
+  }
+
+});
+
+
+/* =========================
+   MENU MOBILE
+========================= */
+
+function toggleMenu(){
+
+  document
+  .getElementById("nav")
+  .classList.toggle("active");
 
 }
 
 
-function removeItem(index){
+/* =========================
+   PANIER
+========================= */
 
-    cart.splice(index,1);
+let cart=[];
 
-    updateCart();
+function addToCart(index){
+
+  cart.push({
+    id:index,
+    name:`T-Shirt USSAINT ${String(index+1).padStart(2,"0")}`,
+    image:photos[index],
+    price:7000
+  });
+
+  updateCart();
+
+  document
+  .getElementById("cartPanel")
+  .classList.add("active");
+
+}
+
+
+function removeFromCart(index){
+
+  cart.splice(index,1);
+
+  updateCart();
 
 }
 
 
 function updateCart(){
 
-    const items=
-    document.getElementById("cartItems");
+  const items =
+  document.getElementById("cartItems");
 
-    const number=
-    document.getElementById("cartNumber");
+  const count =
+  document.getElementById("cartCount");
 
-    const total=
-    document.getElementById("cartTotal");
+  const total =
+  document.getElementById("cartTotal");
 
+  count.textContent=cart.length;
 
-    number.textContent=cart.length;
+  if(cart.length===0){
 
-
-    if(cart.length===0){
-
-        items.innerHTML=`
-        <div class="empty-cart">
+    items.innerHTML=`
+      <div class="empty">
         Ton panier est vide.
-        </div>
-        `;
+      </div>
+    `;
 
-        total.textContent=
-        "0";
+    total.textContent="0 FCFA";
 
-        return;
+    return;
+  }
 
-    }
+  let sum=0;
 
+  items.innerHTML="";
 
-    let sum=0;
+  cart.forEach((item,index)=>{
 
-    items.innerHTML="";
+    sum+=item.price;
 
+    const div=
+    document.createElement("div");
 
-    cart.forEach((item,index)=>{
+    div.className="cart-item";
 
-        sum+=item.price;
+    div.innerHTML=`
 
-
-        const element=
-        document.createElement("div");
-
-        element.className="cart-item";
-
-
-        element.innerHTML=`
-
-        <img
+      <img
         src="${item.image}"
-        alt="${item.name}">
+        alt="${item.name}"
+      >
 
-        <div class="cart-info">
+      <div class="cart-item-info">
 
-        <strong>
-        ${item.name}
-        </strong>
+        <h4>${item.name}</h4>
 
-        <small>
-        ${item.price.toLocaleString("fr-FR")}
-        ${item.currency}
-        • Taille ${item.size}
-        </small>
+        <p>7 000 FCFA</p>
 
-        </div>
+      </div>
 
-        <button
+      <button
         class="remove"
-        onclick="removeItem(${index})">
+        onclick="removeFromCart(${index})"
+      >
+        ×
+      </button>
 
-        ✕
+    `;
 
-        </button>
+    items.appendChild(div);
 
-        `;
+  });
 
-
-        items.appendChild(element);
-
-    });
-
-
-    total.textContent=
-    sum.toLocaleString("fr-FR")
-    +" "+
-    countries[currentCountry].currency;
+  total.textContent =
+  sum.toLocaleString("fr-FR")+" FCFA";
 
 }
 
 
-/* ================================================= */
-/* CHOIX DU PAYS */
-/* ================================================= */
+function toggleCart(){
 
-function selectCountry(country){
+  document
+  .getElementById("cartPanel")
+  .classList.toggle("active");
 
-    currentCountry=country;
+}
 
-    localStorage.setItem(
-        "ussaintCountry",
-        country
+
+/* =========================
+   COMMANDER
+========================= */
+
+function checkout(){
+
+  if(cart.length===0){
+
+    alert("Ton panier est vide.");
+
+    return;
+  }
+
+  let message =
+  "Bonjour USSAINT 👋%0A%0A"+
+  "Je souhaite commander :%0A";
+
+  cart.forEach((item,index)=>{
+
+    message +=
+    `${index+1}. ${item.name} — 7 000 FCFA%0A`;
+
+  });
+
+  message +=
+  "%0ATotal : "+
+  cart.length*7000+
+  " FCFA%0A%0AMerci !";
+
+  /*
+    Remplace le numéro ci-dessous
+    par ton numéro WhatsApp USSAINT.
+  */
+
+  const phone="";
+
+  if(!phone){
+
+    alert(
+      "Le panier fonctionne ✅\n\n"+
+      "Il reste seulement à mettre ton numéro WhatsApp USSAINT dans le code."
     );
 
-    document
-    .getElementById("countryScreen")
-    .classList.add("hidden");
+    return;
+  }
 
-    updateCountryUI();
-
-}
-
-
-function showCountryScreen(){
-
-    document
-    .getElementById("countryScreen")
-    .classList.remove("hidden");
+  window.open(
+    `https://wa.me/${phone}?text=${message}`,
+    "_blank"
+  );
 
 }
 
 
-function changeCountry(){
+/* =========================
+   LOADER
+========================= */
 
-    cart=[];
+window.addEventListener("load",()=>{
 
-    updateCart();
-
-    showCountryScreen();
-
-}
-
-
-/* ================================================= */
-/* MISE À JOUR DU SITE */
-/* ================================================= */
-
-function updateCountryUI(){
-
-    if(!currentCountry) return;
-
-
-    const data=
-    countries[currentCountry];
-
-
-    /* HEADER */
+  setTimeout(()=>{
 
     document
-    .getElementById("headerCountry")
-    .textContent=
-    data.name.toUpperCase();
+    .getElementById("loader")
+    .classList.add("hide");
 
-
-    document
-    .getElementById("countrySwitch")
-    .textContent=
-    data.flag+" "+data.name;
-
-
-    /* HERO */
-
-    document
-    .getElementById("heroCountry")
-    .textContent=
-    "USSAINT • "+data.name.toUpperCase();
-
-
-    /* PRIX */
-
-    document
-    .getElementById("collectionPrice")
-    .textContent=
-    data.priceText;
-
-
-    document
-    .querySelectorAll(".product-price")
-    .forEach(function(price){
-
-        price.textContent=
-        data.priceText;
-
-    });
-
-
-    /* MARQUEE */
-
-    document
-    .getElementById("marqueeContent")
-    .textContent=
-    "USSAINT • COLLECTION • "
-    +data.name.toUpperCase()
-    +" • "
-    +data.priceText
-    +" • STREETWEAR PREMIUM • "
-    +"USSAINT • COLLECTION • "
-    +data.name.toUpperCase()
-    +" • "
-    +data.priceText
-    +" • STREETWEAR PREMIUM •";
-
-
-    /* LIVRAISON */
-
-    document
-    .getElementById("deliveryTitle")
-    .textContent=
-    data.deliveryTitle;
-
-
-    document
-    .getElementById("deliveryText")
-    .textContent=
-    "Commande en ligne avec livraison ou retrait adapté à "
-    +data.name
-    +".";
-
-
-    /* ABOUT */
-
-    document
-    .getElementById("aboutCountry")
-    .innerHTML=
-    data.about;
-
-
-    /* FORMULAIRE */
-
-    document
-    .getElementById("deliveryOption")
-    .textContent=
-    data.delivery;
-
-
-    document
-    .getElementById("orderDescription")
-    .textContent=
-    "Remplis tes informations et envoie ta commande directement sur WhatsApp. Prix : "
-    +data.priceText+" par T-shirt.";
-
-
-    /* FOOTER */
-
-    document
-    .getElementById("footerCountry")
-    .textContent=
-    data.name.toUpperCase();
-
-
-    /* WHATSAPP */
-
-    document
-    .getElementById("whatsappButton")
-    .href=
-    "https://wa.me/"
-    +data.whatsapp;
-
-
-}
-
-
-/* ================================================= */
-/* INITIALISATION */
-/* ================================================= */
-
-if(currentCountry){
-
-    document
-    .getElementById("countryScreen")
-    .classList.add("hidden");
-
-    updateCountryUI();
-
-}
-
-
-/* ================================================= */
-/* PANIER */
-/* ================================================= */
-
-function openCart(){
-
-    document
-    .getElementById("cartPanel")
-    .classList.add("active");
-
-    document
-    .getElementById("overlay")
-    .classList.add("active");
-
-}
-
-
-function closeCart(){
-
-    document
-    .getElementById("cartPanel")
-    .classList.remove("active");
-
-    document
-    .getElementById("overlay")
-    .classList.remove("active");
-
-}
-
-
-/* ================================================= */
-/* WHATSAPP PANIER */
-/* ================================================= */
-
-function checkoutWhatsApp(){
-
-    if(!currentCountry){
-
-        showCountryScreen();
-
-        return;
-
-    }
-
-
-    if(cart.length===0){
-
-        alert("Ton panier est vide.");
-
-        return;
-
-    }
-
-
-    const data=
-    countries[currentCountry];
-
-
-    let message=
-    "Bonjour USSAINT 👋\n\n"
-    +"Je souhaite commander depuis "
-    +data.name
-    +".\n\n";
-
-
-    cart.forEach((item,index)=>{
-
-        message+=
-
-        (index+1)
-        +". "
-        +item.name
-        +" — "
-        +item.price.toLocaleString("fr-FR")
-        +" "
-        +data.currency
-        +" — Taille "
-        +item.size
-        +"\n";
-
-    });
-
-
-    const total=
-    cart.reduce(
-        (sum,item)=>sum+item.price,
-        0
-    );
-
-
-    message+=
-
-    "\nTotal : "
-    +total.toLocaleString("fr-FR")
-    +" "
-    +data.currency
-    +"\n\nMerci de me confirmer la disponibilité.";
-
-
-    window.open(
-
-        "https://wa.me/"
-        +data.whatsapp
-        +"?text="
-        +encodeURIComponent(message),
-
-        "_blank"
-
-    );
-
-}
-
-
-/* ================================================= */
-/* FORMULAIRE */
-/* ================================================= */
-
-document
-.getElementById("orderForm")
-.addEventListener("submit",function(e){
-
-    e.preventDefault();
-
-
-    if(!currentCountry){
-
-        showCountryScreen();
-
-        return;
-
-    }
-
-
-    const data=
-    countries[currentCountry];
-
-
-    const name=
-    document
-    .getElementById("customerName")
-    .value;
-
-
-    const phone=
-    document
-    .getElementById("customerPhone")
-    .value;
-
-
-    const model=
-    document
-    .getElementById("customerModel")
-    .value;
-
-
-    const size=
-    document
-    .getElementById("customerSize")
-    .value;
-
-
-    const delivery=
-    document
-    .getElementById("customerDelivery")
-    .value;
-
-
-    const message=
-
-    "Bonjour USSAINT 👋\n\n"
-
-    +"Je souhaite commander.\n\n"
-
-    +"🌍 Pays : "
-    +data.name
-    +"\n"
-
-    +"👤 Nom : "
-    +name
-    +"\n"
-
-    +"📱 Téléphone : "
-    +phone
-    +"\n"
-
-    +"👕 Modèle : "
-    +model
-    +"\n"
-
-    +"📏 Taille : "
-    +size
-    +"\n"
-
-    +"🚚 Livraison : "
-    +delivery
-    +"\n"
-
-    +"💰 Prix : "
-    +data.priceText;
-
-
-    window.open(
-
-        "https://wa.me/"
-        +data.whatsapp
-        +"?text="
-        +encodeURIComponent(message),
-
-        "_blank"
-
-    );
+  },800);
 
 });
 
 
-/* ================================================= */
-/* MENU MOBILE */
-/* ================================================= */
-
-function toggleMenu(){
-
-    document
-    .getElementById("mobileMenu")
-    .classList.toggle("active");
-
-}
-
-
-/* ================================================= */
-/* LIGHTBOX */
-/* ================================================= */
+/* =========================
+   ANNÉE
+========================= */
 
 document
-.querySelectorAll(".product-image img")
-.forEach(function(img){
-
-    img.addEventListener(
-        "click",
-        function(){
-
-            document
-            .getElementById("lightboxImg")
-            .src=this.src;
-
-            document
-            .getElementById("lightbox")
-            .classList.add("active");
-
-        }
-    );
-
-});
+.getElementById("year")
+.textContent=
+new Date().getFullYear();
 
 
-function closeLightbox(){
+/* =========================
+   EFFET SOURIS / LUMIÈRE
+========================= */
 
-    document
-    .getElementById("lightbox")
-    .classList.remove("active");
+document.addEventListener("mousemove",(e)=>{
 
-}
+  const x =
+  (e.clientX / window.innerWidth)*100;
 
+  const y =
+  (e.clientY / window.innerHeight)*100;
 
-/* ================================================= */
-/* ESC */
-/* ================================================= */
-
-document.addEventListener(
-"keydown",
-function(e){
-
-    if(e.key==="Escape"){
-
-        closeCart();
-
-        closeLightbox();
-
-    }
+  document.body.style.background=
+  `
+    radial-gradient(
+      circle at ${x}% ${y}%,
+      rgba(37,169,255,.10),
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 20% 10%,
+      rgba(37,169,255,.13),
+      transparent 30%
+    ),
+    #050b13
+  `;
 
 });
 
