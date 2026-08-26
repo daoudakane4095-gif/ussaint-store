@@ -13,7 +13,7 @@
 :root{
   --bg:#050812;
   --bg2:#0a1220;
-  --white:#fff;
+  --white:#ffffff;
   --muted:#9daabd;
   --cyan:#19ddff;
   --blue:#168cff;
@@ -21,7 +21,7 @@
   --green:#25d366;
   --yellow:#ffd93d;
   --orange:#ff9d38;
-  --line:rgba(255,255,255,.1);
+  --line:rgba(255,255,255,.10);
   --card:rgba(255,255,255,.045);
 }
 
@@ -66,7 +66,7 @@ header{
   left:0;
   width:100%;
   padding:13px 5%;
-  background:rgba(5,8,18,.75);
+  background:rgba(5,8,18,.78);
   backdrop-filter:blur(20px);
   border-bottom:1px solid var(--line);
 }
@@ -76,7 +76,7 @@ header{
   margin:auto;
   display:flex;
   align-items:center;
-  gap:20px;
+  gap:18px;
 }
 
 .logo-link{
@@ -105,14 +105,14 @@ header{
 nav{
   display:flex;
   align-items:center;
-  gap:25px;
+  gap:22px;
   margin-left:auto;
 }
 
 nav a{
   color:#dce5f0;
   text-decoration:none;
-  font-size:13px;
+  font-size:12px;
   font-weight:800;
   transition:.3s;
 }
@@ -300,12 +300,16 @@ nav a:hover{
 .btn-snap{
   background:linear-gradient(135deg,#fff06a,#ffd400);
   color:#111;
-  border:0;
 }
 
 .btn-snap:hover{
   transform:translateY(-3px);
   box-shadow:0 15px 40px rgba(255,217,61,.25);
+}
+
+.btn-whatsapp{
+  background:linear-gradient(135deg,#25d366,#12b956);
+  color:#fff;
 }
 
 /* ================= MARQUEE ================= */
@@ -374,7 +378,7 @@ section{
   margin-bottom:40px;
 }
 
-/* ================= COUNTRY ================= */
+/* ================= PAYS ================= */
 
 .country-grid{
   display:grid;
@@ -715,6 +719,7 @@ footer{
 .footer-socials{
   display:flex;
   justify-content:center;
+  flex-wrap:wrap;
   gap:10px;
   margin:20px 0;
 }
@@ -735,7 +740,7 @@ footer{
   border-color:var(--cyan);
 }
 
-/* ================= WHATSAPP ================= */
+/* ================= FLOATING BUTTONS ================= */
 
 .whatsapp{
   position:fixed;
@@ -754,8 +759,6 @@ footer{
   font-size:26px;
   box-shadow:0 12px 35px rgba(37,211,102,.3);
 }
-
-/* ================= SNAPCHAT ================= */
 
 .snapchat{
   position:fixed;
@@ -886,6 +889,15 @@ footer{
   font-weight:900;
 }
 
+.cart-orders{
+  display:grid;
+  gap:10px;
+}
+
+.cart-orders .btn{
+  width:100%;
+}
+
 /* ================= MOBILE ================= */
 
 @media(max-width:850px){
@@ -928,7 +940,6 @@ footer{
   .gallery{
     grid-template-columns:repeat(2,1fr);
   }
-
 }
 
 @media(max-width:520px){
@@ -1000,14 +1011,15 @@ footer{
   .hero-buttons .btn{
     width:100%;
   }
-
 }
 </style>
 </head>
 
 <body>
 
-<!-- ================= HEADER ================= -->
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
 <header>
 
@@ -1032,7 +1044,6 @@ footer{
       <a href="#galerie">Galerie</a>
       <a href="#contact">Contact</a>
 
-      <!-- SNAPCHAT AJOUTÉ -->
       <a
         href="https://snapchat.com/t/D4Rgn5PZ"
         target="_blank"
@@ -1062,7 +1073,9 @@ footer{
 </header>
 
 
-<!-- ================= HERO ================= -->
+<!-- =====================================================
+     HERO
+===================================================== -->
 
 <section
   class="hero"
@@ -1106,20 +1119,20 @@ footer{
         ⚡ Voir la collection
       </a>
 
+      <button
+        class="btn btn-whatsapp"
+        onclick="quickWhatsApp()"
+      >
+        📲 Commander
+      </button>
+
       <a
         href="https://snapchat.com/t/D4Rgn5PZ"
         target="_blank"
         rel="noopener"
         class="btn btn-snap"
       >
-        👻 Snapchat
-      </a>
-
-      <a
-        href="#pays"
-        class="btn btn-dark"
-      >
-        🌍 Choisir mon pays
+        👻 Commander sur Snapchat
       </a>
 
     </div>
@@ -1129,7 +1142,9 @@ footer{
 </section>
 
 
-<!-- ================= MARQUEE ================= -->
+<!-- =====================================================
+     MARQUEE
+===================================================== -->
 
 <div class="marquee">
 
@@ -1140,6 +1155,7 @@ footer{
     <span>🔥 PORTE TON ÉNERGIE</span>
     <span>🇸🇳 7 000 FCFA</span>
     <span>🇲🇷 500 MRU</span>
+    <span>📲 WHATSAPP</span>
     <span>👻 SNAPCHAT</span>
 
     <span>⚡ USSAINT</span>
@@ -1147,6 +1163,7 @@ footer{
     <span>🔥 PORTE TON ÉNERGIE</span>
     <span>🇸🇳 7 000 FCFA</span>
     <span>🇲🇷 500 MRU</span>
+    <span>📲 WHATSAPP</span>
     <span>👻 SNAPCHAT</span>
 
   </div>
@@ -1154,7 +1171,9 @@ footer{
 </div>
 
 
-<!-- ================= PAYS ================= -->
+<!-- =====================================================
+     PAYS
+===================================================== -->
 
 <section id="pays">
 
@@ -1175,7 +1194,7 @@ footer{
 
     <div class="country-grid">
 
-      <!-- SENEGAL -->
+      <!-- SÉNÉGAL -->
 
       <div
         class="country active"
@@ -1194,7 +1213,7 @@ footer{
 
         <p>
           Collection USSAINT disponible à Dakar.
-          Tous les T-shirts sont affichés en FCFA.
+          Les T-shirts sont affichés en FCFA.
         </p>
 
         <div class="country-price">
@@ -1230,7 +1249,7 @@ footer{
 
         <p>
           Collection USSAINT disponible en Mauritanie.
-          Tous les T-shirts sont affichés en MRU.
+          Les T-shirts sont affichés en MRU.
         </p>
 
         <div class="country-price">
@@ -1253,7 +1272,9 @@ footer{
 </section>
 
 
-<!-- ================= COLLECTION ================= -->
+<!-- =====================================================
+     COLLECTION
+===================================================== -->
 
 <section id="collections">
 
@@ -1285,7 +1306,9 @@ footer{
 </section>
 
 
-<!-- ================= GALERIE ================= -->
+<!-- =====================================================
+     GALERIE
+===================================================== -->
 
 <section id="galerie">
 
@@ -1313,7 +1336,9 @@ footer{
 </section>
 
 
-<!-- ================= FEATURES ================= -->
+<!-- =====================================================
+     FEATURES
+===================================================== -->
 
 <section>
 
@@ -1372,7 +1397,9 @@ footer{
 </section>
 
 
-<!-- ================= CONTACT ================= -->
+<!-- =====================================================
+     CONTACT / COMMANDES
+===================================================== -->
 
 <section id="contact">
 
@@ -1391,17 +1418,21 @@ footer{
 
       <p>
         Choisis ton pays, ajoute tes T-shirts au panier
-        et retrouve USSAINT sur tes réseaux.
+        et commande directement avec USSAINT.
       </p>
 
       <div class="social-buttons">
 
+        <!-- WHATSAPP -->
+
         <button
-          class="btn btn-primary"
-          onclick="checkout()"
+          class="btn btn-whatsapp"
+          onclick="checkoutWhatsApp()"
         >
           📲 Commander sur WhatsApp
         </button>
+
+        <!-- SNAPCHAT -->
 
         <a
           href="https://snapchat.com/t/D4Rgn5PZ"
@@ -1409,8 +1440,17 @@ footer{
           rel="noopener"
           class="btn btn-snap"
         >
-          👻 Nous suivre sur Snapchat
+          👻 Commander sur Snapchat
         </a>
+
+        <!-- PANIER -->
+
+        <button
+          class="btn btn-dark"
+          onclick="openCart()"
+        >
+          🛒 Voir mon panier
+        </button>
 
       </div>
 
@@ -1421,7 +1461,9 @@ footer{
 </section>
 
 
-<!-- ================= FOOTER ================= -->
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer>
 
@@ -1460,7 +1502,9 @@ footer{
 </footer>
 
 
-<!-- ================= WHATSAPP ================= -->
+<!-- =====================================================
+     BOUTON WHATSAPP FLOTTANT
+===================================================== -->
 
 <a
   class="whatsapp"
@@ -1473,7 +1517,9 @@ footer{
 </a>
 
 
-<!-- ================= SNAPCHAT ================= -->
+<!-- =====================================================
+     BOUTON SNAPCHAT FLOTTANT
+===================================================== -->
 
 <a
   class="snapchat"
@@ -1486,7 +1532,9 @@ footer{
 </a>
 
 
-<!-- ================= CART ================= -->
+<!-- =====================================================
+     PANIER
+===================================================== -->
 
 <div
   class="overlay"
@@ -1537,13 +1585,25 @@ footer{
 
     </div>
 
-    <button
-      class="btn btn-primary"
-      style="width:100%;"
-      onclick="checkout()"
-    >
-      Commander sur WhatsApp
-    </button>
+    <div class="cart-orders">
+
+      <button
+        class="btn btn-whatsapp"
+        onclick="checkoutWhatsApp()"
+      >
+        📲 Commander sur WhatsApp
+      </button>
+
+      <a
+        href="https://snapchat.com/t/D4Rgn5PZ"
+        target="_blank"
+        rel="noopener"
+        class="btn btn-snap"
+      >
+        👻 Commander sur Snapchat
+      </a>
+
+    </div>
 
   </div>
 
@@ -1553,7 +1613,7 @@ footer{
 <script>
 
 /* =====================================================
-   CONFIGURATION PAYS
+   CONFIGURATION DES PAYS
 ===================================================== */
 
 const COUNTRY = {
@@ -1923,7 +1983,7 @@ function addToCart(index){
 
 
 /* =====================================================
-   SUPPRIMER
+   SUPPRIMER DU PANIER
 ===================================================== */
 
 function removeItem(index){
@@ -2054,29 +2114,47 @@ function closeCart(){
 
 
 /* =====================================================
-   WHATSAPP
+   COMMANDE WHATSAPP RAPIDE
 ===================================================== */
 
-function checkout(){
+function quickWhatsApp(){
+
+  const config =
+    getConfig();
+
+  const message =
+`🔥 USSAINT — COMMANDE
+
+Bonjour USSAINT 👋
+
+Je souhaite commander un T-shirt.
+
+🌍 Pays : ${config.name}
+💰 Prix : ${config.price.toLocaleString("fr-FR")} ${config.currency}
+
+Je voudrais connaître les modèles disponibles.`;
+
+  window.open(
+    "https://wa.me/221781383200?text="
+    + encodeURIComponent(message),
+    "_blank"
+  );
+
+}
+
+
+/* =====================================================
+   COMMANDE WHATSAPP AVEC PANIER
+===================================================== */
+
+function checkoutWhatsApp(){
 
   const config =
     getConfig();
 
   if(cart.length === 0){
 
-    const message =
-      `Bonjour USSAINT 👋
-
-Je souhaite commander un T-shirt.
-
-Pays : ${config.name}
-Prix : ${config.price.toLocaleString("fr-FR")} ${config.currency}`;
-
-    window.open(
-      "https://wa.me/221781383200?text="
-      + encodeURIComponent(message),
-      "_blank"
-    );
+    quickWhatsApp();
 
     return;
 
@@ -2085,17 +2163,13 @@ Prix : ${config.price.toLocaleString("fr-FR")} ${config.currency}`;
   let total = 0;
 
   let message =
-    "🔥 COMMANDE USSAINT 🔥\n\n";
+`🔥 USSAINT — COMMANDE
 
-  message +=
-    "Pays : " +
-    cart[0].countryName +
-    "\n";
+Bonjour USSAINT 👋
 
-  message +=
-    "Monnaie : " +
-    cart[0].currency +
-    "\n\n";
+Je souhaite commander :
+
+`;
 
   cart.forEach(
     (item,index)=>{
@@ -2104,22 +2178,22 @@ Prix : ${config.price.toLocaleString("fr-FR")} ${config.currency}`;
         item.price;
 
       message +=
-        `${index + 1}. ${item.name}\n`;
+`${index + 1}. ${item.name}
+Prix : ${item.price.toLocaleString("fr-FR")} ${item.currency}
 
-      message +=
-        `Prix : ${item.price.toLocaleString("fr-FR")} ${item.currency}\n\n`;
+`;
 
     }
   );
 
   message +=
-    "━━━━━━━━━━━━━━\n";
+`━━━━━━━━━━━━━━
+🌍 Pays : ${cart[0].countryName}
+💰 TOTAL : ${total.toLocaleString("fr-FR")} ${cart[0].currency}
 
-  message +=
-    `TOTAL : ${total.toLocaleString("fr-FR")} ${cart[0].currency}\n\n`;
+🚚 Livraison / retrait à confirmer.
 
-  message +=
-    "Je souhaite commander ces articles chez USSAINT.";
+Merci USSAINT 🔥`;
 
   window.open(
     "https://wa.me/221781383200?text="
