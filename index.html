@@ -19,6 +19,7 @@
   --blue:#168cff;
   --purple:#7b45ff;
   --green:#25d366;
+  --yellow:#ffd93d;
   --orange:#ff9d38;
   --line:rgba(255,255,255,.1);
   --card:rgba(255,255,255,.045);
@@ -104,7 +105,7 @@ header{
 nav{
   display:flex;
   align-items:center;
-  gap:28px;
+  gap:25px;
   margin-left:auto;
 }
 
@@ -294,6 +295,17 @@ nav a:hover{
 .btn-dark:hover{
   border-color:var(--cyan);
   transform:translateY(-3px);
+}
+
+.btn-snap{
+  background:linear-gradient(135deg,#fff06a,#ffd400);
+  color:#111;
+  border:0;
+}
+
+.btn-snap:hover{
+  transform:translateY(-3px);
+  box-shadow:0 15px 40px rgba(255,217,61,.25);
 }
 
 /* ================= MARQUEE ================= */
@@ -674,10 +686,17 @@ section{
   line-height:1.7;
 }
 
+.social-buttons{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
 /* ================= FOOTER ================= */
 
 footer{
-  padding:45px 5%;
+  padding:50px 5%;
   text-align:center;
   color:#7f8b9d;
   font-size:12px;
@@ -691,6 +710,29 @@ footer{
   font-weight:900;
   letter-spacing:4px;
   margin-bottom:10px;
+}
+
+.footer-socials{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin:20px 0;
+}
+
+.footer-socials a{
+  text-decoration:none;
+  color:#fff;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.05);
+  padding:10px 15px;
+  border-radius:12px;
+  font-weight:800;
+  transition:.3s;
+}
+
+.footer-socials a:hover{
+  transform:translateY(-3px);
+  border-color:var(--cyan);
 }
 
 /* ================= WHATSAPP ================= */
@@ -711,6 +753,32 @@ footer{
   text-decoration:none;
   font-size:26px;
   box-shadow:0 12px 35px rgba(37,211,102,.3);
+}
+
+/* ================= SNAPCHAT ================= */
+
+.snapchat{
+  position:fixed;
+  right:20px;
+  bottom:90px;
+  z-index:900;
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--yellow);
+  color:#111;
+  text-decoration:none;
+  font-size:27px;
+  font-weight:900;
+  box-shadow:0 12px 35px rgba(255,217,61,.25);
+  transition:.3s;
+}
+
+.snapchat:hover{
+  transform:scale(1.08);
 }
 
 /* ================= CART ================= */
@@ -964,6 +1032,15 @@ footer{
       <a href="#galerie">Galerie</a>
       <a href="#contact">Contact</a>
 
+      <!-- SNAPCHAT AJOUTÉ -->
+      <a
+        href="https://snapchat.com/t/D4Rgn5PZ"
+        target="_blank"
+        rel="noopener"
+      >
+        👻 Snapchat
+      </a>
+
     </nav>
 
     <button
@@ -1030,6 +1107,15 @@ footer{
       </a>
 
       <a
+        href="https://snapchat.com/t/D4Rgn5PZ"
+        target="_blank"
+        rel="noopener"
+        class="btn btn-snap"
+      >
+        👻 Snapchat
+      </a>
+
+      <a
         href="#pays"
         class="btn btn-dark"
       >
@@ -1054,12 +1140,14 @@ footer{
     <span>🔥 PORTE TON ÉNERGIE</span>
     <span>🇸🇳 7 000 FCFA</span>
     <span>🇲🇷 500 MRU</span>
+    <span>👻 SNAPCHAT</span>
 
     <span>⚡ USSAINT</span>
     <span><b>PREMIUM STREETWEAR</b></span>
     <span>🔥 PORTE TON ÉNERGIE</span>
     <span>🇸🇳 7 000 FCFA</span>
     <span>🇲🇷 500 MRU</span>
+    <span>👻 SNAPCHAT</span>
 
   </div>
 
@@ -1303,15 +1391,28 @@ footer{
 
       <p>
         Choisis ton pays, ajoute tes T-shirts au panier
-        et commande directement sur WhatsApp.
+        et retrouve USSAINT sur tes réseaux.
       </p>
 
-      <button
-        class="btn btn-primary"
-        onclick="checkout()"
-      >
-        📲 Commander maintenant
-      </button>
+      <div class="social-buttons">
+
+        <button
+          class="btn btn-primary"
+          onclick="checkout()"
+        >
+          📲 Commander sur WhatsApp
+        </button>
+
+        <a
+          href="https://snapchat.com/t/D4Rgn5PZ"
+          target="_blank"
+          rel="noopener"
+          class="btn btn-snap"
+        >
+          👻 Nous suivre sur Snapchat
+        </a>
+
+      </div>
 
     </div>
 
@@ -1332,7 +1433,27 @@ footer{
     Premium Streetwear • Dakar 🇸🇳 • Mauritanie 🇲🇷
   </p>
 
-  <p style="margin-top:9px;">
+  <div class="footer-socials">
+
+    <a
+      href="https://wa.me/221781383200"
+      target="_blank"
+      rel="noopener"
+    >
+      📱 WhatsApp
+    </a>
+
+    <a
+      href="https://snapchat.com/t/D4Rgn5PZ"
+      target="_blank"
+      rel="noopener"
+    >
+      👻 Snapchat
+    </a>
+
+  </div>
+
+  <p>
     © 2026 USSAINT — Tous droits réservés.
   </p>
 
@@ -1345,8 +1466,23 @@ footer{
   class="whatsapp"
   href="https://wa.me/221781383200"
   target="_blank"
+  rel="noopener"
+  aria-label="WhatsApp"
 >
   ☎
+</a>
+
+
+<!-- ================= SNAPCHAT ================= -->
+
+<a
+  class="snapchat"
+  href="https://snapchat.com/t/D4Rgn5PZ"
+  target="_blank"
+  rel="noopener"
+  aria-label="Snapchat"
+>
+  👻
 </a>
 
 
@@ -1417,7 +1553,7 @@ footer{
 <script>
 
 /* =====================================================
-   CONFIGURATION
+   CONFIGURATION PAYS
 ===================================================== */
 
 const COUNTRY = {
@@ -1535,7 +1671,7 @@ let cart = [];
 
 
 /* =====================================================
-   PRIX
+   CONFIG ACTUELLE
 ===================================================== */
 
 function getConfig(){
@@ -1566,13 +1702,6 @@ function changeCountry(country){
     return;
   }
 
-
-  /*
-     IMPORTANT :
-     On ne permet jamais de mélanger
-     FCFA et MRU dans le même panier.
-  */
-
   if(
     cart.length > 0 &&
     currentCountry !== country
@@ -1590,21 +1719,15 @@ function changeCountry(country){
 
   }
 
-
-  currentCountry =
-    country;
-
+  currentCountry = country;
 
   localStorage.setItem(
     "ussaintCountry",
     currentCountry
   );
 
-
   updateCountryUI();
-
   renderProducts();
-
   updateCart();
 
 }
@@ -1622,10 +1745,8 @@ function updateCountryUI(){
   const mauritanie =
     document.getElementById("mauritanie");
 
-
   senegal.classList.remove("active");
   mauritanie.classList.remove("active");
-
 
   if(currentCountry === "senegal"){
 
@@ -1643,7 +1764,6 @@ function updateCountryUI(){
 
   }
 
-
   if(currentCountry === "mauritanie"){
 
     mauritanie.classList.add("active");
@@ -1660,14 +1780,11 @@ function updateCountryUI(){
 
   }
 
-
   const info =
     document.getElementById("priceInfo");
 
-
   const config =
     getConfig();
-
 
   info.textContent =
     config.flag +
@@ -1683,7 +1800,7 @@ function updateCountryUI(){
 
 
 /* =====================================================
-   AFFICHER LES PRODUITS
+   AFFICHER PRODUITS
 ===================================================== */
 
 function renderProducts(){
@@ -1691,13 +1808,10 @@ function renderProducts(){
   const container =
     document.getElementById("products");
 
-
   container.innerHTML = "";
-
 
   const config =
     getConfig();
-
 
   products.forEach(
     (product,index)=>{
@@ -1705,10 +1819,8 @@ function renderProducts(){
       const article =
         document.createElement("article");
 
-
       article.className =
         "product";
-
 
       article.innerHTML = `
 
@@ -1729,7 +1841,6 @@ function renderProducts(){
 
         </div>
 
-
         <div class="product-info">
 
           <h3>
@@ -1740,7 +1851,6 @@ function renderProducts(){
             T-shirt Premium •
             ${config.name}
           </p>
-
 
           <div class="product-bottom">
 
@@ -1758,7 +1868,6 @@ function renderProducts(){
 
             </div>
 
-
             <button
               class="add"
               onclick="addToCart(${index})"
@@ -1771,7 +1880,6 @@ function renderProducts(){
         </div>
 
       `;
-
 
       container.appendChild(article);
 
@@ -1793,7 +1901,6 @@ function addToCart(index){
   const product =
     products[index];
 
-
   cart.push({
 
     name:product.name,
@@ -1807,7 +1914,6 @@ function addToCart(index){
     countryName:config.name
 
   });
-
 
   updateCart();
 
@@ -1830,7 +1936,7 @@ function removeItem(index){
 
 
 /* =====================================================
-   PANIER
+   ACTUALISER PANIER
 ===================================================== */
 
 function updateCart(){
@@ -1844,10 +1950,8 @@ function updateCart(){
   const total =
     document.getElementById("cartTotal");
 
-
   count.textContent =
     cart.length;
-
 
   if(cart.length === 0){
 
@@ -1861,12 +1965,9 @@ function updateCart(){
 
   }
 
-
   let totalAmount = 0;
 
-
   items.innerHTML = "";
-
 
   cart.forEach(
     (item,index)=>{
@@ -1874,14 +1975,11 @@ function updateCart(){
       totalAmount +=
         item.price;
 
-
       const div =
         document.createElement("div");
 
-
       div.className =
         "cart-item";
-
 
       div.innerHTML = `
 
@@ -1908,26 +2006,15 @@ function updateCart(){
 
       `;
 
-
       items.appendChild(div);
 
     }
   );
 
-
-  /*
-     Le total reprend la monnaie
-     du pays sélectionné.
-  */
-
-  const currency =
-    cart[0].currency;
-
-
   total.textContent =
     totalAmount.toLocaleString("fr-FR")
     + " "
-    + currency;
+    + cart[0].currency;
 
 }
 
@@ -1975,7 +2062,6 @@ function checkout(){
   const config =
     getConfig();
 
-
   if(cart.length === 0){
 
     const message =
@@ -1996,32 +2082,26 @@ Prix : ${config.price.toLocaleString("fr-FR")} ${config.currency}`;
 
   }
 
-
   let total = 0;
-
 
   let message =
     "🔥 COMMANDE USSAINT 🔥\n\n";
-
 
   message +=
     "Pays : " +
     cart[0].countryName +
     "\n";
 
-
   message +=
     "Monnaie : " +
     cart[0].currency +
     "\n\n";
-
 
   cart.forEach(
     (item,index)=>{
 
       total +=
         item.price;
-
 
       message +=
         `${index + 1}. ${item.name}\n`;
@@ -2032,18 +2112,14 @@ Prix : ${config.price.toLocaleString("fr-FR")} ${config.currency}`;
     }
   );
 
-
   message +=
     "━━━━━━━━━━━━━━\n";
-
 
   message +=
     `TOTAL : ${total.toLocaleString("fr-FR")} ${cart[0].currency}\n\n`;
 
-
   message +=
     "Je souhaite commander ces articles chez USSAINT.";
-
 
   window.open(
     "https://wa.me/221781383200?text="
@@ -2119,10 +2195,8 @@ galleryImages.forEach(
     const item =
       document.createElement("div");
 
-
     item.className =
       "gallery-item";
-
 
     item.innerHTML = `
 
@@ -2136,7 +2210,6 @@ galleryImages.forEach(
       >
 
     `;
-
 
     gallery.appendChild(item);
 
@@ -2156,7 +2229,7 @@ updateCart();
 
 
 /* =====================================================
-   ESC
+   TOUCHE ESC
 ===================================================== */
 
 document.addEventListener(
