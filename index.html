@@ -892,7 +892,7 @@ footer{
   width:100%;
 }
 
-/* ================= SNAPCHAT MODAL ================= */
+/* ================= SNAP MODAL ================= */
 
 .snap-modal{
   position:fixed;
@@ -1130,32 +1130,24 @@ footer{
   .snap-actions{
     grid-template-columns:1fr;
   }
-
 }
 </style>
 </head>
 
 <body>
 
-<!-- ================= HEADER ================= -->
-
 <header>
-
   <div class="nav">
 
     <a href="#accueil" class="logo-link">
-
       <img
         src="https://raw.githubusercontent.com/daoudakane4095-gif/ussaint-store/main/IMG_3846.png"
         alt="Logo USSAINT"
       >
-
       <span>USSAINT</span>
-
     </a>
 
     <nav id="navigation">
-
       <a href="#accueil">Accueil</a>
       <a href="#pays">Pays</a>
       <a href="#collections">Collection</a>
@@ -1168,7 +1160,6 @@ footer{
       >
         👻 Commander sur Snapchat
       </button>
-
     </nav>
 
     <button
@@ -1186,11 +1177,10 @@ footer{
     </div>
 
   </div>
-
 </header>
 
 
-<!-- ================= HERO ================= -->
+<!-- HERO -->
 
 <section class="hero" id="accueil">
 
@@ -1211,9 +1201,7 @@ footer{
 
     <h1>USSAINT</h1>
 
-    <h2>
-      PORTE TON ÉNERGIE.
-    </h2>
+    <h2>PORTE TON ÉNERGIE.</h2>
 
     <div class="energy"></div>
 
@@ -1248,11 +1236,10 @@ footer{
     </div>
 
   </div>
-
 </section>
 
 
-<!-- ================= MARQUEE ================= -->
+<!-- MARQUEE -->
 
 <div class="marquee">
 
@@ -1279,7 +1266,7 @@ footer{
 </div>
 
 
-<!-- ================= PAYS ================= -->
+<!-- PAYS -->
 
 <section id="pays">
 
@@ -1370,7 +1357,7 @@ footer{
 </section>
 
 
-<!-- ================= COLLECTION ================= -->
+<!-- COLLECTION -->
 
 <section id="collections">
 
@@ -1402,7 +1389,7 @@ footer{
 </section>
 
 
-<!-- ================= GALERIE ================= -->
+<!-- GALERIE -->
 
 <section id="galerie">
 
@@ -1430,7 +1417,7 @@ footer{
 </section>
 
 
-<!-- ================= FEATURES ================= -->
+<!-- FEATURES -->
 
 <section>
 
@@ -1489,7 +1476,7 @@ footer{
 </section>
 
 
-<!-- ================= CONTACT ================= -->
+<!-- CONTACT -->
 
 <section id="contact">
 
@@ -1543,7 +1530,7 @@ footer{
 </section>
 
 
-<!-- ================= FOOTER ================= -->
+<!-- FOOTER -->
 
 <footer>
 
@@ -1558,7 +1545,7 @@ footer{
   <div class="footer-socials">
 
     <a
-      href="https://wa.me/221781383200"
+      href="https://wa.me/22148529407"
       target="_blank"
       rel="noopener"
     >
@@ -1582,11 +1569,11 @@ footer{
 </footer>
 
 
-<!-- ================= BOUTONS FLOTTANTS ================= -->
+<!-- BOUTONS FLOTTANTS -->
 
 <a
   class="whatsapp"
-  href="https://wa.me/221781383200"
+  href="https://wa.me/22148529407"
   target="_blank"
   rel="noopener"
   aria-label="WhatsApp"
@@ -1604,7 +1591,7 @@ footer{
 </a>
 
 
-<!-- ================= PANIER ================= -->
+<!-- PANIER -->
 
 <div
   class="overlay"
@@ -1674,7 +1661,7 @@ footer{
 </aside>
 
 
-<!-- ================= MODALE SNAPCHAT ================= -->
+<!-- MODALE SNAPCHAT -->
 
 <div
   class="snap-modal"
@@ -1743,9 +1730,7 @@ footer{
 
 <script>
 
-/* =====================================================
-   PAYS
-===================================================== */
+/* ================= CONFIGURATION ================= */
 
 const COUNTRY = {
 
@@ -1765,105 +1750,36 @@ const COUNTRY = {
 
 };
 
-
-/* =====================================================
-   PAYS ACTUEL
-===================================================== */
-
 let currentCountry =
   localStorage.getItem("ussaintCountry")
   || "senegal";
 
+let cart = [];
 
-/* =====================================================
-   PRODUITS
-===================================================== */
+
+/* ================= PRODUITS ================= */
 
 const products = [
 
-  {
-    name:"USSAINT ENERGY 01",
-    image:"IMG_1566.jpeg"
-  },
-
-  {
-    name:"USSAINT ENERGY 02",
-    image:"IMG_1575.png"
-  },
-
-  {
-    name:"USSAINT ENERGY 03",
-    image:"IMG_1592.png"
-  },
-
-  {
-    name:"USSAINT ENERGY 04",
-    image:"IMG_1593.png"
-  },
-
-  {
-    name:"USSAINT ENERGY 05",
-    image:"IMG_1628.jpeg"
-  },
-
-  {
-    name:"USSAINT ENERGY 06",
-    image:"IMG_2192.jpeg"
-  },
-
-  {
-    name:"USSAINT ENERGY 07",
-    image:"IMG_2192.png"
-  },
-
-  {
-    name:"USSAINT ENERGY 08",
-    image:"IMG_2265.jpeg"
-  },
-
-  {
-    name:"USSAINT ENERGY 09",
-    image:"IMG_2267.jpeg"
-  },
-
-  {
-    name:"USSAINT ENERGY 10",
-    image:"IMG_2274.jpeg"
-  },
-
-  {
-    name:"USSAINT ENERGY 11",
-    image:"IMG_2275.png"
-  },
-
-  {
-    name:"USSAINT ENERGY 12",
-    image:"IMG_2277.png"
-  },
-
-  {
-    name:"USSAINT ENERGY 13",
-    image:"IMG_2304.jpeg"
-  },
-
-  {
-    name:"USSAINT ENERGY 14",
-    image:"IMG_3205.png"
-  }
+  {name:"USSAINT ENERGY 01",image:"IMG_1566.jpeg"},
+  {name:"USSAINT ENERGY 02",image:"IMG_1575.png"},
+  {name:"USSAINT ENERGY 03",image:"IMG_1592.png"},
+  {name:"USSAINT ENERGY 04",image:"IMG_1593.png"},
+  {name:"USSAINT ENERGY 05",image:"IMG_1628.jpeg"},
+  {name:"USSAINT ENERGY 06",image:"IMG_2192.jpeg"},
+  {name:"USSAINT ENERGY 07",image:"IMG_2192.png"},
+  {name:"USSAINT ENERGY 08",image:"IMG_2265.jpeg"},
+  {name:"USSAINT ENERGY 09",image:"IMG_2267.jpeg"},
+  {name:"USSAINT ENERGY 10",image:"IMG_2274.jpeg"},
+  {name:"USSAINT ENERGY 11",image:"IMG_2275.png"},
+  {name:"USSAINT ENERGY 12",image:"IMG_2277.png"},
+  {name:"USSAINT ENERGY 13",image:"IMG_2304.jpeg"},
+  {name:"USSAINT ENERGY 14",image:"IMG_3205.png"}
 
 ];
 
 
-/* =====================================================
-   PANIER
-===================================================== */
-
-let cart = [];
-
-
-/* =====================================================
-   CONFIG
-===================================================== */
+/* ================= CONFIG PAYS ================= */
 
 function getConfig(){
   return COUNTRY[currentCountry];
@@ -1871,24 +1787,18 @@ function getConfig(){
 
 function formatPrice(amount){
 
-  return (
-    amount.toLocaleString("fr-FR")
+  return amount.toLocaleString("fr-FR")
     + " "
-    + getConfig().currency
-  );
+    + getConfig().currency;
 
 }
 
 
-/* =====================================================
-   CHANGER PAYS
-===================================================== */
+/* ================= CHANGER PAYS ================= */
 
 function changeCountry(country){
 
-  if(!COUNTRY[country]){
-    return;
-  }
+  if(!COUNTRY[country]) return;
 
   if(
     cart.length > 0 &&
@@ -1899,12 +1809,9 @@ function changeCountry(country){
       "Le changement de pays va vider ton panier afin de ne pas mélanger FCFA et MRU. Continuer ?"
     );
 
-    if(!ok){
-      return;
-    }
+    if(!ok) return;
 
     cart = [];
-
   }
 
   currentCountry = country;
@@ -1921,9 +1828,7 @@ function changeCountry(country){
 }
 
 
-/* =====================================================
-   INTERFACE PAYS
-===================================================== */
+/* ================= UI PAYS ================= */
 
 function updateCountryUI(){
 
@@ -1940,52 +1845,50 @@ function updateCountryUI(){
 
     senegal.classList.add("active");
 
-    senegal
-      .querySelector(".country-status")
-      .textContent =
+    senegal.querySelector(
+      ".country-status"
+    ).textContent =
       "PAYS SÉLECTIONNÉ";
 
-    mauritanie
-      .querySelector(".country-status")
-      .textContent =
+    mauritanie.querySelector(
+      ".country-status"
+    ).textContent =
       "CLIQUER POUR SÉLECTIONNER";
 
   }else{
 
     mauritanie.classList.add("active");
 
-    mauritanie
-      .querySelector(".country-status")
-      .textContent =
+    mauritanie.querySelector(
+      ".country-status"
+    ).textContent =
       "PAYS SÉLECTIONNÉ";
 
-    senegal
-      .querySelector(".country-status")
-      .textContent =
+    senegal.querySelector(
+      ".country-status"
+    ).textContent =
       "CLIQUER POUR SÉLECTIONNER";
 
   }
 
   const config = getConfig();
 
-  document
-    .getElementById("priceInfo")
-    .textContent =
-      config.flag +
-      " " +
-      config.name +
-      " sélectionné : chaque T-shirt coûte " +
-      config.price.toLocaleString("fr-FR") +
-      " " +
-      config.currency +
-      ".";
+  document.getElementById(
+    "priceInfo"
+  ).textContent =
+    config.flag +
+    " " +
+    config.name +
+    " sélectionné : chaque T-shirt coûte " +
+    config.price.toLocaleString("fr-FR") +
+    " " +
+    config.currency +
+    ".";
 
 }
 
 
-/* =====================================================
-   PRODUITS
-===================================================== */
+/* ================= PRODUITS ================= */
 
 function renderProducts(){
 
@@ -1994,8 +1897,7 @@ function renderProducts(){
 
   container.innerHTML = "";
 
-  const config =
-    getConfig();
+  const config = getConfig();
 
   products.forEach(
     (product,index)=>{
@@ -2003,8 +1905,7 @@ function renderProducts(){
       const article =
         document.createElement("article");
 
-      article.className =
-        "product";
+      article.className = "product";
 
       article.innerHTML = `
 
@@ -2024,13 +1925,10 @@ function renderProducts(){
 
         <div class="product-info">
 
-          <h3>
-            ${product.name}
-          </h3>
+          <h3>${product.name}</h3>
 
           <p>
-            T-shirt Premium •
-            ${config.name}
+            T-shirt Premium • ${config.name}
           </p>
 
           <div class="product-bottom">
@@ -2043,8 +1941,7 @@ function renderProducts(){
               </div>
 
               <span class="country-mini">
-                ${config.flag}
-                ${config.name}
+                ${config.flag} ${config.name}
               </span>
 
             </div>
@@ -2059,7 +1956,6 @@ function renderProducts(){
           </div>
 
         </div>
-
       `;
 
       container.appendChild(article);
@@ -2070,17 +1966,12 @@ function renderProducts(){
 }
 
 
-/* =====================================================
-   AJOUTER AU PANIER
-===================================================== */
+/* ================= PANIER ================= */
 
 function addToCart(index){
 
-  const config =
-    getConfig();
-
-  const product =
-    products[index];
+  const config = getConfig();
+  const product = products[index];
 
   cart.push({
 
@@ -2093,28 +1984,16 @@ function addToCart(index){
   });
 
   updateCart();
-
   openCart();
 
 }
 
-
-/* =====================================================
-   SUPPRIMER
-===================================================== */
-
 function removeItem(index){
 
   cart.splice(index,1);
-
   updateCart();
 
 }
-
-
-/* =====================================================
-   PANIER
-===================================================== */
 
 function updateCart(){
 
@@ -2127,8 +2006,7 @@ function updateCart(){
   const total =
     document.getElementById("cartTotal");
 
-  count.textContent =
-    cart.length;
+  count.textContent = cart.length;
 
   if(cart.length === 0){
 
@@ -2154,16 +2032,13 @@ function updateCart(){
       const div =
         document.createElement("div");
 
-      div.className =
-        "cart-item";
+      div.className = "cart-item";
 
       div.innerHTML = `
 
         <div>
 
-          <strong>
-            ${item.name}
-          </strong>
+          <strong>${item.name}</strong>
 
           <small>
             ${item.price.toLocaleString("fr-FR")}
@@ -2179,7 +2054,6 @@ function updateCart(){
         >
           Supprimer
         </button>
-
       `;
 
       items.appendChild(div);
@@ -2195,9 +2069,7 @@ function updateCart(){
 }
 
 
-/* =====================================================
-   PANIER OUVRIR / FERMER
-===================================================== */
+/* ================= PANIER OUVERTURE ================= */
 
 function openCart(){
 
@@ -2224,14 +2096,11 @@ function closeCart(){
 }
 
 
-/* =====================================================
-   WHATSAPP RAPIDE
-===================================================== */
+/* ================= WHATSAPP RAPIDE ================= */
 
 function quickWhatsApp(){
 
-  const config =
-    getConfig();
+  const config = getConfig();
 
   const message =
 `🔥 COMMANDE USSAINT
@@ -2248,7 +2117,7 @@ Pouvez-vous me montrer les modèles disponibles ?
 Merci 🔥`;
 
   window.open(
-    "https://wa.me/221781383200?text="
+    "https://wa.me/22148529407?text="
     + encodeURIComponent(message),
     "_blank"
   );
@@ -2256,16 +2125,13 @@ Merci 🔥`;
 }
 
 
-/* =====================================================
-   WHATSAPP PANIER
-===================================================== */
+/* ================= WHATSAPP PANIER ================= */
 
 function checkoutWhatsApp(){
 
   if(cart.length === 0){
 
     quickWhatsApp();
-
     return;
 
   }
@@ -2305,7 +2171,7 @@ Je souhaite commander :
 Merci USSAINT 🔥`;
 
   window.open(
-    "https://wa.me/221781383200?text="
+    "https://wa.me/22148529407?text="
     + encodeURIComponent(message),
     "_blank"
   );
@@ -2313,14 +2179,11 @@ Merci USSAINT 🔥`;
 }
 
 
-/* =====================================================
-   SNAPCHAT — PRÉPARER COMMANDE
-===================================================== */
+/* ================= SNAPCHAT ================= */
 
 function openSnapOrder(){
 
-  const config =
-    getConfig();
+  const config = getConfig();
 
   let message = "";
 
@@ -2378,51 +2241,47 @@ Merci USSAINT 🔥`;
 
   }
 
-  document
-    .getElementById("snapMessage")
-    .value = message;
+  document.getElementById(
+    "snapMessage"
+  ).value = message;
 
-  document
-    .getElementById("copySuccess")
-    .classList.remove("show");
+  document.getElementById(
+    "copySuccess"
+  ).classList.remove("show");
 
-  document
-    .getElementById("snapModal")
-    .classList.add("show");
+  document.getElementById(
+    "snapModal"
+  ).classList.add("show");
 
 }
-
-
-/* =====================================================
-   FERMER SNAPCHAT
-===================================================== */
 
 function closeSnapOrder(){
 
-  document
-    .getElementById("snapModal")
-    .classList.remove("show");
+  document.getElementById(
+    "snapModal"
+  ).classList.remove("show");
 
 }
-
-
-/* =====================================================
-   COPIER MESSAGE SNAPCHAT
-===================================================== */
 
 async function copySnapMessage(){
 
   const message =
-    document.getElementById("snapMessage").value;
+    document.getElementById(
+      "snapMessage"
+    ).value;
 
   try{
 
-    await navigator.clipboard.writeText(message);
+    await navigator.clipboard.writeText(
+      message
+    );
 
   }catch(error){
 
     const textarea =
-      document.getElementById("snapMessage");
+      document.getElementById(
+        "snapMessage"
+      );
 
     textarea.focus();
     textarea.select();
@@ -2432,7 +2291,9 @@ async function copySnapMessage(){
   }
 
   const success =
-    document.getElementById("copySuccess");
+    document.getElementById(
+      "copySuccess"
+    );
 
   success.classList.add("show");
 
@@ -2446,9 +2307,7 @@ async function copySnapMessage(){
 }
 
 
-/* =====================================================
-   MENU MOBILE
-===================================================== */
+/* ================= MENU ================= */
 
 function toggleMenu(){
 
@@ -2457,7 +2316,6 @@ function toggleMenu(){
     .classList.toggle("show");
 
 }
-
 
 document
   .querySelectorAll("nav a")
@@ -2477,9 +2335,7 @@ document
   );
 
 
-/* =====================================================
-   GALERIE
-===================================================== */
+/* ================= GALERIE ================= */
 
 const galleryImages = [
 
@@ -2528,9 +2384,7 @@ galleryImages.forEach(
 );
 
 
-/* =====================================================
-   FERMER MODALE SNAP EN CLIQUANT À CÔTÉ
-===================================================== */
+/* ================= FERMER SNAP ================= */
 
 document
   .getElementById("snapModal")
@@ -2546,9 +2400,7 @@ document
   );
 
 
-/* =====================================================
-   ESC
-===================================================== */
+/* ================= ESC ================= */
 
 document.addEventListener(
   "keydown",
@@ -2565,9 +2417,7 @@ document.addEventListener(
 );
 
 
-/* =====================================================
-   INITIALISATION
-===================================================== */
+/* ================= START ================= */
 
 updateCountryUI();
 renderProducts();
