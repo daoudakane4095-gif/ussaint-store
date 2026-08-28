@@ -1545,7 +1545,7 @@ footer{
   <div class="footer-socials">
 
     <a
-      href="https://wa.me/22148529407"
+      href="https://wa.me/22248529407"
       target="_blank"
       rel="noopener"
     >
@@ -1573,7 +1573,7 @@ footer{
 
 <a
   class="whatsapp"
-  href="https://wa.me/22148529407"
+  href="https://wa.me/22248529407"
   target="_blank"
   rel="noopener"
   aria-label="WhatsApp"
@@ -1761,55 +1761,103 @@ let cart = [];
 
 const products = [
 
-  {name:"USSAINT ENERGY 01",image:"IMG_1566.jpeg"},
-  {name:"USSAINT ENERGY 02",image:"IMG_1575.png"},
-  {name:"USSAINT ENERGY 03",image:"IMG_1592.png"},
-  {name:"USSAINT ENERGY 04",image:"IMG_1593.png"},
-  {name:"USSAINT ENERGY 05",image:"IMG_1628.jpeg"},
-  {name:"USSAINT ENERGY 06",image:"IMG_2192.jpeg"},
-  {name:"USSAINT ENERGY 07",image:"IMG_2192.png"},
-  {name:"USSAINT ENERGY 08",image:"IMG_2265.jpeg"},
-  {name:"USSAINT ENERGY 09",image:"IMG_2267.jpeg"},
-  {name:"USSAINT ENERGY 10",image:"IMG_2274.jpeg"},
-  {name:"USSAINT ENERGY 11",image:"IMG_2275.png"},
-  {name:"USSAINT ENERGY 12",image:"IMG_2277.png"},
-  {name:"USSAINT ENERGY 13",image:"IMG_2304.jpeg"},
-  {name:"USSAINT ENERGY 14",image:"IMG_3205.png"}
+  {
+    name:"USSAINT ENERGY 01",
+    image:"IMG_1566.jpeg"
+  },
+
+  {
+    name:"USSAINT ENERGY 02",
+    image:"IMG_1575.png"
+  },
+
+  {
+    name:"USSAINT ENERGY 03",
+    image:"IMG_1592.png"
+  },
+
+  {
+    name:"USSAINT ENERGY 04",
+    image:"IMG_1593.png"
+  },
+
+  {
+    name:"USSAINT ENERGY 05",
+    image:"IMG_1628.jpeg"
+  },
+
+  {
+    name:"USSAINT ENERGY 06",
+    image:"IMG_2192.jpeg"
+  },
+
+  {
+    name:"USSAINT ENERGY 07",
+    image:"IMG_2192.png"
+  },
+
+  {
+    name:"USSAINT ENERGY 08",
+    image:"IMG_2265.jpeg"
+  },
+
+  {
+    name:"USSAINT ENERGY 09",
+    image:"IMG_2267.jpeg"
+  },
+
+  {
+    name:"USSAINT ENERGY 10",
+    image:"IMG_2274.jpeg"
+  },
+
+  {
+    name:"USSAINT ENERGY 11",
+    image:"IMG_2275.png"
+  },
+
+  {
+    name:"USSAINT ENERGY 12",
+    image:"IMG_2277.png"
+  },
+
+  {
+    name:"USSAINT ENERGY 13",
+    image:"IMG_2304.jpeg"
+  },
+
+  {
+    name:"USSAINT ENERGY 14",
+    image:"IMG_3205.png"
+  }
 
 ];
 
 
-/* ================= CONFIG PAYS ================= */
+/* ================= PAYS ================= */
 
 function getConfig(){
   return COUNTRY[currentCountry];
 }
 
-function formatPrice(amount){
-
-  return amount.toLocaleString("fr-FR")
-    + " "
-    + getConfig().currency;
-
-}
-
-
-/* ================= CHANGER PAYS ================= */
-
 function changeCountry(country){
 
-  if(!COUNTRY[country]) return;
+  if(!COUNTRY[country]){
+    return;
+  }
 
   if(
     cart.length > 0 &&
     currentCountry !== country
   ){
 
-    const ok = confirm(
-      "Le changement de pays va vider ton panier afin de ne pas mélanger FCFA et MRU. Continuer ?"
+    const confirmation = confirm(
+      "Changer de pays va vider ton panier afin de ne pas mélanger FCFA et MRU. Continuer ?"
     );
 
-    if(!ok) return;
+    if(!confirmation){
+      return;
+    }
 
     cart = [];
   }
@@ -1818,7 +1866,7 @@ function changeCountry(country){
 
   localStorage.setItem(
     "ussaintCountry",
-    currentCountry
+    country
   );
 
   updateCountryUI();
@@ -1828,7 +1876,7 @@ function changeCountry(country){
 }
 
 
-/* ================= UI PAYS ================= */
+/* ================= AFFICHAGE PAYS ================= */
 
 function updateCountryUI(){
 
@@ -1905,7 +1953,8 @@ function renderProducts(){
       const article =
         document.createElement("article");
 
-      article.className = "product";
+      article.className =
+        "product";
 
       article.innerHTML = `
 
@@ -1919,16 +1968,20 @@ function renderProducts(){
             src="${product.image}"
             alt="${product.name}"
             loading="lazy"
+            onerror="this.style.display='none';"
           >
 
         </div>
 
         <div class="product-info">
 
-          <h3>${product.name}</h3>
+          <h3>
+            ${product.name}
+          </h3>
 
           <p>
-            T-shirt Premium • ${config.name}
+            T-shirt Premium •
+            ${config.name}
           </p>
 
           <div class="product-bottom">
@@ -1936,12 +1989,17 @@ function renderProducts(){
             <div>
 
               <div class="price">
+
                 ${config.price.toLocaleString("fr-FR")}
                 ${config.currency}
+
               </div>
 
               <span class="country-mini">
-                ${config.flag} ${config.name}
+
+                ${config.flag}
+                ${config.name}
+
               </span>
 
             </div>
@@ -1956,6 +2014,7 @@ function renderProducts(){
           </div>
 
         </div>
+
       `;
 
       container.appendChild(article);
@@ -1970,43 +2029,61 @@ function renderProducts(){
 
 function addToCart(index){
 
-  const config = getConfig();
-  const product = products[index];
+  const config =
+    getConfig();
+
+  const product =
+    products[index];
 
   cart.push({
 
     name:product.name,
+
     price:config.price,
+
     currency:config.currency,
+
     country:currentCountry,
+
     countryName:config.name
 
   });
 
   updateCart();
+
   openCart();
 
 }
 
+
 function removeItem(index){
 
   cart.splice(index,1);
+
   updateCart();
 
 }
 
+
 function updateCart(){
 
   const count =
-    document.getElementById("cartCount");
+    document.getElementById(
+      "cartCount"
+    );
 
   const items =
-    document.getElementById("cartItems");
+    document.getElementById(
+      "cartItems"
+    );
 
   const total =
-    document.getElementById("cartTotal");
+    document.getElementById(
+      "cartTotal"
+    );
 
-  count.textContent = cart.length;
+  count.textContent =
+    cart.length;
 
   if(cart.length === 0){
 
@@ -2014,7 +2091,9 @@ function updateCart(){
       '<p class="empty">Ton panier est vide.</p>';
 
     total.textContent =
-      formatPrice(0);
+      currentCountry === "senegal"
+      ? "0 FCFA"
+      : "0 MRU";
 
     return;
 
@@ -2027,23 +2106,33 @@ function updateCart(){
   cart.forEach(
     (item,index)=>{
 
-      totalAmount += item.price;
+      totalAmount +=
+        item.price;
 
       const div =
-        document.createElement("div");
+        document.createElement(
+          "div"
+        );
 
-      div.className = "cart-item";
+      div.className =
+        "cart-item";
 
       div.innerHTML = `
 
         <div>
 
-          <strong>${item.name}</strong>
+          <strong>
+            ${item.name}
+          </strong>
 
           <small>
+
             ${item.price.toLocaleString("fr-FR")}
             ${item.currency}
-            • ${item.countryName}
+
+            •
+            ${item.countryName}
+
           </small>
 
         </div>
@@ -2054,6 +2143,7 @@ function updateCart(){
         >
           Supprimer
         </button>
+
       `;
 
       items.appendChild(div);
@@ -2062,14 +2152,16 @@ function updateCart(){
   );
 
   total.textContent =
-    totalAmount.toLocaleString("fr-FR")
+    totalAmount.toLocaleString(
+      "fr-FR"
+    )
     + " "
     + cart[0].currency;
 
 }
 
 
-/* ================= PANIER OUVERTURE ================= */
+/* ================= CART ================= */
 
 function openCart(){
 
@@ -2082,6 +2174,7 @@ function openCart(){
     .classList.add("show");
 
 }
+
 
 function closeCart(){
 
@@ -2096,13 +2189,15 @@ function closeCart(){
 }
 
 
-/* ================= WHATSAPP RAPIDE ================= */
+/* ================= WHATSAPP ================= */
 
 function quickWhatsApp(){
 
-  const config = getConfig();
+  const config =
+    getConfig();
 
   const message =
+
 `🔥 COMMANDE USSAINT
 
 Bonjour USSAINT 👋
@@ -2110,6 +2205,7 @@ Bonjour USSAINT 👋
 Je souhaite commander un T-shirt.
 
 🌍 Pays : ${config.name}
+
 💰 Prix : ${config.price.toLocaleString("fr-FR")} ${config.currency}
 
 Pouvez-vous me montrer les modèles disponibles ?
@@ -2117,7 +2213,7 @@ Pouvez-vous me montrer les modèles disponibles ?
 Merci 🔥`;
 
   window.open(
-    "https://wa.me/22148529407?text="
+    "https://wa.me/22248529407?text="
     + encodeURIComponent(message),
     "_blank"
   );
@@ -2125,13 +2221,12 @@ Merci 🔥`;
 }
 
 
-/* ================= WHATSAPP PANIER ================= */
-
 function checkoutWhatsApp(){
 
   if(cart.length === 0){
 
     quickWhatsApp();
+
     return;
 
   }
@@ -2139,6 +2234,7 @@ function checkoutWhatsApp(){
   let total = 0;
 
   let message =
+
 `🔥 COMMANDE USSAINT
 
 Bonjour USSAINT 👋
@@ -2153,7 +2249,9 @@ Je souhaite commander :
       total += item.price;
 
       message +=
+
 `${index + 1}. ${item.name}
+
 💰 ${item.price.toLocaleString("fr-FR")} ${item.currency}
 
 `;
@@ -2162,8 +2260,11 @@ Je souhaite commander :
   );
 
   message +=
+
 `━━━━━━━━━━━━━━
+
 🌍 Pays : ${cart[0].countryName}
+
 💰 TOTAL : ${total.toLocaleString("fr-FR")} ${cart[0].currency}
 
 🚚 Livraison / retrait à confirmer.
@@ -2171,7 +2272,7 @@ Je souhaite commander :
 Merci USSAINT 🔥`;
 
   window.open(
-    "https://wa.me/22148529407?text="
+    "https://wa.me/22248529407?text="
     + encodeURIComponent(message),
     "_blank"
   );
@@ -2183,13 +2284,15 @@ Merci USSAINT 🔥`;
 
 function openSnapOrder(){
 
-  const config = getConfig();
+  const config =
+    getConfig();
 
   let message = "";
 
   if(cart.length === 0){
 
     message =
+
 `🔥 COMMANDE USSAINT
 
 Bonjour USSAINT 👋
@@ -2197,6 +2300,7 @@ Bonjour USSAINT 👋
 Je souhaite commander un T-shirt.
 
 🌍 Pays : ${config.name}
+
 💰 Prix : ${config.price.toLocaleString("fr-FR")} ${config.currency}
 
 Pouvez-vous me montrer les modèles disponibles ?
@@ -2208,6 +2312,7 @@ Merci 🔥`;
     let total = 0;
 
     message =
+
 `🔥 COMMANDE USSAINT
 
 Bonjour USSAINT 👋
@@ -2222,7 +2327,9 @@ Je souhaite commander :
         total += item.price;
 
         message +=
+
 `${index + 1}. ${item.name}
+
 💰 ${item.price.toLocaleString("fr-FR")} ${item.currency}
 
 `;
@@ -2231,8 +2338,11 @@ Je souhaite commander :
     );
 
     message +=
+
 `━━━━━━━━━━━━━━
+
 🌍 Pays : ${cart[0].countryName}
+
 💰 TOTAL : ${total.toLocaleString("fr-FR")} ${cart[0].currency}
 
 🚚 Livraison / retrait à confirmer.
@@ -2243,25 +2353,34 @@ Merci USSAINT 🔥`;
 
   document.getElementById(
     "snapMessage"
-  ).value = message;
+  ).value =
+    message;
 
   document.getElementById(
     "copySuccess"
-  ).classList.remove("show");
+  ).classList.remove(
+    "show"
+  );
 
   document.getElementById(
     "snapModal"
-  ).classList.add("show");
+  ).classList.add(
+    "show"
+  );
 
 }
+
 
 function closeSnapOrder(){
 
   document.getElementById(
     "snapModal"
-  ).classList.remove("show");
+  ).classList.remove(
+    "show"
+  );
 
 }
+
 
 async function copySnapMessage(){
 
@@ -2284,9 +2403,12 @@ async function copySnapMessage(){
       );
 
     textarea.focus();
+
     textarea.select();
 
-    document.execCommand("copy");
+    document.execCommand(
+      "copy"
+    );
 
   }
 
@@ -2295,11 +2417,15 @@ async function copySnapMessage(){
       "copySuccess"
     );
 
-  success.classList.add("show");
+  success.classList.add(
+    "show"
+  );
 
   setTimeout(
     ()=>{
-      success.classList.remove("show");
+      success.classList.remove(
+        "show"
+      );
     },
     3000
   );
@@ -2312,10 +2438,15 @@ async function copySnapMessage(){
 function toggleMenu(){
 
   document
-    .getElementById("navigation")
-    .classList.toggle("show");
+    .getElementById(
+      "navigation"
+    )
+    .classList.toggle(
+      "show"
+    );
 
 }
+
 
 document
   .querySelectorAll("nav a")
@@ -2326,8 +2457,12 @@ document
         "click",
         ()=>{
           document
-            .getElementById("navigation")
-            .classList.remove("show");
+            .getElementById(
+              "navigation"
+            )
+            .classList.remove(
+              "show"
+            );
         }
       );
 
@@ -2357,13 +2492,17 @@ const galleryImages = [
 ];
 
 const gallery =
-  document.getElementById("gallery");
+  document.getElementById(
+    "gallery"
+  );
 
 galleryImages.forEach(
   (image,index)=>{
 
     const item =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
 
     item.className =
       "gallery-item";
@@ -2378,13 +2517,15 @@ galleryImages.forEach(
 
     `;
 
-    gallery.appendChild(item);
+    gallery.appendChild(
+      item
+    );
 
   }
 );
 
 
-/* ================= FERMER SNAP ================= */
+/* ================= MODALE ================= */
 
 document
   .getElementById("snapModal")
@@ -2392,7 +2533,9 @@ document
     "click",
     function(event){
 
-      if(event.target === this){
+      if(
+        event.target === this
+      ){
         closeSnapOrder();
       }
 
@@ -2406,7 +2549,9 @@ document.addEventListener(
   "keydown",
   event=>{
 
-    if(event.key === "Escape"){
+    if(
+      event.key === "Escape"
+    ){
 
       closeCart();
       closeSnapOrder();
@@ -2420,7 +2565,9 @@ document.addEventListener(
 /* ================= START ================= */
 
 updateCountryUI();
+
 renderProducts();
+
 updateCart();
 
 </script>
